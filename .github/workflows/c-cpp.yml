@@ -48,6 +48,7 @@ jobs:
       shell: cmd
       run: |
         pushd ${{ github.workspace }}
+        mkdir output
         cp -R source/. ../Syati/source
         cp -R include/spack/. ../Syati/include/spack
         cd ../Syati
@@ -71,7 +72,9 @@ jobs:
          python -m build JAP
          rm -f *.d
          mv *.bin output
+         cp -R output/*.bin ../SMG2-Project-Template/output
+         popd
     - name: Upload bin files
       uses: actions/upload-artifact@v2.2.4
       with:
-        path: ${{ github.workspace }}/../Syati/output
+        path: ${{ github.workspace }}/output
