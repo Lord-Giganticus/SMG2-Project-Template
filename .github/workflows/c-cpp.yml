@@ -68,7 +68,7 @@ jobs:
 
   Loaders:
   
-    runs-on: windows-lastest
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v2
