@@ -63,4 +63,5 @@ jobs:
     - name: Upload bin files
       uses: actions/upload-artifact@v2.2.4
       with:
+        name: Bins
         path: ${{ github.workspace }}/output
