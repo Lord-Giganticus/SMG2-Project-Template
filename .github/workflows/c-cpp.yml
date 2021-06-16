@@ -14,25 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2.2.2
-    - name: Syati Cache
-      id: syati
-      uses: actions/cache@v2.1.6
-      with:
-        path: ${{ github.workspace }}/../Syati
-        key: ${{ runner.os }}-syati
-    - if: steps.syati.outputs.cache-hit != 'true'
-      shell: cmd
-      run: |
-        pushd ${{ github.workspace }}
-        cd ../
-        git clone https://github.com/Lord-Giganticus/Syati.git
-        popd
     - shell: cmd
       run: |
         pushd ${{ github.workspace }}
         cd ../
-        cd Syati
-        git pull
+        git clone https://github.com/Lord-Giganticus/Syati.git
         popd
     - name: Curl Cache
       id: curl
