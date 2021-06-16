@@ -1,0 +1,73 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2.2.2
+    - name: Syati Cache
+      id: syati
+      uses: actions/cache@v2.1.6
+      with:
+        path: ${{ github.workspace }}/../Syati
+        key: ${{ runner.os }}-syati
+    - if: steps.syati.outputs.cache-hit != 'true'
+      shell: cmd
+      run: |
+        pushd ${{ github.workspace }}
+        cd ../
+        git clone https://github.com/Lord-Giganticus/Syati.git
+        popd
+    - shell: cmd
+      run: |
+        pushd ${{ github.workspace }}
+        cd ../
+        cd Syati
+        git pull
+        popd
+    - name: Curl Cache
+      id: curl
+      uses: actions/cache@v2.1.6
+      with:
+        path: C:\ProgramData\chocolatey\bin\curl.exe
+        key: ${{ runner.os }}-curl
+    - name: Install curl
+      if: steps.curl.outputs.cache-hit != 'true'
+      run: choco install curl --acceptlicense --confirm --verbose
+      shell: cmd
+    - name: Setup files
+      shell: cmd
+      run: |
+        pushd ${{ github.workspace }}
+        cp -R source/. ../Syati/source
+        cp -R include/spack/. ../Syati/include/spack
+        cd ../Syati
+        mkdir output
+        cd source
+        rm -f ExtendedActorFactory.cpp
+        popd
+    - name: Build Syati
+      shell: cmd
+      run: |
+         pushd ${{ github.workspace }}
+         cd ../Syati
+         python -m build USA
+         rm -f *.d
+         python -m build PAL
+         rm -f *.d
+         python -m build JAP
+         rm -f *.d
+         mv *.bin output
+    - name: Upload bin files
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        path: ${{ github.workspace }}/../Syati/output
