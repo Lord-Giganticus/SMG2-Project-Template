@@ -52,6 +52,10 @@ jobs:
         cp -R include/spack/. ../Syati/include/spack
         cd ../Syati
         mkdir output
+        curl -k -L https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar -o Kamek.rar
+        ${{ secrets.CODEWARRIOR_CMD }}
+        7z x *.rar
+        rm -f *.rar
         cd source
         rm -f ExtendedActorFactory.cpp
         popd
