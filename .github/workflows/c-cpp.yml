@@ -58,6 +58,10 @@ jobs:
          rm -f *.d
          python -m build JAP
          rm -f *.d
+         python -m build KOR
+         rm -f *.d
+         python -m build TWN
+         rm -f *.d
          mv *.bin output
          cp -R output/*.bin ../SMG2-Project-Template/output
          popd
@@ -100,11 +104,13 @@ jobs:
         cd dols
         ${{ secrets.USA_CMD }}
         ${{ secrets.PAL_CMD }}
+        ${{ secrets.JAP_CMD }}
         cd ../loader
         bash -c ./build_USA.sh
         rm -f *.o
         bash -c ./build_PAL.sh
         rm -f *.o
+        bash -c ./build_JAP.sh
         cd ../
         cp -R loader/out/*.xml ../SMG2-Project-Template/output
         cp -R loader/out/*.dol ../SMG2-Project-Template/output
