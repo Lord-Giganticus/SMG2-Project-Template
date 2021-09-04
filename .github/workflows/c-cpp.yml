@@ -111,7 +111,6 @@ jobs:
         cd ../
         cp -R loader/out/*.xml ../SMG2-Project-Template/output
         cp -R loader/out/*.dol ../SMG2-Project-Template/output
-        popd
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
