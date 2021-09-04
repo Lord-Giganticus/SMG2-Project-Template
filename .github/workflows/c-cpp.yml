@@ -21,16 +21,6 @@ jobs:
         cd ../
         git clone https://github.com/Lord-Giganticus/Syati.git
         popd
-    - name: Curl Cache
-      id: curl
-      uses: actions/cache@v2.1.6
-      with:
-        path: C:\ProgramData\chocolatey\bin\curl.exe
-        key: ${{ runner.os }}-curl
-    - name: Install curl
-      if: steps.curl.outputs.cache-hit != 'true'
-      run: choco install curl --acceptlicense --confirm --verbose
-      shell: cmd
     - name: Setup files
       shell: cmd
       run: |
@@ -40,13 +30,19 @@ jobs:
         cp -R include/spack/. ../Syati/include/spack
         cd ../Syati
         mkdir output
-        curl -k -L https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar -o Kamek.rar
+        popd
+    - shell: pwsh
+      run: |
+        cd ${{ github.workspace }}/../Syati
+        Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar" -OutFile Kamek.rar
         ${{ secrets.CODEWARRIOR_CMD }}
+    - shell: cmd
+      run: |
+        cd ${{ github.workspace }}/../Syati
         7z x *.rar
         rm -f *.rar
         cd source
         rm -f ExtendedActorFactory.cpp
-        popd
     - name: Build Syati
       shell: cmd
       run: |
@@ -77,16 +73,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - name: Curl Cache
-      id: curl
-      uses: actions/cache@v2.1.6
-      with:
-        path: C:\ProgramData\chocolatey\bin\curl.exe
-        key: ${{ runner.os }}-curl
-    - name: Install curl
-      if: steps.curl.outputs.cache-hit != 'true'
-      run: choco install curl --acceptlicense --confirm --verbose
-      shell: cmd
     - run: mkdir output
       shell: cmd
     - name: Clone Syati
@@ -95,17 +81,28 @@ jobs:
         pushd ${{ github.workspace }}
         cd ../
         git clone https://github.com/Lord-Giganticus/Syati.git
-        cd Syati
-        curl -k -L https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar -o Kamek.rar
+    - shell: pwsh
+      run: |
+        cd ${{ github.workspace }}/../Syati
+        Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar" -OutFile Kamek.rar
         ${{ secrets.CODEWARRIOR_CMD }}
+    - shell: cmd
+      run: |
+        cd ${{ github.workspace }}/../Syati
         7z x *.rar
         rm -f *.rar
         mkdir dols
+    - shell: pwsh
+      run: |
+        cd ${{ github.workspace }}/../Syati
         cd dols
         ${{ secrets.USA_CMD }}
         ${{ secrets.PAL_CMD }}
         ${{ secrets.JAP_CMD }}
-        cd ../loader
+    - shell: cmd
+      run: |
+        cd ${{ github.workspace }}/../Syati
+        cd loader
         bash -c ./build_USA.sh
         rm -f *.o
         bash -c ./build_PAL.sh
