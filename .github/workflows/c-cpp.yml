@@ -116,3 +116,39 @@ jobs:
       with:
         name: Loaders
         path: ${{ github.workspace }}/output
+        
+  publish:
+    if: github.ref == 'refs/heads/master'
+    needs: [Bins, Loaders]
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - run: |
+          mkdir Release
+          cd Release
+          mkdir CustomCode
+          mkdir Loaders
+      - uses: actions/download-artifact@v2.0.10
+        with: 
+          name: Bins
+          path: ${{ github.workspace }}/Release/CustomCode
+      - uses: actions/download-artifact@v2.0.10
+        with:
+          name: Loaders
+          path: ${{ github.workspace }}/Release/Loaders
+      - shell: cmd
+        run: |
+          cd ${{ github.workspace }}/Release/Loaders
+          rm -f *.xml
+          cd ../
+          7z a "${{ github.workspace }}/Syati.zip" *.* -r
+          cd ../
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "Auto"
+          prerelease: true
+          title: "Auto Build"
+          files: |
+            *.zip
