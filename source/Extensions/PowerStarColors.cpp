@@ -2,16 +2,18 @@
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
 #include "Util.h"
+#include "spack/Util/LoadResource.h"
 
 /*
-* Authors: Aurum
-* 
+* Authors: Aurum, Galaxy Master, and Evanbowl
+*
 * This changes all the code that apply Power Star colors to support new and custom colors as well.
 * To accomplish this, the PowerStarType in the scenario file is changed to configure the color for
 * a scenario's star easily. The new types are Bronze, Red, Blue and LegacyGreen. As the Green type
 * from the base game has to be unlocked first, the LegacyGreen type was added in to ignore these
 * conditions effectively.
 */
+
 namespace SPack {
 	/*
 	* This is the function to retrieve the color ID based on the specified scenario's
@@ -30,13 +32,13 @@ namespace SPack {
 		GalaxyStatusAccessor gsa(MR::makeGalaxyStatusAccessor(pStage));
 		gsa.mScenarioData->getScenarioString("PowerStarType", scenarioId, &type);
 
-		if (MR::isEqualString(type, "Bronze"))
+		if (strstr(type, "Bronze"))
 			return 1;
-		else if (MR::isEqualString(type, "Green") || MR::isEqualString(type, "LegacyGreen"))
+		else if (strstr(type, "Green") || strstr(type, "LegacyGreen"))
 			return 2;
-		else if (MR::isEqualString(type, "Red"))
+		else if (strstr(type, "Red"))
 			return 3;
-		else if (MR::isEqualString(type, "Blue"))
+		else if (strstr(type, "Blue"))
 			return 5;
 		return 0;
 	}
@@ -94,4 +96,93 @@ namespace SPack {
 	kmCall(0x8035BAC0, getPowerStarColorCurrentStage); // redirection hook
 	kmWrite32(0x802DF02C, 0x7C7D1B78); // copy result from r3 to r29
 	kmWrite32(0x802DF030, 0x4800000C); // skip unnecessary instructions
+
+	kmWrite32(0x804CB8BC, 0x48169D65); //This uses strstr instead of MR::isEqualString in the isPowerStarTypeHidden__12ScenarioDataCFl function. Allows types like BlueHidden to work.
+
+    /*
+	* Power Star Font Icons
+    *
+	* On the World Map, Star List, and Pause Menu, icons of a Power Star type and color are displayed.
+	* These icons are normally inside the PictureFont.brfnt inside Font.arc found in all language files.
+	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
+    */
+
+   	void* loadPTPictureFont() {
+	Syati::loadArchive("/SystemData/PTPictureFont.arc");
+	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
+	}
+
+	kmCall(0x804B8048, loadPTPictureFont);
+
+	wchar_t *getStarIcon(s32 startype) {
+		wchar_t *unk;
+		const char *pStage;
+		s32 scenarioId;
+		s32 icon;
+
+		asm("mr %0, r27" : "=r" (pStage));
+		asm("mr %0, r30" : "=r" (unk));
+		asm("mr %0, r31" : "=r" (scenarioId));
+
+     	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
+
+        if (startype == 0) {// Normal Star icons
+		if (getStarColor == 1)
+			icon = 0x72;
+		else if (getStarColor == 2)
+			icon = 0x80;
+		else if (getStarColor == 3)
+			icon = 0x7E;
+		else if (getStarColor == 5)
+			icon = 0x7F;
+		else
+			icon = 0x37;
+		}
+
+        else if (startype == 1) {//Comet Star icons
+		if (getStarColor == 1)
+			icon = 0x7D;
+		else if (getStarColor == 2)
+			icon = 0x4F;
+		else if (getStarColor == 3)
+			icon = 0x81;
+		else if (getStarColor == 5)
+			icon = 0x82;
+		else
+			icon = 0x65;
+		}
+
+        else if (startype == 2) {//Uncollected Hidden Star icons
+		if (getStarColor == 1)
+			icon = 0x86;
+		else if (getStarColor == 2)
+			icon = 0x85;
+		else if (getStarColor == 3)
+			icon = 0x83;
+		else if (getStarColor == 5)
+			icon = 0x84;
+		else
+			icon = 0x71;
+		}
+
+        return MR::addPictureFontCode(unk, icon);
+	}
+
+
+    wchar_t* starIcon() {
+    return getStarIcon(0);
+	}
+
+    wchar_t* cometStarIcon() {
+    return getStarIcon(1);
+	}
+
+    wchar_t* hiddenStarIcon() {
+    return getStarIcon(2);
+	}
+
+	kmCall(0x80041E30, starIcon); //Normal Star icons
+	kmCall(0x80041F0C, cometStarIcon); //Comet Star icons
+	kmCall(0x80041F94, hiddenStarIcon); //Hidden Star icons
+	kmCall(0x80041F48, starIcon); //Collected Hidden Star icons
 }
