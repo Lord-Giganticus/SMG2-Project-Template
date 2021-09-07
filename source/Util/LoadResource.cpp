@@ -9,7 +9,6 @@
 #include "Util.h"
 #include "Util/FileUtil.h"
 #include "Util/MemoryUtil.h"
-#include "nw4rtest.h"
 
 namespace Syati
 {
