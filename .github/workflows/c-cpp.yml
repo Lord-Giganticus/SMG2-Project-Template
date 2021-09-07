@@ -117,7 +117,7 @@ jobs:
         name: Loaders
         path: ${{ github.workspace }}/output
         
-  publish:
+  Publish:
     if: github.ref == 'refs/heads/master'
     needs: [Bins, Loaders]
     runs-on: windows-latest
