@@ -27,7 +27,7 @@ jobs:
         pushd ${{ github.workspace }}
         mkdir output
         cp -R source/. ../Syati/source
-        cp -R include/spack/. ../Syati/include/spack
+        cp -R include/. ../Syati/include
         cd ../Syati
         mkdir output
         popd
