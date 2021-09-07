@@ -1,7 +1,6 @@
 #include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
 #include "spack/Util/LoadResource.h"
-#include "nw4rtest.h"
 #include "Util/FileUtil.h"
 /*
 * Authors: Evanbowl
