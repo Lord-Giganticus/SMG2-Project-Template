@@ -208,7 +208,7 @@ namespace SPack {
         { "SimpleEnvironmentObj", NameObjFactory::createNameObj<SimpleEnvironmentObj> },
         { "SoundSyncBlock", NameObjFactory::createNameObj<RepeatTimerBlock> },
         { "WoodBox", NameObjFactory::createNameObj<WoodBox> },
-        { "DoorObj", (ExternCreator)0x80340AD0 }
+        { "DoorMapObj", (ExternCreator)0x80340AD0 }
     };
 
     /*********************************************************************************************/
