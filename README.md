@@ -4,3 +4,4 @@ You can find more information and videos on [my website](https://aurumsmods.com/
 
 Important symbols:
 PowerStarSetupColor__17DummyDisplayModelFPC7NameObjl=0x802DFA20
+getGravityVec__10MarioActorFv=0x803B8510
