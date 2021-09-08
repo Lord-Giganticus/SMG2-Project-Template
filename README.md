@@ -9,7 +9,7 @@ There are also pre-compiled builds of this repo.
 
 Please report issues to Evanbowl#9157 on Discord.
 
-Current Beta features:
+Current Beta features:<br />
 StageEventDataTable
 Updated PowerStarColors
 PowerStarSpawner rewrite
