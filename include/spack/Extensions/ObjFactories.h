@@ -190,7 +190,7 @@ namespace SPack {
     * Number of total new class entries. This value has to adjusted everytime a creation function
     * is added or removed!
     */
-    #define NUM_CLASSES 15
+    #define NUM_CLASSES 16
 
     const CreateActorEntry cNewCreateMapObjTable[NUM_CLASSES] = {
         { "AirFar100m", NameObjFactory::createNameObj<AirFar100m> },
@@ -207,7 +207,8 @@ namespace SPack {
         { "ScaleMapObj", createExtActor<LavaBallRisingPlanetLava>},
         { "SimpleEnvironmentObj", NameObjFactory::createNameObj<SimpleEnvironmentObj> },
         { "SoundSyncBlock", NameObjFactory::createNameObj<RepeatTimerBlock> },
-        { "WoodBox", NameObjFactory::createNameObj<WoodBox> }
+        { "WoodBox", NameObjFactory::createNameObj<WoodBox> },
+        { "DoorObj", (ExternCreator)0x80340AD0 }
     };
 
     /*********************************************************************************************/
