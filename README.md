@@ -5,3 +5,6 @@ You can find more information and videos on [my website](https://aurumsmods.com/
 Important symbols:
 PowerStarSetupColor__17DummyDisplayModelFPC7NameObjl=0x802DFA20
 getGravityVec__10MarioActorFv=0x803B8510
+
+This repository has beta features of the SMG2PT that are not fully finished.
+To build, use [Lord_Giganticus's](https://github.com/Lord-Giganticus/Syati) Syati fork.
