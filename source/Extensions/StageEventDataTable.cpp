@@ -14,11 +14,12 @@
 
 namespace SPack {
 
+	const char *typestr = 0;
+
     void* SEDTarc = Syati::loadArchive("/SystemData/StageEventDataTable.arc");
     void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "StageEventDataTable.bcsv");
 
 	bool StageEventDataTable(const char* value) {
-
 		JMapInfo* exceptTable = new JMapInfo();
 		exceptTable->attach(SEDTbcsv);
 		s32 numEntries = MR::getCsvDataElementNum(exceptTable);
@@ -29,20 +30,18 @@ namespace SPack {
 		for (s32 i = 0; i < numEntries; i++) {
 			const char *exceptStage = 0;
 			s32 exceptScenario = 0;
-			const char *typestr = 0;
 
 			MR::getCsvDataStr
 			(&exceptStage, exceptTable, "StageName", i);
 			if (!exceptStage)
 				continue;
-			MR::getCsvDataStr(&typestr, exceptTable, "Type", i);
+			MR::getCsvDataStr(&typestr, exceptTable, "Flags", i);
 			if (!typestr)
 				continue;
 			MR::getCsvDataS32(&exceptScenario, exceptTable, "ScenarioNo", i);
 
 			if ((exceptScenario == 0 || exceptScenario == currentScenario) &&
-			    MR::isEqualStringCase(currentStage, exceptStage)
-				&& strstr(typestr, value)) {
+			    MR::isEqualStringCase(currentStage, exceptStage) && strstr(typestr, value)) {
 				OSReport("(StageEventDataTable) Type: %s, Stage: %s, Scenario: %d\n", value, currentStage, currentScenario);
 				return true;
 				}
@@ -76,6 +75,14 @@ namespace SPack {
     return SPack::StageEventDataTable("StoryBook");
 	}
 
+	bool isWarpArea() {
+		SPack::StageEventDataTable("WarpArea");
+		if (StageEventDataTable(typestr) == true)
+		MR::openWipeCircle(45);
+		else
+        MR::openSystemWipeWhiteFade(90);
+	}
+
     kmBranch(0x800568F0, isChimp);
 	
 	kmBranch(0x80056B40, isPauseDisabled);
@@ -87,4 +94,6 @@ namespace SPack {
 	kmBranch(0x80056D70, isPurpleCoinCaretaker);
 
     kmBranch(0x80056BE0, isStoryBook);
+
+    kmCall(0x804B44D0, isWarpArea);
 }
