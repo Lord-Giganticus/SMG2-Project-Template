@@ -80,7 +80,9 @@ namespace SPack {
 		if (StageEventDataTable(typestr) == true)
 		MR::openWipeCircle(45);
 		else
-        MR::openSystemWipeWhiteFade(90);
+                MR::openSystemWipeWhiteFade(90);
+		
+		return false
 	}
 
     kmBranch(0x800568F0, isChimp);
