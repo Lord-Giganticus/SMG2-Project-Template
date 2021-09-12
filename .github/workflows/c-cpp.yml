@@ -144,7 +144,7 @@ jobs:
           cd ../
           7z a "${{ github.workspace }}/Syati.zip" *.* -r
           cd ${{ github.workspace }}
-          7z a "${{ github.workspace }}/Syati.zip" SystemData
+          7z a "${{ github.workspace }}/Syati.zip" SystemData objectdb.xml
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
