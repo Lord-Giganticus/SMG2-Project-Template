@@ -17,3 +17,6 @@ Current Beta features:<br />
 - Updated PowerStarColors<br />
 - PowerStarSpawner rewrite<br />
 - DoorMapObj ProductMapObjDataTable Class
+- WarpArea
+
+This repo also includes the Whitehole Object Database, that has all the new PT stuff inside it.
