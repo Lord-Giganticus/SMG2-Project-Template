@@ -12,6 +12,10 @@
 * This object is a bit overdeveloped but is one of my favorites.
 *
 * One of my favorite objects!
+*
+* Custom symbols: 1
+* setupColor__8ModelObjFPC7NameObjl=0x802DFA20
+* Reason: PowerStar isn't documented.
 */
 
 PowerStarSpawner::PowerStarSpawner(const char* pName) : LiveActor(pName) {
@@ -21,7 +25,6 @@ PowerStarSpawner::PowerStarSpawner(const char* pName) : LiveActor(pName) {
     mCamInfo = 0;
 	mFromMario = -1;
     mSpawnMode = -1;
-    mDebug = -1;
     arg1 = 0;
     arg2 = 0;
     arg3 = 0;
@@ -34,28 +37,21 @@ PowerStarSpawner::PowerStarSpawner(const char* pName) : LiveActor(pName) {
 void PowerStarSpawner::init(JMapInfoIter const& rIter) {
     MR::initDefaultPos(this, rIter);
 
-    MR::processInitFunction(this, "StarPiece", false); //Shows a star piece where the star will spawn when activated.
-    MR::hideModel(this);
-
-    if (MR::getJMapInfoArg7NoInit(rIter, &mDebug) == 1)
-    MR::processInitFunction(this, "StarPiece", false); //Shows a star piece where the star will spawn when activated.
+    MR::processInitFunction(this, "StarPiece", false);
+    MR::hideModel(this); //A model is specified then hidden since it is not neccessary, or else the ModelObj will crash the game.
 
 	MR::connectToSceneMapObj(this);
-	MR::invalidateClipping(this);
+	MR::invalidateClipping(this); //This object will never unload when offscreen.
 
 	MR::useStageSwitchReadA(this, rIter); //Reads SW_A.
 
-    //This uses a LOT of args.
-	MR::getJMapInfoArg0NoInit(rIter, &mScenario);
+	MR::getJMapInfoArg0NoInit(rIter, &mScenario); //Star ID
 	MR::getJMapInfoArg1NoInit(rIter, &mDelay); //Delay before spawn.
 	MR::getJMapInfoArg2NoInit(rIter, &mFromMario); //Should the Star start it's spawn path at Mario?
 	MR::getJMapInfoArg3NoInit(rIter, &mUseSuccessSE); //Play a sound when activated?
 	MR::getJMapInfoArg4NoInit(rIter, &mSpawnMode); //Time Stop/Instant Appear/Squizzard Spawn
     MR::getJMapInfoArg5NoInit(rIter, &YOffset); //This arg determines the Y offset if the Spawn At Mario functionality is used.
-    MR::getJMapInfoArg6NoInit(rIter, &mUseDisplayModel);
-
-    //Note: There WAS an obj_arg to allow for a Power Star display model to be shown, but was removed.
-    //It was removed because the DummyDisplayModel code reads obj_arg7 no matter what, so it had to go.
+    MR::getJMapInfoArg6NoInit(rIter, &mUseDisplayModel); //Show display model?
 
     MR::getJMapInfoGroupID(rIter, &GroupID); //This will cause the PowerStarSpawner to start and end the Power Star's spawn path at Mario.
 
@@ -64,26 +60,27 @@ void PowerStarSpawner::init(JMapInfoIter const& rIter) {
     makeActorAppeared();
 
     if (GroupID >= 0) {
-    MR::joinToGroupArray(this, rIter, "パワースター出現ポイントグループ", 0x10); //Joins the Power Star to the Group Array.
-	MR::initActorCamera(this, rIter, &mCamInfo); //The bane of my existence.\
-    This is used to initialize an actor camera.
+    MR::joinToGroupArray(this, rIter, "パワースター出現ポイントグループ", 0x10); //Joins the Power Star to.
+	MR::initActorCamera(this, rIter, &mCamInfo); //This is used to initialize an actor camera.
     }
 
     //Display Star code
     if (mUseDisplayModel >= 0) {
     DisplayStar = new ModelObj("パワースター", "PowerStar", NULL, -2, -2, -2, false);
-    DisplayStar->mTranslation.set(mTranslation);
-    DisplayStar->mRotation.set(mRotation);
-    MR::emitEffect(DisplayStar, "Light");
+    DisplayStar->mTranslation.set(mTranslation); //Moves the DisplayStar to where the PowerStarSpawner is.
+    DisplayStar->mRotation.set(mRotation); //Sets the DisplayStar's rotation to what the PowerStarSpawner's rotation is.
+    MR::emitEffect(DisplayStar, "Light"); //Emits the PowerStar effect "Light" on the DisplayStar.
 
-    if (MR::hasPowerStarInCurrentStage(mScenario))
-    MR::startBva(DisplayStar, "PowerStarColor");
+    if (MR::hasPowerStarInCurrentStage(mScenario)) //Checks if you have the displayed star.
+    MR::startBva(DisplayStar, "PowerStarColor"); //This line starts the PowerStarColor BVA animation. I used it to set the star color to clear.
     else
-    DisplayStar->setupColor(DisplayStar, mScenario);
-    //This is so that if you already have the star being displayed, it just displays the clear texture instead of setting up the color.
+    DisplayStar->setupColor(DisplayStar, mScenario); //Checks what color the Star ID set to mScenario is. It then sets the color on the DisplayStar accordingly.
+
+    //This is so that if you already have the star that is being displayed, it just displays the clear texture instead of setting up the color.
     //This also fixes an issue that collected bronze stars display gold.
 
-	DisplayStar->appear();
+	DisplayStar->appear(); //Makes the DisplayStar visible.
+    MR::invalidateShadowAll(DisplayStar); //Shadows are not needed so they are hidden.
     }
 }
 
@@ -105,7 +102,7 @@ void PowerStarSpawner::movement() {
     PowerStarSpawner::getStarSpawnPos(YOffset); //This function moves the Power Star Spawner to Mario and also puts it above him relative to the current gravity, only if a Group ID is set.
     
     if (mUseDisplayModel == 1)
-    DisplayStar->mRotation.add(TVec3f(0.0f, 3.0f, 0.0f));
+    DisplayStar->mRotation.add(TVec3f(0.0f, 3.0f, 0.0f)); //Start adding 3 rotation units per frame.
 
     if (mUseDisplayModel >= 0)
     DisplayStar->mTranslation.set(mTranslation);
@@ -118,28 +115,28 @@ void PowerStarSpawner::movement() {
 
 		if (mElapsed >= mDelay) {
 
-            switch (mSpawnMode) {
-            case 0: //time continues during demo
-            arg1 = 1;
-            break;
-            case 1: //star appears instantly
-            arg2 = 1;
-            break;
-            case 2: //squizzard spawn
-            arg3 = 1;
-            break;
-            case 3: //time continues during demo
-            arg1 = 1;
-            arg3 = 1;
-            break;
+                switch (mSpawnMode) {
+                case 0: //time continues during demo
+                arg1 = 1;
+                break;
+                case 1: //star appears instantly
+                arg2 = 1;
+                break;
+                case 2: //squizzard spawn
+                arg3 = 1;
+                break;
+                case 3: //time continues during demo
+                arg1 = 1;
+                arg3 = 1;
+                break;
+                }
+
+                MR::appearEventPowerStar("PowerStarSpawner", mScenario, &mTranslation, arg1, arg2, arg3);
+
+                if (mUseDisplayModel >= 0)
+                DisplayStar->kill();
+
+                makeActorDead();
             }
-
-            MR::appearEventPowerStar("PowerStarSpawner", mScenario, &mTranslation, arg1, arg2, arg3);
-
-            if (mUseDisplayModel >= 0)
-            DisplayStar->kill();
-
-            makeActorDead();
-               }
        }
 }
