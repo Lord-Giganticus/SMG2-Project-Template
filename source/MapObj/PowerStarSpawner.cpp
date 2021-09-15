@@ -60,7 +60,7 @@ void PowerStarSpawner::init(JMapInfoIter const& rIter) {
     MR::getJMapInfoGroupID(rIter, &GroupID); //This will cause the PowerStarSpawner to start and end the Power Star's spawn path at Mario.
 
     initSound(1, "PowerStarSpawner", false, TVec3f(0.0f, 0.0f, 0.0f)); //Initializes Sound
-    MR::declareEventPowerStar(this, mScenario); //Declares the star determined by mScenario.
+    MR::declarePowerStar(this, mScenario); //Declares the star determined by mScenario.
     makeActorAppeared();
 
     if (GroupID >= 0) {
