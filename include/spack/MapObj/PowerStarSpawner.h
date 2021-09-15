@@ -24,7 +24,6 @@ public:
 	bool arg1;
 	bool arg2;
 	bool arg3;
-	bool mDebug;
 	s32 mUseDisplayModel;
 	ModelObj* DisplayStar;
 };
