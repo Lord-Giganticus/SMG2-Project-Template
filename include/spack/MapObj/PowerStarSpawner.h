@@ -18,11 +18,13 @@ public:
 	s32 mElapsed;
 	s32 mSpawnMode;
 	s32 GroupID;
-	bool mFromMario;
+	f32 YOffset;
+	s32 mFromMario;
+	bool mUseSuccessSE;
 	bool arg1;
 	bool arg2;
 	bool arg3;
 	bool mDebug;
-	f32 YOffset;
 	s32 mUseDisplayModel;
+	ModelObj* DisplayStar;
 };
