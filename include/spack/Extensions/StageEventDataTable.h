@@ -10,5 +10,7 @@ namespace SPack {
 	bool isDisableStarChanceBGM();
 	bool isPurpleCoinCaretaker();
 	bool isStoryBook();
-	bool isWarpArea();
+	
+	void WarpAreaParser(s32 selectedindex);
+    void isWarpArea();
 };
