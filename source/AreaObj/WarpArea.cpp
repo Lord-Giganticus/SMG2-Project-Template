@@ -1,4 +1,5 @@
 #include "spack/AreaObj/WarpArea.h"
+#include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
 /*
 * Created by Evanbowl with help from Aurum, AwesomeTMC, and Zyphro.
@@ -10,7 +11,6 @@
 */
 
 s32 mode;
-const char* StageList[4] = {"TemplateTestGalaxy", "GalaxyNameHere", "TemplateTestGalaxy", "DimensionBigCastleGalaxy"};
 
 WarpArea::WarpArea(const char* pName) : AreaObj(pName) {
 hasEnteredArea = 0; 
@@ -23,7 +23,7 @@ void WarpArea::init(const JMapInfoIter& rIter) {
 }
 
 void WarpArea::movement() {
-if (isInVolume(* MR::getPlayerPos()) || hasEnteredArea == 1) {
+if (hasEnteredArea == 1 || isInVolume(* MR::getPlayerPos())) {
 hasEnteredArea = 1;
 mElapsed++;
 }
@@ -37,14 +37,13 @@ if (mElapsed == 60) { //Phase 2: Set the player state to Wait to prevent animati
 MR::setPlayerStateWait();
 
 if (mObjArg0 >= 0) {
-//Somehow this works?!
 
-snprintf("WarpAreaDestPos###", 0x60, "%s%03d", "WarpAreaDestPos", mObjArg0);
-MR::setPlayerPosAndWait("WarpAreaDestPos###");
+char WarpAreaDestPos[0x60];
+snprintf(WarpAreaDestPos, 0x60, "WarpAreaDestPos%03d", mObjArg0);
+MR::setPlayerPosAndWait(WarpAreaDestPos);
 }
 else {
-MR::goToGalaxy(StageList[mObjArg1]); //Credit to Shibbo's SceneChangeArea for the list!
-MR::goToGalaxyNoSelection(StageList[mObjArg1], mObjArg2, -1, 0);
+SPack::WarpAreaParser(mObjArg1); //This reads the bcsv to determine which galaxy the player will be taken to.
     }
 }
 
