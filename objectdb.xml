@@ -28404,34 +28404,6 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<sounds></sounds>
 	</object>
 
-    <!-- SMG2PT Credits -->
-	<object id="Credits of the SMG2: Project Template">
-		<name></name>
-		<flags games="2" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="16" />
-		<preferredfile name="Obj" />
-		<notes>Everything in this category are not objects but is my way of displaying this project's credits.
-
-Aurum: Programmed a lot of the complicated SMG1 objects and everything from the original Assembly Pack.
-
-Someone: Programmed a lot of the objects made at the start of this project, such as "CrystalSwitch", "SensorDetector", "JumpSwitchArea", "Jiraira".
-
-Evanbowl: Programmed "CrystalSwitch", "PlayerSwitchCtrl", "CollectItemCtrl", "PowerStarSpawner", and made this object database!
-
-Galaxy Master: Created the original Power Star Colors patch.
-
-MTLenz: Testing.
-
-Marionumber1: Created the original Power Up patches way back.
-
-Zyphro: Power Star texture help.
-
-And all thanks goes to Shibboleet. Syati has been such a fun tool to use, and the first tool to make custom code fun.
-</notes>
-		<files></files>
-		<sounds></sounds>
-	</object>
-
     <!-- Minor edits to existing -->
 
 	<object id="PowerStar">
@@ -28444,7 +28416,7 @@ The view from the Star Collect sequence can be changed in the rotation values.
 
 SMG2 Project Template notes:
 
-None of this will work unless you have the SMG2PT set up.
+This is JUST the object database. The new content will NOT work if you do not have the PT installed.
 Read the readme if you need help setting up.
 
 There are new star types to use, you can use Whitehole's BCSV editor to use them!
@@ -28454,15 +28426,14 @@ There are new star types to use, you can use Whitehole's BCSV editor to use them
 "Bronze" A bronze power star, normally only obtained by using the Cosmic Guide.
 "LegacyGreen" A green star that behaves like normal Power Stars.
 
-Galaxy Banner fonts to come soon.
-
-You can also remove the Power Star Chance BGM after a star spawn.
+You can also disable the Power Star Chance BGM after a star spawn.
 Open up the BCSV editor:
 
-/ObjectData/SystemDataTable.arc
-/SystemDataTable.arc/StarChanceExceptTable.bcsv
+/SystemDatat/StageEventDataTable.arc
+/StageEventDataTable.arc/StageEventDataTable.bcsv
 
-and add your galaxy in there.</notes>
+Add an entry, set your galaxy name, scenarios, and input "DisableStarChanceBGM".
+</notes>
 		<files>/ObjectData/PowerStar.arc</files>
 		<sounds><!--SE_SY_STAR_GET
 SE_PV_BURN_RUN
@@ -28490,22 +28461,21 @@ SE_OJ_POW_STAR_MOVE_END
         <category id="15" />
         <preferredfile name="Obj" />
         <notes>An object that spawns a Power Star when it's SW_A is activated. Setting the &quot;AppearPowerStarObj&quot;
-in the galaxy's scenario data is not required.
+in the galaxy's scenario data is not required, but may be required if you encounter issues.
 
 Setting the same Group ID to the Power Star and Power Star Spawner will cause the Power Star to end it's appear path at Mario.
 Also adapts to gravity! Works really well with coin-collecting stars.
 
-Started by Evanbowl, Aurum, and Someone
+Started and overdeveloped by Evanbowl, with help from Aurum and Someone.
 Group ID support by Zyphro.</notes>
         <files>NA</files>
         <sounds></sounds>
         <field id="0" type="int" name="Power Star ID" values="" notes="-1 defaults to Power Star ID 1" />
-        <field id="1" type="int" name="Delay after Activation" values="" notes="Time in frames." />
-        <field id="2" type="bool" name="Use Mario's Position?" values="" notes="If set to 0, the star starts it's spawn path at the player."/>
-        <field id="3" type="bool" name="Use Sound Effect?" values="" notes="If set to 0, a sound will be played when this object is activated. Requires an ActionSound entry."/>
-        <field id="4" type="int" name="Spawn Mode" values="" notes="-1/0 = Normal Spawn, 1 = Normal, but no time stop, 2 = Appear Instantly, 3 = Slow Descend spawn" />
-        <field id="5" type="float" name="Y Height" values="" notes="Distance in height used for if the Group ID is linked to a Power Star. Default is 300. Ignore if you do not plan to use the Group ID." />
-        <field id="6" type="int" name="Use Display Model?" values="" notes="Displays an intangible Power Star model where the Power Star Spawner is." />
+        <field id="1" type="int" name="Spawn Mode" values="" notes="-1/0 = Normal Spawn, 1 = Normal, but no time stop, 2 = Appear Instantly, 3 = Slow Descend spawn" />
+        <field id="2" type="int" name="Delay after Activation" values="" notes="Time in frames." />
+        <field id="3" type="bool" name="Use Sound Effect?" values="" notes="If set to 0, a sound will be played when this object is activated."/>
+        <field id="4" type="bool" name="Use Mario's Position?" values="" notes="If set to 0, the star starts it's spawn path at the player."/>
+        <field id="5" type="int" name="Use Display Model?" values="" notes="Displays an intangible Power Star model where the Power Star Spawner is." />
 </object>
 
     <object id="Jiraira">
@@ -28981,7 +28951,9 @@ By Aurum.</notes>
         <flags games="2" known="1" complete="1" paths="0" switches="4" fieldReqs="0"/>
         <category id="15" />
         <preferredfile name="AreaObj" />
-        <notes>Warps Mario to a General Position when entered.
+        <notes>Warps Mario to a General Position or a galaxy when entered.
+
+General Position functionality:
 The position has to be named &quot;WarpAreaDestPos000&quot;.
 The 000 corresponds to Obj_arg0.
 
@@ -28989,11 +28961,21 @@ Example:
 Obj_arg0 = 4
 General Position Name = &quot;WarpAreaDestPos004&quot;.
 
+Galaxy Warp functionality:
+The WarpArea can take you to galaxies!
+
+Just open this in the BCSV editor:
+Archive: &quot;/SystemData/StageEventDataTable.arc&quot;
+File: &quot;/StageEventDataTable.arc/WarpAreaStageTable.bcsv&quot;
+
+StageName: Destination Galaxy Name
+ScenarioNo: Destination Scenario Number
+Index: Index in the BCSV file. This same number is what Obj_arg1 should be set to.
+
 By Evanbowl with help from Aurum, AwesomeTMC, and Zyphro</notes>
         <files>NA</files>
         <sounds></sounds>
 		<field id="0" type="int" name="Position ID" values="" notes="" />
-		<field id="1" type="int" name="Galaxy ID" values="" notes="Obj_arg0 must be set to -1. This table is currently hardcoded, this will be changed." />
-		<field id="2" type="int" name="Scenario ID" values="" notes="Obj_arg0 must be set to -1." />
+		<field id="1" type="int" name="Galaxy Index" values="" notes="Desired index in &quot;WarpAreaStageTable.bcsv&quot;" />
     </object>
 </database>
