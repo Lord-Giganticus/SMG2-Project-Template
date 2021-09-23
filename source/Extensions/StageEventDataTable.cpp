@@ -5,11 +5,18 @@
 /*
 * Authors: Evanbowl
 * 
+* StageEventDataTable:
+*
 * Code optimation help by Galaxy Master
 *
 * These functions un-hardcode certain options a stage can have. Those being:
 * Chimp, Glider, Disable Pause, Play Star Chance, and Purple Coin Gearmo.
 * 
+*
+* WarpAreaStageTable:
+*
+* This function is a list of stages that the WarpArea can take the player to.
+*
 */
 
 namespace SPack {
@@ -18,7 +25,9 @@ namespace SPack {
 
     void* SEDTarc = Syati::loadArchive("/SystemData/StageEventDataTable.arc");
     void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "StageEventDataTable.bcsv");
+    void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "WarpAreaStageTable.bcsv");
 
+    //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
 		JMapInfo* exceptTable = new JMapInfo();
 		exceptTable->attach(SEDTbcsv);
@@ -31,8 +40,7 @@ namespace SPack {
 			const char *exceptStage = 0;
 			s32 exceptScenario = 0;
 
-			MR::getCsvDataStr
-			(&exceptStage, exceptTable, "StageName", i);
+			MR::getCsvDataStr(&exceptStage, exceptTable, "StageName", i);
 			if (!exceptStage)
 				continue;
 			MR::getCsvDataStr(&typestr, exceptTable, "Flags", i);
@@ -75,16 +83,6 @@ namespace SPack {
     return SPack::StageEventDataTable("StoryBook");
 	}
 
-	bool isWarpArea() {
-		SPack::StageEventDataTable("WarpArea");
-		if (StageEventDataTable(typestr) == true)
-		MR::openWipeCircle(45);
-		else
-                MR::openSystemWipeWhiteFade(90);
-		
-		return false;
-	}
-
     kmBranch(0x800568F0, isChimp);
 	
 	kmBranch(0x80056B40, isPauseDisabled);
@@ -97,5 +95,40 @@ namespace SPack {
 
     kmBranch(0x80056BE0, isStoryBook);
 
-    kmCall(0x804B44D0, isWarpArea);
+    //WarpAreaStageTable Parser
+	bool warpareaused = 0;
+
+	void WarpAreaParser(s32 selectedindex) {
+		JMapInfo* StageTable = new JMapInfo();
+		StageTable->attach(WASTbcsv);
+		s32 numEntries = MR::getCsvDataElementNum(StageTable);
+
+		const char *destStage = 0;
+		s32 destScenario = 0;
+		s32 bcsvIndex = 0;
+
+		for (s32 i = 0; i < numEntries; i++) {
+
+			MR::getCsvDataStr(&destStage, StageTable, "StageName", i);
+			MR::getCsvDataS32(&destScenario, StageTable, "ScenarioNo", i);
+            MR::getCsvDataS32(&bcsvIndex, StageTable, "Index", i);
+
+        if (selectedindex == bcsvIndex) {
+           MR::goToGalaxy(destStage);
+           MR::goToGalaxyNoSelection(destStage, destScenario, -1, 0);
+		   OSReport("(WarpAreaStageTable) Stage: %s, Scenario: %d, Index: %d\n", destStage, destScenario, bcsvIndex);
+		   warpareaused = true;
+		   }
+		}
+	}
+
+	void isWarpArea() {
+        if (warpareaused == true)
+        MR::openWipeCircle(45),
+		warpareaused = false;
+        else
+        MR::openSystemWipeWhiteFade(90);
+	}
+
+kmCall(0x804B44D0, isWarpArea);
 }
