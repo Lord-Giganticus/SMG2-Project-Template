@@ -61,6 +61,10 @@ jobs:
          mv *.bin output
          cp -R output/*.bin ../SMG2-Project-Template/output
          popd
+    - run: |
+        cd ${{ github.workspace }}
+        cd ../Syati
+        make
     - name: Upload bin files
       uses: actions/upload-artifact@v2.2.4
       with:
