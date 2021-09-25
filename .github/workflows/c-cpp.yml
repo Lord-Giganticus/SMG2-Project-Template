@@ -48,16 +48,11 @@ jobs:
       run: |
          pushd ${{ github.workspace }}
          cd ../Syati
-         python -m build USA
-         rm -f *.d
-         python -m build PAL
-         rm -f *.d
-         python -m build JAP
-         rm -f *.d
-         python -m build KOR
-         rm -f *.d
-         python -m build TWN
-         rm -f *.d
+         Build USA PT
+         Build PAL PT
+         Build JAP PT
+         Build KOR PT
+         Build TWN PT
          mv *.bin output
          cp -R output/*.bin ../SMG2-Project-Template/output
          popd
