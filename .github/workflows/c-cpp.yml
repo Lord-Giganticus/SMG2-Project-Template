@@ -43,16 +43,21 @@ jobs:
         rm -f *.rar
         cd source
         rm -f ExtendedActorFactory.cpp
+    - shell: pwsh
+      run: |
+         cd ${{ github.workspace }}
+         cd ../Syati
+         Get-ChildItem -Path .\source -Filter *.cpp -Recurse -File -Name > cppfiles.txt
     - name: Build Syati
       shell: cmd
       run: |
          pushd ${{ github.workspace }}
          cd ../Syati
-         Build USA PT
-         Build PAL PT
-         Build JAP PT
-         Build KOR PT
-         Build TWN PT
+         Build USA
+         Build PAL
+         Build JAP
+         Build KOR
+         Build TWN
          mv *.bin output
          cp -R output/*.bin ../SMG2-Project-Template/output
          popd
