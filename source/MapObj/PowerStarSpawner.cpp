@@ -75,7 +75,7 @@ void PowerStarSpawner::createDisplayStar() {
     MR::emitEffect(DisplayStar, "Light"); //Starts the PowerStar effect "Light" on the DisplayStar.
     MR::invalidateShadowAll(DisplayStar); //Shadows are not needed so they are hidden.
 
-    //Etart custom SetupColor function
+    //Start custom SetupColor function
     if (MR::hasPowerStarInCurrentStage(mScenario)) //Checks if you have the specified star.
 	MR::startBva(DisplayStar, "PowerStarColor");
     //If you have the specified star, ignore setting the color up and just set to clear.
