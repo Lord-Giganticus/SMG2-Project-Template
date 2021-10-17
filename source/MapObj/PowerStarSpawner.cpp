@@ -2,7 +2,6 @@
 #include "Util.h"
 #include "Player/MarioAccess.h"
 #include "Player/MarioActor.h"
-
 /*
 * Created by Aurum, Evanbowl & Someone, with Group ID support thanks to Zyphro.
 * 
@@ -13,9 +12,6 @@
 *
 * One of my favorite objects!
 *
-* Custom symbols: 1
-* setupColor__8ModelObjFPC7NameObjl=0x802DFA20
-* Reason: PowerStar isn't documented.
 */
 
 PowerStarSpawner::PowerStarSpawner(const char* pName) : LiveActor(pName) {
@@ -28,10 +24,11 @@ PowerStarSpawner::PowerStarSpawner(const char* pName) : LiveActor(pName) {
     arg1 = 0;
     arg2 = 0;
     arg3 = 0;
-    YOffset = 300.0f;
     mUseSuccessSE = -1;
     mUseDisplayModel = -1;
     GroupID = -1;
+	upVec = (TVec3f(0.0f, 1.0f, 0.0f));
+    YOffset = 300.0f;
 }
 
 void PowerStarSpawner::init(JMapInfoIter const& rIter) {
@@ -44,74 +41,95 @@ void PowerStarSpawner::init(JMapInfoIter const& rIter) {
 	MR::invalidateClipping(this); //This object will never unload when offscreen.
 
 	MR::useStageSwitchReadA(this, rIter); //Reads SW_A.
+    MR::calcGravity(this);
 
 	MR::getJMapInfoArg0NoInit(rIter, &mScenario); //Star ID
-	MR::getJMapInfoArg1NoInit(rIter, &mDelay); //Delay before spawn.
-	MR::getJMapInfoArg2NoInit(rIter, &mFromMario); //Should the Star start it's spawn path at Mario?
-	MR::getJMapInfoArg3NoInit(rIter, &mUseSuccessSE); //Play a sound when activated?
-	MR::getJMapInfoArg4NoInit(rIter, &mSpawnMode); //Time Stop/Instant Appear/Squizzard Spawn
-    MR::getJMapInfoArg5NoInit(rIter, &YOffset); //This arg determines the Y offset if the Spawn At Mario functionality is used.
-    MR::getJMapInfoArg6NoInit(rIter, &mUseDisplayModel); //Show display model?
+	MR::getJMapInfoArg1NoInit(rIter, &mSpawnMode); //Time Stop/Instant Appear/Squizzard Spawn
+	MR::getJMapInfoArg2NoInit(rIter, &mDelay); //Delay before spawn.
+    MR::getJMapInfoArg3NoInit(rIter, &mUseSuccessSE); //Play a sound when activated?
+	MR::getJMapInfoArg4NoInit(rIter, &mFromMario); //Should the Star start it's spawn path at Mario?
+    MR::getJMapInfoArg5NoInit(rIter, &mUseDisplayModel); //Show display model?
+    MR::getJMapInfoArg6NoInit(rIter, &YOffset); //Y Offset if "Spawn At Mario" is used.
 
     MR::getJMapInfoGroupID(rIter, &GroupID); //This will cause the PowerStarSpawner to start and end the Power Star's spawn path at Mario.
 
-    initSound(1, "PowerStarSpawner", false, TVec3f(0.0f, 0.0f, 0.0f)); //Initializes Sound
+    initSound(1, "PowerStarSpawner", false, mTranslation); //Initializes Sound
     MR::declarePowerStar(this, mScenario); //Declares the star determined by mScenario.
     makeActorAppeared();
 
-    if (GroupID >= 0) {
-    MR::joinToGroupArray(this, rIter, "パワースター出現ポイントグループ", 0x10); //Joins the Power Star to.
-	MR::initActorCamera(this, rIter, &mCamInfo); //This is used to initialize an actor camera.
-    }
+    if (GroupID >= 0)
+    MR::joinToGroupArray(this, rIter, "Star", 0x10), MR::initActorCamera(this, rIter, &mCamInfo);
+    //Joins the group array to the star. This allows the PowerStarSpawner to behave like a PowerStarAppearPoint.
 
-    //Display Star code
-    if (mUseDisplayModel >= 0) {
-    DisplayStar = new ModelObj("パワースター", "PowerStar", NULL, -2, -2, -2, false);
-    DisplayStar->mTranslation.set(mTranslation); //Moves the DisplayStar to where the PowerStarSpawner is.
-    DisplayStar->mRotation.set(mRotation); //Sets the DisplayStar's rotation to what the PowerStarSpawner's rotation is.
-    MR::emitEffect(DisplayStar, "Light"); //Emits the PowerStar effect "Light" on the DisplayStar.
-
-    if (MR::hasPowerStarInCurrentStage(mScenario)) //Checks if you have the displayed star.
-    MR::startBva(DisplayStar, "PowerStarColor"); //This line starts the PowerStarColor BVA animation. I used it to set the star color to clear.
-    else
-    DisplayStar->setupColor(DisplayStar, mScenario); //Checks what color the Star ID set to mScenario is. It then sets the color on the DisplayStar accordingly.
-
-    //This is so that if you already have the star that is being displayed, it just displays the clear texture instead of setting up the color.
-    //This also fixes an issue that collected bronze stars display gold.
-
-	DisplayStar->appear(); //Makes the DisplayStar visible.
-    MR::invalidateShadowAll(DisplayStar); //Shadows are not needed so they are hidden.
-    }
+    if (mUseDisplayModel >= 0)
+    PowerStarSpawner::createDisplayStar();
 }
 
 
-void PowerStarSpawner::getStarSpawnPos(f32 offset) {
+void PowerStarSpawner::createDisplayStar() {
+    DisplayStar = new ModelObj("パワースター", "PowerStar", mUseDisplayModel ? (MtxPtr)DisplayStarMtx : NULL, -2, -2, -2, false);
+
+    MR::setMtxTrans((MtxPtr)DisplayStarMtx, mTranslation); //Set the mtx translation to the PowerStarSpawner's mTranslation.
+
+    MR::emitEffect(DisplayStar, "Light"); //Starts the PowerStar effect "Light" on the DisplayStar.
+    MR::invalidateShadowAll(DisplayStar); //Shadows are not needed so they are hidden.
+
+    //Etart custom SetupColor function
+    if (MR::hasPowerStarInCurrentStage(mScenario)) //Checks if you have the specified star.
+	MR::startBva(DisplayStar, "PowerStarColor");
+    //If you have the specified star, ignore setting the color up and just set to clear.
+	else {
+    s32 frame = SPack::getPowerStarColor(MR::getCurrentStageName(), mScenario);
+	MR::startBtp(DisplayStar, "PowerStarColor");
+    MR::startBrk(DisplayStar, "PowerStarColor");
+    MR::startBtk(DisplayStar, "PowerStarColor");
+	MR::startBva(DisplayStar, "PowerStarColor");
+
+	MR::setBtpFrameAndStop(DisplayStar, frame);
+	MR::setBrkFrameAndStop(DisplayStar, frame);
+	MR::setBtkFrameAndStop(DisplayStar, frame);
+	MR::setBvaFrameAndStop(DisplayStar, 0);
+    //If you do not have the specified star, start setting up the color animations and setting up the animation frames.
+    }
+    //End custom SetupColor function
+
+    if (mUseDisplayModel == 1)
+	upVec.set<f32>(-mGravity), //Sets the up vector to what the gravity is. This allows the DisplayStar to calculate it's gravity, like the normal PowerStar.
+	MR::makeMtxUpFront((TPositionMtx*)&DisplayStarMtx, upVec, mTranslation);
+
+    DisplayStar->appear();
+}
+
+void PowerStarSpawner::spawnAtMario(f32 offset) {
     MR::setPosition(this, *MR::getPlayerPos()); //Teleports the PowerStarSpawner to Mario
 
-    MarioActor* playeractor = MarioAccess::getPlayerActor(); //Gets the player actor.
-    TVec3f gravityvec = *playeractor->MarioActor::getGravityVec(); //Gets the gravity vector of the player.
-    JMAVECScaleAdd((Vec*)&gravityvec, (Vec*)&mTranslation, (Vec*)&mTranslation, offset*-1); //This function always moves the Power Star Spawner to above Mario relative to the current gravity.\
-    Var "offset" is multiplied by -1 because a negative offset means up.
+    MarioActor* playeractor = MarioAccess::getPlayerActor();
+    TVec3f gravityvec = *playeractor->MarioActor::getGravityVec();
+    JMAVECScaleAdd((Vec*)&gravityvec, (Vec*)&mTranslation, (Vec*)&mTranslation, offset*-1);
     }
 
 void PowerStarSpawner::movement() {
-    if (mFromMario == 1 && GroupID <= 0)
-    PowerStarSpawner::getStarSpawnPos(250); //This is used to bypass an issue where if a star starts it's spawn path at the player, it de-rails the player off of launch star rails.
+    if (mFromMario == 1 && GroupID < 0)
+    PowerStarSpawner::spawnAtMario(250); //This is used to bypass an issue where if a star starts it's spawn path at the player, it de-rails the player off of launch star rails.
 
     if (GroupID >= 0)
-    PowerStarSpawner::getStarSpawnPos(YOffset); //This function moves the Power Star Spawner to Mario and also puts it above him relative to the current gravity, only if a Group ID is set.
-    
-    if (mUseDisplayModel == 1)
-    DisplayStar->mRotation.add(TVec3f(0.0f, 3.0f, 0.0f)); //Start adding 3 rotation units per frame.
+    PowerStarSpawner::spawnAtMario(YOffset); //This function moves the Power Star Spawner to Mario and also puts it above him relative to the current gravity, only if a Group ID is set.
 
-    if (mUseDisplayModel >= 0)
+    if (mUseDisplayModel == 1)
+    MR::rotateMtxLocalYDegree((MtxPtr)&DisplayStarMtx, 3),
+    MR::setMtxTrans((MtxPtr)&DisplayStarMtx, mTranslation);
+
+    if (mUseDisplayModel == 0)
+    upVec.set<f32>(-mGravity),
+    DisplayStar->mRotation.set(upVec);
+
     DisplayStar->mTranslation.set(mTranslation);
 
 	if (MR::isOnSwitchA(this)) {
 		mElapsed++;
 
 		if (mElapsed == 1 && mUseSuccessSE)
-        MR::startLevelSound(this, "OjPowerStarSpawnerSuccess", -1, -1, -1); //Plays sound.
+        MR::startLevelSound(this, "OjPSSOn", -1, -1, -1); //Plays sound.
 
 		if (mElapsed >= mDelay) {
 
