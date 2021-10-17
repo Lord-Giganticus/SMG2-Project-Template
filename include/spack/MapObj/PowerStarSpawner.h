@@ -1,8 +1,10 @@
 #pragma once
 
 #include "LiveActor.h"
+#include "MapObj/PowerStar.h"
 
 class ActorCameraInfo;
+class PowerStar;
 
 class PowerStarSpawner : public LiveActor {
 public:
@@ -10,7 +12,8 @@ public:
 
 	virtual void init(JMapInfoIter const &);
 	virtual void movement();
-    virtual void getStarSpawnPos(f32 offset);
+	virtual void spawnAtMario(f32 offset);
+	virtual void createDisplayStar();
 
 	ActorCameraInfo* mCamInfo;
 	s32 mScenario;
@@ -18,7 +21,6 @@ public:
 	s32 mElapsed;
 	s32 mSpawnMode;
 	s32 GroupID;
-	f32 YOffset;
 	s32 mFromMario;
 	bool mUseSuccessSE;
 	bool arg1;
@@ -26,4 +28,7 @@ public:
 	bool arg3;
 	s32 mUseDisplayModel;
 	ModelObj* DisplayStar;
+	TVec3f upVec;
+	Mtx DisplayStarMtx;
+	f32 YOffset;
 };
