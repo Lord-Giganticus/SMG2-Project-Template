@@ -1,10 +1,8 @@
 #pragma once
 
 #include "LiveActor.h"
-#include "MapObj/PowerStar.h"
 
 class ActorCameraInfo;
-class PowerStar;
 
 class PowerStarSpawner : public LiveActor {
 public:
