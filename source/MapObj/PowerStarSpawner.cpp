@@ -2,6 +2,7 @@
 #include "Util.h"
 #include "Player/MarioAccess.h"
 #include "Player/MarioActor.h"
+#include "spack/Extensions/PowerStarColors.h"
 /*
 * Created by Aurum, Evanbowl & Someone, with Group ID support thanks to Zyphro.
 * 
