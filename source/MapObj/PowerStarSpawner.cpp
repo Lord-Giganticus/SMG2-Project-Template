@@ -75,30 +75,30 @@ void PowerStarSpawner::createDisplayStar() {
     MR::emitEffect(DisplayStar, "Light"); //Starts the PowerStar effect "Light" on the DisplayStar.
     MR::invalidateShadowAll(DisplayStar); //Shadows are not needed so they are hidden.
 
-    //Start custom SetupColor function
-    if (MR::hasPowerStarInCurrentStage(mScenario)) //Checks if you have the specified star.
-	MR::startBva(DisplayStar, "PowerStarColor");
-    //If you have the specified star, ignore setting the color up and just set to clear.
-	else {
-    s32 frame = SPack::getPowerStarColor(MR::getCurrentStageName(), mScenario);
-	MR::startBtp(DisplayStar, "PowerStarColor");
-    MR::startBrk(DisplayStar, "PowerStarColor");
-    MR::startBtk(DisplayStar, "PowerStarColor");
-	MR::startBva(DisplayStar, "PowerStarColor");
-
-	MR::setBtpFrameAndStop(DisplayStar, frame);
-	MR::setBrkFrameAndStop(DisplayStar, frame);
-	MR::setBtkFrameAndStop(DisplayStar, frame);
-	MR::setBvaFrameAndStop(DisplayStar, 0);
-    //If you do not have the specified star, start setting up the color animations and setting up the animation frames.
-    }
-    //End custom SetupColor function
-
+    PowerStarSpawner::setupColorDisplayStar(DisplayStar, mScenario);
+    
     if (mUseDisplayModel == 1)
 	upVec.set<f32>(-mGravity), //Sets the up vector to what the gravity is. This allows the DisplayStar to calculate it's gravity, like the normal PowerStar.
 	MR::makeMtxUpFront((TPositionMtx*)&DisplayStarMtx, upVec, mTranslation);
 
     DisplayStar->appear();
+}
+
+void PowerStarSpawner::setupColorDisplayStar(LiveActor* actor, s32 scenario) {
+    MR::startBva(DisplayStar, "PowerStarColor");
+
+    if (!MR::hasPowerStarInCurrentStage(scenario)) { //Checks if you have the specified star.
+    s32 frame = SPack::getPowerStarColor(MR::getCurrentStageName(), scenario);
+	MR::startBtp(actor, "PowerStarColor");
+    MR::startBrk(actor, "PowerStarColor");
+    MR::startBtk(actor, "PowerStarColor");
+
+	MR::setBtpFrameAndStop(actor, frame);
+	MR::setBrkFrameAndStop(actor, frame);
+	MR::setBtkFrameAndStop(actor, frame);
+	MR::setBvaFrameAndStop(actor, 0);
+    //If you do not have the specified star, start setting up the color animations and setting up the animation frames.
+    }
 }
 
 void PowerStarSpawner::spawnAtMario(f32 offset) {
@@ -130,7 +130,7 @@ void PowerStarSpawner::movement() {
 		mElapsed++;
 
 		if (mElapsed == 1 && mUseSuccessSE)
-        MR::startLevelSound(this, "OjPSSOn", -1, -1, -1); //Plays sound.
+        MR::startLevelSound(this, "OjPowerStarSpawnerSpawn", -1, -1, -1); //Plays sound.
 
 		if (mElapsed >= mDelay) {
 
