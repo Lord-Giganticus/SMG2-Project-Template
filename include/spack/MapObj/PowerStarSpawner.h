@@ -12,6 +12,7 @@ public:
 	virtual void movement();
 	virtual void spawnAtMario(f32 offset);
 	virtual void createDisplayStar();
+	virtual void setupColorDisplayStar(LiveActor* actor, s32 scenario);
 
 	ActorCameraInfo* mCamInfo;
 	s32 mScenario;
