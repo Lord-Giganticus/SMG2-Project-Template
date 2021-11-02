@@ -2,7 +2,6 @@
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
 #include "Util.h"
-#include "spack/Util/LoadResource.h"
 
 /*
 * Authors: Aurum, Galaxy Master, and Evanbowl
@@ -40,7 +39,13 @@ namespace SPack {
 			return 3;
 		else if (strstr(type, "Blue"))
 			return 5;
+			
 		return 0;
+	}
+
+	void* loadPTPictureFont() {
+	Syati::loadArchive("/SystemData/PTPictureFont.arc");
+	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
 	}
 
 	/*
@@ -107,14 +112,7 @@ namespace SPack {
 	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
     */
 
-   	void* loadPTPictureFont() {
-	Syati::loadArchive("/SystemData/PTPictureFont.arc");
-	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
-	}
-
-	kmCall(0x804B8048, loadPTPictureFont);
-
-	wchar_t *getStarIcon(s32 startype) {
+	wchar_t * getStarIcon(s32 startype) {
 		wchar_t *unk;
 		const char *pStage;
 		s32 scenarioId;
@@ -126,49 +124,72 @@ namespace SPack {
 
      	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
 
-        if (startype == 0) {// Normal Star icons
-		if (getStarColor == 1)
-			icon = 0x72;
-		else if (getStarColor == 2)
-			icon = 0x80;
-		else if (getStarColor == 3)
-			icon = 0x7E;
-		else if (getStarColor == 5)
-			icon = 0x7F;
-		else
-			icon = 0x37;
+        if (startype == 0) {
+		// Normal Star icons
+		switch (getStarColor) {
+			case 0:
+			    icon = 0x37; //Normal
+			break;
+			case 1:
+			    icon = 0x72; //Bronze
+			break;
+			case 2:
+			    icon = 0x80; //LegacyGreen
+			break;
+			case 3:
+			    icon = 0x7E; //Red
+			break;
+			case 5:
+			    icon = 0x7F; //Blue
+			break;
+		    }
 		}
 
-        else if (startype == 1) {//Comet Star icons
-		if (getStarColor == 1)
-			icon = 0x7D;
-		else if (getStarColor == 2)
-			icon = 0x4F;
-		else if (getStarColor == 3)
-			icon = 0x81;
-		else if (getStarColor == 5)
-			icon = 0x82;
-		else
-			icon = 0x65;
+        else if (startype == 1) {
+		//Comet Star icons
+            switch (getStarColor) {
+			case 0:
+		    	icon = 0x65; //Normal
+		    break;
+		    case 1:
+			    icon = 0x7D; //Bronze
+		    break;
+		    case 2:
+			    icon = 0x4F; //LegacyGreen
+            break;
+		    case 3:
+		    	icon = 0x81; //Red
+            break;
+		    case 5:
+		    	icon = 0x82; //Blue
+		    break;
+		    }
 		}
 
-        else if (startype == 2) {//Uncollected Hidden Star icons
-		if (getStarColor == 1)
-			icon = 0x86;
-		else if (getStarColor == 2)
-			icon = 0x85;
-		else if (getStarColor == 3)
-			icon = 0x83;
-		else if (getStarColor == 5)
-			icon = 0x84;
-		else
-			icon = 0x71;
+        else if (startype == 2) {
+		//Uncollected Hidden Star icons
+		switch (getStarColor) {
+			case 0:
+		    	icon = 0x71; //Normal
+		    break;
+		    case 1:
+			    icon = 0x86; //Bronze
+		    break;
+		    case 2:
+			    icon = 0x85; //LegacyGreen
+            break;
+		    case 3:
+		    	icon = 0x83; //Red
+            break;
+		    case 5:
+		    	icon = 0x84; //Blue
+		    break;
+		    }
 		}
 
         return MR::addPictureFontCode(unk, icon);
 	}
-
-
+	
     wchar_t* starIcon() {
     return getStarIcon(0);
 	}
@@ -181,8 +202,8 @@ namespace SPack {
     return getStarIcon(2);
 	}
 
-	kmCall(0x80041E30, starIcon); //Normal Star icons
-	kmCall(0x80041F0C, cometStarIcon); //Comet Star icons
-	kmCall(0x80041F94, hiddenStarIcon); //Hidden Star icons
-	kmCall(0x80041F48, starIcon); //Collected Hidden Star icons
+    kmCall(0x80041E30, starIcon); //Normal Star icons
+    kmCall(0x80041F0C, cometStarIcon); //Comet Star icons
+    kmCall(0x80041F94, hiddenStarIcon); //Hidden Star icons
+    kmCall(0x80041F48, starIcon); //Collected Hidden Star icons
 }
