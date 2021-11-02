@@ -71,4 +71,3 @@ const char* WarpArea::getManagerName() const {
     return "SwitchArea";
 }
 
-
