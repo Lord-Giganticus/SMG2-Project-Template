@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "NameObj/NameObjFactory.h"
 #include "Map/ProductMapCreator.h"
@@ -33,6 +33,8 @@
 #include "spack/MapObj/ScrewSwitchBase.h"
 #include "spack/MapObj/WatchTowerRotateStep.h"
 #include "spack/MapObj/WaterLeakPipe.h"
+
+#include "spack/MapObj/SwitchBox.h"
 #include "spack/AreaObj/WarpArea.h"
 
 /*
@@ -115,7 +117,10 @@ namespace SPack {
     CREATE_EXT_ACTOR(WatchTowerRotateStep, pName);
     CREATE_EXT_ACTOR(WaterLeakPipe, pName);
     CREATE_EXT_ACTOR(SwingRope, pName);
+
+    //New
     CREATE_EXT_ACTOR(WarpArea, pName);
+    CREATE_EXT_ACTOR(SwitchBox, pName);
 
     NameObj* createQuakeEffectArea(const char *pName) {
         if (!MR::isExistSceneObj(SceneObj_QuakeEffectGenerator))
@@ -131,7 +136,7 @@ namespace SPack {
     * Number of total new actor entries. This value has to adjusted everytime a creation function
     * is added or removed!
     */
-    #define NUM_ACTORS 43
+    #define NUM_ACTORS 44
 
     const CreateActorEntry cNewCreateNameObjTable[NUM_ACTORS] = {
         // AreaObj
@@ -181,8 +186,9 @@ namespace SPack {
         { "WaterLeakPipe", createExtActor<WaterLeakPipe>},
         // Ride
         { "SwingRope", createExtActor<SwingRope> },
-        // Beta
-        { "WarpArea", createExtActor<WarpArea> }
+        //New
+        { "WarpArea", createExtActor<WarpArea>},
+        { "SwitchBox", createExtActor<SwitchBox>}
     };
 
     /*********************************************************************************************/
@@ -194,7 +200,7 @@ namespace SPack {
     * Number of total new class entries. This value has to adjusted everytime a creation function
     * is added or removed!
     */
-    #define NUM_CLASSES 16
+    #define NUM_CLASSES 15
 
     const CreateActorEntry cNewCreateMapObjTable[NUM_CLASSES] = {
         { "AirFar100m", NameObjFactory::createNameObj<AirFar100m> },
@@ -211,8 +217,7 @@ namespace SPack {
         { "ScaleMapObj", createExtActor<LavaBallRisingPlanetLava>},
         { "SimpleEnvironmentObj", NameObjFactory::createNameObj<SimpleEnvironmentObj> },
         { "SoundSyncBlock", NameObjFactory::createNameObj<RepeatTimerBlock> },
-        { "WoodBox", NameObjFactory::createNameObj<WoodBox> },
-        { "DoorMapObj", (ExternCreator)0x80340AD0 }
+        { "WoodBox", NameObjFactory::createNameObj<WoodBox> }
     };
 
     /*********************************************************************************************/
