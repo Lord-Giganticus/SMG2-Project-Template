@@ -150,6 +150,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "Auto"
           prerelease: true
-          title: "Auto Build"
+          title: "SMG2PT Beta"
           files: |
             *.zip
