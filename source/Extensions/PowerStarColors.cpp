@@ -1,6 +1,7 @@
 #include "spack/Extensions/PowerStarColors.h"
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
+#include "spack/Util/LoadResource.h"
 #include "Util.h"
 
 /*

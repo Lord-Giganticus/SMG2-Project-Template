@@ -1,6 +1,6 @@
 #include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
-#include "custom/archive.h"
+#include "spack/Util/LoadResource.h"
 #include "Util/StageUtil.h"
 /*
 * Authors: Evanbowl
@@ -25,7 +25,7 @@ namespace SPack {
 
     void* SEDTarc = Syati::loadArchive("/SystemData/StageEventDataTable.arc");
     void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "StageEventDataTable.bcsv");
-	void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "WarpAreaStageTable.bcsv")
+	void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "WarpAreaStageTable.bcsv");
 
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
