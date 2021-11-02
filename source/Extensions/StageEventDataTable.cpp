@@ -25,14 +25,7 @@ namespace SPack {
 
     void* SEDTarc = Syati::loadArchive("/SystemData/StageEventDataTable.arc");
     void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "StageEventDataTable.bcsv");
-	void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "WarpAreaStageTable.bcsv");
-
-	void* loadPTPictureFont() {
-	Syati::loadArchive("/SystemData/PTPictureFont.arc");
-	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
-	}
-
-	kmCall(0x804B8048, loadPTPictureFont);
+	void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "WarpAreaStageTable.bcsv")
 
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
