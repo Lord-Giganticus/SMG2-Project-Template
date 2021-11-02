@@ -48,7 +48,9 @@ namespace SPack {
 	Syati::loadArchive("/SystemData/PTPictureFont.arc");
 	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
 	}
-
+	
+	kmCall(0x804B8048, loadPTPictureFont);
+	
 	/*
 	* This function returns the color ID for the specified scenario in the current stage.
 	* Essentially, this calls the above function.
