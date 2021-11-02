@@ -3,6 +3,7 @@
 #include "LiveActor/LiveActor.h"
 #include "Util/LiveActorUtil.h"
 #include "Util/MtxUtil.h"
+#include "Util.h"
 
 /*
 * Authors: Aurum
@@ -50,5 +51,23 @@ namespace SPack {
 		pAnimScaleParam->_28 = 0.8f;
 
 		return new AnimScaleController(pAnimScaleParam);
+	}
+
+	void useTimerSE(LiveActor* pActor, s32 pTime) {
+
+	s32 step = pActor->getNerveStep();
+
+    if (step <= pTime) {
+        if (!MR::isPlayerDead() && !MR::isPowerStarGetDemoActive()) {
+            if (pTime == step)
+                MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
+            else if ((step % 60) == 0) {
+                if (step >= (pTime - 120))
+                    MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
+                else
+                    MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
+                }
+           }
+        }
 	}
 }
