@@ -139,6 +139,8 @@ jobs:
           path: ${{ github.workspace }}/Release/Loaders
       - shell: cmd
         run: |
+          cd ${{ github.workspace }}
+          cp *.bin Release\CustomCode
           cd ${{ github.workspace }}/Release/Loaders
           rm -f *.xml
           cd ../
