@@ -19,6 +19,8 @@ SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {
     mUseTimerSe = false;
 }
 
+//big sus test
+
 void SwitchBox::init(const JMapInfoIter& rIter) {
     MR::processInitFunction(this, rIter, false);
     initHitSensor(1); //Initializes the HitSensor. The sensor data is found in SwitchBox.arc's ActorInfo.
