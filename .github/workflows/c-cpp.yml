@@ -144,9 +144,9 @@ jobs:
           cd ${{ github.workspace }}/Release/Loaders
           rm -f *.xml
           cd ../
-          7z a "${{ github.workspace }}/Syati.zip" *.* -r
+          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" *.* -r
           cd ${{ github.workspace }}
-          7z a "${{ github.workspace }}/Syati.zip" ParticleData SystemData objectdb.xml smg2proj.xml
+          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" ParticleData SystemData ObjectData objectdb.xml smg2proj.xml
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
