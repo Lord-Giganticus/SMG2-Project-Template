@@ -114,8 +114,8 @@ namespace SPack {
 
 			MR::getCsvDataStr(&destStage, StageTable, "StageName", i);
 			MR::getCsvDataS32(&destScenario, StageTable, "ScenarioNo", i);
-			MR::getCsvDataS32(&CSVFadeInType, StageTable, "FadeInType", i);
-			MR::getCsvDataS32(&CSVFadeInTime, StageTable, "FadeInTime", i);
+			MR::getCsvDataS32(&CSVFadeInType, StageTable, "WipeType", i);
+			MR::getCsvDataS32(&CSVFadeInTime, StageTable, "WipeTime", i);
             MR::getCsvDataS32(&bcsvIndex, StageTable, "Index", i);
 
         if (selectedindex == bcsvIndex) {
