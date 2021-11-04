@@ -141,7 +141,7 @@ namespace SPack {
     * Number of total new actor entries. This value has to adjusted everytime a creation function
     * is added or removed!
     */
-    #define NUM_ACTORS 44
+    #define NUM_ACTORS 45
 
     const CreateActorEntry cNewCreateNameObjTable[NUM_ACTORS] = {
         // AreaObj
@@ -193,7 +193,8 @@ namespace SPack {
         { "SwingRope", createExtActor<SwingRope> },
         //New
         { "WarpArea", createExtActor<WarpArea>},
-        { "SwitchBox", createExtActor<SwitchBox>}
+        { "SwitchBox", createExtActor<SwitchBox> },
+        { "SuperSpinDriverRed", createSuperSpinDriverRed }
     };
 
     /*********************************************************************************************/
