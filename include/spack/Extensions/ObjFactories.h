@@ -79,6 +79,7 @@ class RotateSeesawStep;
 class Shellfish;
 class SimpleEnvironmentObj;
 class WoodBox;
+class DarknessRoomDoor;
 
 namespace SPack {
     template<typename T>
@@ -130,6 +131,10 @@ namespace SPack {
 
     NameObj* createSuperSpinDriverGreen(const char *pName) {
         return new SuperSpinDriver(pName, SUPER_SPIN_DRIVER_GREEN);
+    }
+
+    NameObj* createSuperSpinDriverRed(const char *pName) {
+        return new SuperSpinDriver(pName, SUPER_SPIN_DRIVER_RED);
     }
 
     /*
