@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- SMG1/2 Object Database, generated 04/23/2021 18:52:10 -->
+<!-- SMG1/2 Object Database, generated 11/05/2021 17:28:54 -->
 
-<database timestamp="1619203930">
+<database timestamp="1636133334">
 
 	<categories>
 		<category id="255">Uncategorized</category>
@@ -26,7 +26,7 @@
 		<category id="212">Minigames</category>
 		<category id="254">Other</category>
 		<category id="14">Deprecated / Useless</category>
-		<category id="15">SMG2 Project Template Objects</category>
+        <category id="15">SMG2 Project Template Objects</category>
 	</categories>
 
 	<object id="2DGhostTowerPlanet">
@@ -247,7 +247,7 @@
 
 	<object id="AssemblyBlockPartsIceB">
 		<name>Space Junk Block B (Ice)</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes>An icy version of a Space Junk block.</notes>
@@ -260,7 +260,7 @@
 
 	<object id="AssemblyBlockPartsIceC">
 		<name>Space Junk Block C (Ice)</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes>An icy version of a Space Junk block.</notes>
@@ -273,7 +273,7 @@
 
 	<object id="AssemblyBlockPartsIceD">
 		<name>Space Junk Block D (Ice)</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes>An icy version of a Space Junk block.</notes>
@@ -286,7 +286,7 @@
 
 	<object id="AssemblyBlockPartsIceE">
 		<name>Space Junk Block E (Ice)</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes>An icy version of a Space Junk block.</notes>
@@ -299,7 +299,7 @@
 
 	<object id="AssemblyBlockPartsTimerA">
 		<name>Space Junk Block (Galaxy Reactor)</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes>A long rectangular Space Junk block from Bowser's Galaxy Reactor.</notes>
@@ -884,6 +884,19 @@
 		<notes>A green carpet used in Bowser's Lava Lair.</notes>
 		<files>/ObjectData/BakuBakuClipStep.arc</files>
 		<sounds></sounds>
+	</object>
+
+	<object id="BallBeamer">
+		<name>Sentry Beam with Nut (Electricity  Ring)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="7" />
+		<preferredfile name="Obj" />
+		<notes>A yellow enemy with a nut on its head; periodically fires rings of electricity.</notes>
+		<files>/ObjectData/BallBeamer.arc</files>
+		<sounds></sounds>
+		<field id="0" type="int" name="Speed" values="" notes="" />
+		<field id="1" type="int" name="Delay" values="" notes="" />
+		<field id="2" type="int" name="Unknown 2" values="" notes="" />
 	</object>
 
 	<object id="Balloonfish">
@@ -2594,7 +2607,7 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 
 	<object id="BlueChip">
 		<name>Pull Star Chip</name>
-		<flags games="3" known="1" complete="0" paths="0" switches="1" fieldReqs="0"/>
+		<flags games="1" known="1" complete="0" paths="0" switches="1" fieldReqs="0"/>
 		<category id="9" />
 		<preferredfile name="Obj" />
 		<notes>A blue star chip.</notes>
@@ -2609,7 +2622,7 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 
 	<object id="BlueChipGroup">
 		<name>Pull Star Chip Group</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="4" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="4" fieldReqs="0"/>
 		<category id="13" />
 		<preferredfile name="Obj" />
 		<notes>A star chip group which can activate something through SW_A when all the pull star chips have been collected.</notes>
@@ -2836,7 +2849,7 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 
 	<object id="BossJugem">
 		<name>Giga-Lakitu</name>
-		<flags games="2" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="2" known="1" complete="1" paths="1" switches="0" fieldReqs="0"/>
 		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes>The boss fought at the end of the second mission of Yoshi-Star Galaxy. Requires a path and a SW_A.</notes>
@@ -6476,7 +6489,7 @@ SE_SM_STRAYTICO_FUSION</sounds>
 		<notes>An digital billboard that shows Mario/Luigi how to perform basic actions.</notes>
 		<files>/ObjectData/Dreamer.arc</files>
 		<sounds></sounds>
-		<field id="0" type="int" name="Unknown 0" values="" notes="" />
+		<field id="0" type="int" name="Spawn point ID" values="" notes="The ID that Mario get's spawned at" />
 		<field id="1" type="int" name="Unknown 1" values="" notes="" />
 	</object>
 
@@ -9402,7 +9415,7 @@ An Untergrunt Gunner that shoots cannonballs. (This object requires switches to 
 
 	<object id="GoldenTurtle">
 		<name>Golden Koopa Shell</name>
-		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="9" />
 		<preferredfile name="Obj" />
 		<notes>The golden Koopa shell that appears in the Bigmouth Galaxy.</notes>
@@ -10205,12 +10218,13 @@ An Untergrunt Gunner that shoots cannonballs. (This object requires switches to 
 	</object>
 
 	<object id="HeavensDoorInsidePlanetPartsA">
-		<name>HeavensDoorInsidePlanetPartsA</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Gateway Grand Star Machine</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
 		<notes></notes>
-		<files></files>
+		<files>/ObjectData/HeavensDoorInsidePlanetPartsA.arc
+/ObjectData/HeavensDoorInsidePlanetPartsABloom.arc</files>
 		<sounds></sounds>
 		<field id="3" type="int" name="Unknown 3" values="" notes="" />
 	</object>
@@ -10776,19 +10790,25 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 
 	<object id="HomingKiller">
 		<name>Bullet Bill</name>
-		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="3" known="1" complete="1" paths="0" switches="1" fieldReqs="43520"/>
 		<category id="7" />
 		<preferredfile name="Obj" />
-		<notes>A small bullet named Bill; can be set to home in on the player via obj_arg2 or obj_arg3.</notes>
+		<notes>The classic Bullet Bill enemy. Requires SW_APPEAR to function properly.</notes>
 		<files>/ObjectData/HomingKiller.arc</files>
-		<sounds></sounds>
-		<field id="0" type="float" name="Delay (Normal)" values="" notes="" />
-		<field id="1" type="int" name="Unknown 1" values="" notes="" />
-		<field id="2" type="bool" name="Homing?" values="-1 = Yes, 0 = No" notes="" />
-		<field id="3" type="bool" name="Homing?" values="-1 = Yes, 0 = No" notes="" />
-		<field id="4" type="int" name="Unknown 4" values="" notes="" />
-		<field id="5" type="int" name="Delay (Homing)" values="" notes="" />
-		<field id="7" type="int" name="Unknown 7" values="" notes="" />
+		<sounds>SE_EM_LV_KILLER_FLY
+SE_EM_LV_KILLER_STANDBY
+SE_EM_KILLER_STANDBY_END
+SE_EM_KILLER_FIRING
+SE_EM_KILLER_JET
+SE_EM_KILLER_EXPLOSION</sounds>
+		<field id="0" type="float" name="Homing Activation Range" values="2000" notes="The range around the player that will cause this Bullet Bill to start homing in on the player" />
+		<field id="1" type="int" name="Turn Speed Multiplier" values="1" notes="Changes the turning speed that Bullet Bills use" />
+		<field id="2" type="bool" name="Disable Homing" values="0" notes="If enabled, Bullet Bills will not home in on the player" />
+		<field id="3" type="bool" name="Ignore Gravity" values="0" notes="Makes the Bullet Bill ignore gravity" />
+		<field id="4" type="int" name="Bullet Bill Count" values="1" notes="Allows this launcher to shoot more than 1 Bullet Bill. Minimum 1 Bullet Bill is forced by the game." />
+		<field id="5" type="int" name="Bullet Launch Delay" values="180" notes="The time between each Bullet Bill. 60 = 1 second. 180 is the minimum value." />
+		<field id="6" type="int" name="Bullet Lifetime" values="600" notes="The time that the Bullet Bill is alive for. Explodes when the timer runs out. 60 = 1 second" />
+		<field id="7" type="int" name="Binder Activation Delay" values="35" notes="Delays the Bullet Bill's binder activation. 60 = 1 second. If the binder is disabled, collisions with stage geometry is disabled." />
 	</object>
 
 	<object id="HoneyBee">
@@ -11088,12 +11108,12 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	</object>
 
 	<object id="IceMountainFloaterA">
-		<name>IceMountainFloaterA</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Sinking Floating Wood Platform</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
+		<notes>Used in Freezeflame Galaxy.</notes>
+		<files>/ObjectData/IceMountainFloaterA.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -11168,12 +11188,12 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	</object>
 
 	<object id="IceRingBumpyPartsA">
-		<name>IceRingBumpyPartsA</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Small Stone Pedestal</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
+		<notes>A small unbreakable stone pedestal used on some ice skating sections to serve as a bumper obstacle if the player runs into it while skating.</notes>
+		<files>/ObjectData/IceRingBumpyPartsA.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -11198,12 +11218,12 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	</object>
 
 	<object id="IceSlipRoad">
-		<name>IceSlipRoad</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Ice Skating Course</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A course of multiple ice platforms for ice skating. Used on Toy Time Galaxy.</notes>
+		<files>/ObjectData/IceSlipRoad.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -11361,15 +11381,15 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 
 	<object id="InstantInferno">
 		<name>Cosmic Clone Spawner</name>
-		<flags games="2" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="2" known="1" complete="0" paths="0" switches="9" fieldReqs="0"/>
 		<category id="7" />
 		<preferredfile name="Obj" />
-		<notes>An enemy spawner that creates Cosmic Clones.</notes>
+		<notes>An enemy spawner that creates Cosmic Clones. Use SW_B to kill the clones, spawning 3 starbits each clone</notes>
 		<files></files>
 		<sounds></sounds>
-		<field id="1" type="int" name="Number of Clones" values="" notes="-1 is infinite" />
+		<field id="1" type="int" name="Number of Clones" values="40" notes="Sets the amount of cosmic clones that can spawn." />
 		<field id="2" type="int" name="Unknown 2" values="" notes="" />
-		<field id="3" type="int" name="Spawn Delay" values="" notes="Delays the time until the cosmic clones appear" />
+		<field id="3" type="int" name="Spawn Delay" values="90" notes="Delays the time until the cosmic clones appear. Also delays the time between spawns, and how close they can get to Mario." />
 		<field id="4" type="int" name="Unknown 4" values="" notes="" />
 	</object>
 
@@ -11446,7 +11466,7 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	<object id="InvisibleWaterfall">
 		<name>Invisible Waterfall</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="4" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -11455,13 +11475,14 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	</object>
 
 	<object id="InvisibleWaterfallTwinFallLake">
-		<name>InvisibleWaterfallTwinFallLake</name>
+		<name>Invisible Waterfall (Ice)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="4" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
 		<sounds></sounds>
+		<field id="4" type="int" name="Unknown 4" values="" notes="" />
 	</object>
 
 	<object id="IronCannonLauncher">
@@ -11660,6 +11681,17 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<notes></notes>
 		<files>/ObjectData/JewelRellayPlanetA.arc</files>
 		<sounds></sounds>
+	</object>
+
+	<object id="Jiraira">
+		<name>Bowser Land Mine</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="7" />
+		<preferredfile name="Obj" />
+		<notes>A land mine with Bowser's sign on it. Explodes if the player touches it or fires a Star Bit at it.</notes>
+		<files>/ObjectData/Jiraira.arc</files>
+		<sounds></sounds>
+		<field id="1" type="int" name="Unknown 1" values="" notes="Seems to be stored and unused." />
 	</object>
 
 	<object id="JointBallsPlanetA">
@@ -12100,7 +12132,7 @@ SE_OJ_KEY_SWITCH_GET</sounds>
 /ObjectData/KinopioLow.arc
 /ObjectData/KinopioMiddle.arc</files>
 		<sounds></sounds>
-		<field id="1" type="list" name="Color" values="-1 = Blue, 0 = Unknown, 1 = Green, 2 = Purple, 3 = Red, 4 = Yellow" notes="" />
+		<field id="1" type="list" name="Color" values="-1 = Blue, 0 = Blue, 1 = Green, 2 = Purple, 3 = Red, 4 = Yellow" notes="" />
 		<field id="2" type="list" name="Behavior" values="-1 = Unknown, 0 = Spinning, 1 = Break-Dancing, 2 = Spinning, 3 = Sling Pod (Tarantox), 4 = Follow any collision directly below, 5 = Diving, 6 = Digging, 7 = Asleep, 8 = Jump out of Chest, 9 = Guard, 10 = Excited/Jumping, 11 = Scared, 12 = Happy, 13 = Running" notes="" />
 		<field id="3" type="int" name="Unknown 3" values="" notes="" />
 		<field id="4" type="int" name="Unknown 4" values="" notes="" />
@@ -12765,7 +12797,7 @@ Extra notes:
 	<object id="KoopaRestarterVs3">
 		<name>KoopaRestarterVs3</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="13" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -12803,22 +12835,22 @@ Extra notes:
 	</object>
 
 	<object id="KoopaShipB">
-		<name>KoopaShipB</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Airship (Large)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A slightly larger airship than the rest of airships in the game.</notes>
+		<files>/ObjectData/KoopaShipB.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="KoopaShipC">
-		<name>KoopaShipC</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Airship (Seesaw)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>An airship with a seesaw slot (for KoopaShipSeesawStep) and an interior room.</notes>
+		<files>/ObjectData/KoopaShipC.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -12833,12 +12865,13 @@ Extra notes:
 	</object>
 
 	<object id="KoopaShipE">
-		<name>KoopaShipE</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Airship (Decorative)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A decorative airship model meant to be placed out of the player's reach.</notes>
+		<files>/ObjectData/KoopaShipE.arc 
+/ObjectData/KoopaShipELow.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -12853,12 +12886,12 @@ Extra notes:
 	</object>
 
 	<object id="KoopaShipSeesawStep">
-		<name>KoopaShipSeesawStep</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Airship Seesaw</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
+		<notes>An airship-themed seesaw platform. Used on KoopaShipC.</notes>
+		<files>/ObjectData/KoopaShipSeesawStep.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -12889,7 +12922,7 @@ Extra notes:
 	<object id="KoopaSwitchKeeper">
 		<name>KoopaSwitchKeeper</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="13" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -13656,13 +13689,23 @@ This is the 3rd and final Bowser battle of SMG1.</notes>
 		<sounds></sounds>
 	</object>
 
-	<object id="LavaBallRisingPlanetLava">
-		<name>LavaBallRisingPlanetLava</name>
-		<flags games="3" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+	<object id="LavaBallRisingPlanet">
+		<name>Melty Molten: Lava Tide Planet</name>
+		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<category id="1" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>The planet used for the secret Star mission in Melty Molten Galaxy.</notes>
+		<files>/ObjectData/LavaBallRisingPlanet.arc</files>
+		<sounds></sounds>
+	</object>
+
+	<object id="LavaBallRisingPlanetLava">
+		<name>Scaling Lava Planet</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="1" />
+		<preferredfile name="Obj" />
+		<notes>A spherical lava planet which expands and shrinks on loop at hardcoded sizes and intervals. Used on Melty Molten Galaxy's secret star.</notes>
+		<files>/ObjectData/LavaBallRisingPlanetLava.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -14122,11 +14165,13 @@ This is the 3rd and final Bowser battle of SMG1.</notes>
 	</object>
 
 	<object id="LavaProminenceTriple">
-		<name>LavaProminenceTriple</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Spinning Fireballs</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
-		<notes></notes>
+		<notes>A wheel of 3 fireballs that continuously rotate.
+
+Better used as decorations.</notes>
 		<files>/ObjectData/LavaProminenceTriple.arc
 /ObjectData/LavaProminenceTripleBloom.arc</files>
 		<sounds></sounds>
@@ -14327,32 +14372,35 @@ This is the 3rd and final Bowser battle of SMG1.</notes>
 	</object>
 
 	<object id="LavaStepA">
-		<name>LavaStepA</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Melty Molten Lava Platform (Small)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes></notes>
-		<files></files>
+		<files>/ObjectData/LavaStepA.arc
+/ObjectData/LavaStepALow.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="LavaStepB">
-		<name>LavaStepB</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Melty Molten Lava Platform</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes></notes>
-		<files></files>
+		<files>/ObjectData/LavaStepB.arc 
+/ObjectData/LavaStepBLow.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="LavaStepC">
-		<name>LavaStepC</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Melty Molten Lava Platform (Large)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes></notes>
-		<files></files>
+		<files>/ObjectData/LavaStepC.arc 
+/ObjectData/LavaStepCLow.ar</files>
 		<sounds></sounds>
 	</object>
 
@@ -14397,12 +14445,14 @@ This is the 3rd and final Bowser battle of SMG1.</notes>
 	</object>
 
 	<object id="LavaUpDownParts">
-		<name>LavaUpDownParts</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Path-controlled Lava Tide</name>
+		<flags games="1" known="1" complete="0" paths="1" switches="0" fieldReqs="0"/>
+		<category id="254" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
+		<notes>A flat floor of lava which moves back and forth along a path to produce a rising/lowering lava tide effect.
+
+Uses path_arg1 and point_args 0, 1 and 5.</notes>
+		<files>/ObjectData/LavaUpDownParts.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -15071,7 +15121,7 @@ Extra notes: The orange balls can be ground-pounded towards the watermelon* in t
 	<object id="MarioFaceEndStartPosCameraSetter">
 		<name>MarioFaceEndStartPosCameraSetter</name>
 		<flags games="2" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="211" />
+		<category id="201" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -15199,7 +15249,7 @@ Extra notes: The orange balls can be ground-pounded towards the watermelon* in t
 		<notes>A cannon that the player can be launched out of.</notes>
 		<files>/ObjectData/MarioLauncher.arc</files>
 		<sounds></sounds>
-		<field id="0" type="list" name="BCK Related" values="-1=" notes="" />
+		<field id="0" type="bool" name="Aim Cannon Upwards" values="1" notes="When true, the cannon will aim straight up instead of frontwards" />
 	</object>
 
 	<object id="MarioLauncherAttractor">
@@ -15492,7 +15542,9 @@ Use SW_A to close the door.</notes>
 		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="12" />
 		<preferredfile name="AreaObj" />
-		<notes>Any object and its paths that are placed inside this area are projected around the origin of the zone. Only a limited amount of objects can be projected, objects that extend the classes MercatorFixParts, MercatorRailMoveParts and MercatorRotateParts are known to work with this. Note that the object OceanSmallTurtle requires mercator projection. This object is useless in SMG2. This object ignores the AreaShapeNo setting.</notes>
+		<notes>Any object and its paths that are placed inside this area are projected around the origin of the zone. Only a limited amount of objects can be projected, objects that extend the classes MercatorFixParts, MercatorRailMoveParts and MercatorRotateParts, and RailCoin are known to work with this. Note that the object OceanSmallTurtle requires mercator projection. This object ignores the AreaShapeNo setting.
+
+In SMG2, the only object this area can be used with, is RailCoin</notes>
 		<files></files>
 		<sounds></sounds>
 		<field id="0" type="int" name="Distance" values="" notes="" />
@@ -15574,6 +15626,21 @@ Not intended to be used within player reach due to weird collision.</notes>
 		<category id="3" />
 		<preferredfile name="Obj" />
 		<notes>A meteor used in several galaxies, including Melty Molten Galaxy (SMG1) and Hightail Falls Galaxy (SMG2).</notes>
+		<files>/ObjectData/MeteorStrike.arc
+/ObjectData/MeteorStrikeBreak.arc
+/ObjectData/MeteorStrikeLauncher.arc</files>
+		<sounds></sounds>
+		<field id="0" type="int" name="Speed" values="" notes="" />
+		<field id="1" type="int" name="Delay" values="" notes="" />
+		<field id="2" type="int" name="Unknown 2" values="" notes="" />
+	</object>
+
+	<object id="MeteorStrikeEnvironment">
+		<name>Meteor Spawner</name>
+		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
+		<preferredfile name="Obj" />
+		<notes>A spawn point used for meteors.</notes>
 		<files>/ObjectData/MeteorStrike.arc
 /ObjectData/MeteorStrikeBreak.arc
 /ObjectData/MeteorStrikeLauncher.arc</files>
@@ -17564,12 +17631,12 @@ A cube-shaped area which prevents the player character from sleeping* while insi
 	</object>
 
 	<object id="OceanPierFloaterA">
-		<name>OceanPierFloaterA</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Floating Pier</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
+		<notes>A floating wooden pier platform. Used on Beach Bowl Galaxy.</notes>
+		<files>/ObjectData/OceanPierFloaterA.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -17959,12 +18026,12 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	</object>
 
 	<object id="PalmIsland">
-		<name>PalmIsland</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Palm Tree Island</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A small generic island with a palm tree on it.</notes>
+		<files>/ObjectData/PalmIsland.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -18784,6 +18851,16 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<sounds></sounds>
 	</object>
 
+	<object id="Poihana">
+		<name>Cataquack</name>
+		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="7" />
+		<preferredfile name="Obj" />
+		<notes></notes>
+		<files></files>
+		<sounds></sounds>
+	</object>
+
 	<object id="PoihanaMazePlanet">
 		<name>Gold Leaf: Cataquack Maze Planet</name>
 		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
@@ -19026,6 +19103,26 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<preferredfile name="Obj" />
 		<notes>An unused plate-shaped collision object.</notes>
 		<files>/ObjectData/PolygonCodeRecoveryPlate.arc</files>
+		<sounds></sounds>
+	</object>
+
+	<object id="Pompon2Plant">
+		<name>Pompon2Plant</name>
+		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="255" />
+		<preferredfile name="Obj" />
+		<notes></notes>
+		<files></files>
+		<sounds></sounds>
+	</object>
+
+	<object id="Pompon4Plant">
+		<name>Pompon4Plant</name>
+		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="255" />
+		<preferredfile name="Obj" />
+		<notes></notes>
+		<files></files>
 		<sounds></sounds>
 	</object>
 
@@ -19327,8 +19424,8 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<files>/ObjectData/PurpleCoin.arc</files>
 		<sounds></sounds>
 		<field id="3" type="int" name="Unknown 3" values="" notes="" />
-		<field id="4" type="int" name="Unknown 4" values="" notes="" />
-		<field id="5" type="int" name="Unknown 5" values="" notes="" />
+		<field id="4" type="bool" name="Disable Gravity" values="0" notes="if true, the coin will not rotate automatically to follow gravity" />
+		<field id="5" type="int" name="Shadow Drop Distance" values="" notes="The drop distance of the shadow" />
 		<field id="6" type="int" name="Unknown 6" values="" notes="" />
 		<field id="7" type="bool" name="Contained in a Bubble?" values="0" notes="" />
 	</object>
@@ -19436,7 +19533,7 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<category id="255" />
 		<preferredfile name="Obj" />
 		<notes></notes>
-		<files></files>
+		<files>/ObjectData/QuarterRollGravityRoomArrow.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -20288,7 +20385,7 @@ Needs a path to work!</notes>
 	<object id="RevolvingWay">
 		<name>Pointer-Interactive Hollow Cylinder</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="254" />
 		<preferredfile name="MapParts" />
 		<notes>A very glitchy textureless hollow cylinder the player can go through and rotate with the pointer by holding B on it.</notes>
 		<files></files>
@@ -21206,19 +21303,19 @@ Camera Amount: In the Camera settings for the Galaxy/Zone, you may find e:Scenar
 		<notes>A controller used to control the required points needed and the time limit given in The Chimp's challenges; used in challenges received from letters.</notes>
 		<files></files>
 		<sounds></sounds>
-		<field id="0" type="int" name="Points Required" values="" notes="" />
-		<field id="1" type="int" name="Time" values="" notes="" />
+		<field id="0" type="int" name="Points Required" values="5000" notes="" />
+		<field id="1" type="int" name="Time" values="180" notes="" />
 	</object>
 
 	<object id="ScoreAttackMan">
 		<name>The Chimp (Scoring Challenges)</name>
-		<flags games="2" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="2" known="1" complete="0" paths="0" switches="8" fieldReqs="0"/>
 		<category id="10" />
 		<preferredfile name="Obj" />
 		<notes>The Chimp used for the scoring challenges, like in Slimy Spring Galaxy.</notes>
 		<files>/ObjectData/ScoreAttackMan.arc</files>
 		<sounds></sounds>
-		<field id="0" type="int" name="Unknown 0" values="" notes="" />
+		<field id="0" type="float" name="Catch Distance" values="800" notes="The max distance that you can walk away from the chimp before he forcefully brings you into his dialogue" />
 	</object>
 
 	<object id="ScreenBlurCube">
@@ -21527,13 +21624,17 @@ Follows a straight line path back and forth depending on how the player steps on
 	</object>
 
 	<object id="SideSpikeMoveStepA">
-		<name>SideSpikeMoveStepA</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Flipswitch Red Spiked Platform</name>
+		<flags games="1" known="1" complete="1" paths="1" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
-		<sounds></sounds>
+		<notes>This is the Moving platform used in various galaxies including Flipswitch and Toy-Time.
+
+Path Point Arg 0 = Move Speed
+Path Point Arg 5 = Wait Time</notes>
+		<files>/ObjectData/SideSpikeMoveStep.arc</files>
+		<sounds>SE_OJ_LV_SIDE_SPIKE_STEP_MV
+SE_OJ_SIDE_SPIKE_STEP_ED</sounds>
 	</object>
 
 	<object id="SignBoard">
@@ -21583,12 +21684,13 @@ Follows a straight line path back and forth depending on how the player steps on
 
 	<object id="SimpleDemoExecutor">
 		<name>Short Cutscene</name>
-		<flags games="2" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="2" known="1" complete="1" paths="0" switches="5" fieldReqs="0"/>
 		<category id="201" />
 		<preferredfile name="Obj" />
 		<notes>This object starts a short cutscene to show that a certain object has appeared. It requires a camera to work properly.</notes>
 		<files></files>
 		<sounds></sounds>
+		<field id="1" type="int" name="SW_A Activation Step" values="60" notes="Activates this object's SW_A at a certain nerve step." />
 	</object>
 
 	<object id="SkateHolePlanet">
@@ -22095,11 +22197,12 @@ Vanishes away when spun on.</notes>
 	<object id="SoundEmitter">
 		<name>Sound Emitter</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="13" />
 		<preferredfile name="Sound" />
 		<notes></notes>
 		<files></files>
 		<sounds></sounds>
+		<field id="0" type="int" name="Unknown 0" values="" notes="" />
 	</object>
 
 	<object id="SoundEmitterCube">
@@ -23241,12 +23344,14 @@ SE_OJ_STAR_PIECE_BURST</sounds>
 	</object>
 
 	<object id="SubmarineVolcanoInside">
-		<name>SubmarineVolcanoInside</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Bonefin Planet</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="1" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>The only planet in Bonefin Galaxy, where the boss Kingfin is fought.
+
+Not to be confused with SubmarineVolcanoPlanet, which is the decorative black outer shell that this planet has on Bonefin Galaxy.</notes>
+		<files>/ObjectData/SubmarineVolcanoInside.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -23261,12 +23366,13 @@ SE_OJ_STAR_PIECE_BURST</sounds>
 	</object>
 
 	<object id="SubmarineVolcanoSmallColumn">
-		<name>SubmarineVolcanoSmallColumn</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Bonefin Spiral Column</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="11" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>An unused destroyable underwater spiral column.</notes>
+		<files>/ObjectData/SubmarineVolcanoSmallColumn.arc
+/ObjectData/SubmarineVolcanoSmallColumnBreak.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -23387,21 +23493,7 @@ SE_PV_JUMP_S</sounds>
 		<field id="4" type="bool" name="No Appear Jingle" values="1" notes="If set to true, the usual Launch Star appearance jingle will not play" />
 		<field id="5" type="int" name="Landing Rotation" values="" notes="Rotation the player lands at" />
 		<field id="6" type="bool" name="Unknown 6" values="1" notes="Only used in Beach Bowl (SMG1)" />
-		<field id="7" type="int" name="SpinDriverPathDrawRange" values="" notes="Used by a call to registerStorageSpinDriverPathDrawRange" />
-	</object>
-
-	<object id="SuperSpinDriverGreen">
-		<name>Launch Star (Green)</name>
-		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="9" />
-		<preferredfile name="Obj" />
-		<notes>A green version of the Launch Star; appears only once in the Observatory after all 3 green stars are collected on SMG1.</notes>
-		<files></files>
-		<sounds></sounds>
-		<field id="0" type="int" name="Unknown 0" values="" notes="" />
-		<field id="3" type="int" name="Unknown 3" values="" notes="" />
-		<field id="6" type="int" name="Unknown 6" values="" notes="" />
-		<field id="7" type="int" name="Unknown 7" values="" notes="" />
+		<field id="7" type="int" name="SpinDriverPathStorage Index" values="" notes="The index of this launch star's path in the internal SpinDriverPathStorage class. This Arg is read by both games but only functions in SMG1" />
 	</object>
 
 	<object id="SuperSpinDriverPink">
@@ -23446,52 +23538,53 @@ SE_PV_JUMP_S</sounds>
 	</object>
 
 	<object id="SurfingRaceSignBoard">
-		<name>SurfingRaceSignBoard</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Surfing Arrow Sign</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A large decorative sign with an arrow, used throughout surfing courses to indicate turns.</notes>
+		<files>/ObjectData/SurfingRaceSignBoard.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurfingRaceStep">
-		<name>SurfingRaceStep</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Surfing Galaxies Platform</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>The generic cylindrical stonebrick-like platforms used throughout the scenery of Loopdeeloop and Loopdeswoop.</notes>
+		<files>/ObjectData/SurfingRaceStep.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurfingRaceSubGate">
-		<name>SurfingRaceSubGate</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Surfing Ring</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>The decorative colored rings placed throughout surfing courses.</notes>
+		<files>/ObjectData/SurfingRaceSubGate.arc</files>
 		<sounds></sounds>
+		<field id="1" type="int" name="Color" values="" notes="" />
 	</object>
 
 	<object id="SurfingRaceTutorialParts">
-		<name>SurfingRaceTutorialParts</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Surfing Tutorial Planet</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="1" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>The long water tunnel planet on Loopdeeloop where the Manta Ray Surfing tutorial takes place.</notes>
+		<files>/ObjectData/SurfingRaceTutorialParts.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurfingRaceVictoryStand">
-		<name>SurfingRaceVictoryStand</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Victory Stand (Surfing)</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>An average cosmetic three-steps podium for 1st, 2nd and 3rd places. Used in Loopdeeloop and Loopdeswoop after clearing the surfing minigame.</notes>
+		<files>/ObjectData/SurfingRaceVictoryStand.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -23507,111 +23600,111 @@ SE_PV_JUMP_S</sounds>
 
 	<object id="SurpBeltConveyerExGalaxy">
 		<name>Distant Galaxy: Sweet Sweet</name>
-		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
 		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes>The green distant galaxies in the Comet Observatory sky accessed through hungry lumas.</notes>
+		<notes>A green warp which leads to Sweet Sweet Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
 		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpCocoonExGalaxy">
-		<name>SurpCocoonExGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Sling Pod</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Sling Pod Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpCubeBubbleExLv2Galaxy">
-		<name>SurpCubeBubbleExLv2Galaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Bubble Blast</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Bubble Blast Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpFishTunnelGalaxy">
-		<name>SurpFishTunnelGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Bigmouth</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Bigmouth Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpPeachCastleFinalGalaxy">
-		<name>SurpPeachCastleFinalGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Grand Finale</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Grand Finale Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpSnowCapsuleGalaxy">
-		<name>SurpSnowCapsuleGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Snow Cap</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Snow Cap Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpSurfingLv2Galaxy">
-		<name>SurpSurfingLv2Galaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Loopdeswoop</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Loopdeswoop Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpTamakoroExLv2Galaxy">
-		<name>SurpTamakoroExLv2Galaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Rolling Gizmo</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Rolling Gizmo Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpTearDropGalaxy">
-		<name>SurpTearDropGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Drip Drop</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Drip Drop Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpTeresaMario2DGalaxy">
-		<name>SurpTeresaMario2DGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Boo's Boneyard</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Boo's Boneyard Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="SurpTransformationExGalaxy">
-		<name>SurpTransformationExGalaxy</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Distant Galaxy: Sand Spiral</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<category id="210" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>A green warp which leads to Sand Spiral Galaxy's star select screen. It uses the SMG1 exclusive SW_SLEEP parameter, which is connected to an SW_A from TicoGalaxy.</notes>
+		<files>/ObjectData/MiniSurprisedGalaxy.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -23649,7 +23742,7 @@ SE_PV_JUMP_S</sounds>
 
 	<object id="SwingRope">
 		<name>Swinging Vine</name>
-		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
 		<category id="254" />
 		<preferredfile name="Obj" />
 		<notes>A hanging vine which the player can hold onto and swing around. Used on Beach Bowl Galaxy.</notes>
@@ -24379,12 +24472,12 @@ This object has different variants for each game, this is the SMG1 variant. Look
 	</object>
 
 	<object id="TeresaMansionEntranceDoor">
-		<name>TeresaMansionEntranceDoor</name>
-		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<name>Haunted Mansion Entrance Door</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="3" />
 		<preferredfile name="Obj" />
-		<notes></notes>
-		<files></files>
+		<notes>The big double door at the entrance of Ghostly Galaxy's Haunted Mansion.</notes>
+		<files>/ObjectData/TeresaMansionEntranceDoor.arc</files>
 		<sounds></sounds>
 	</object>
 
@@ -24806,7 +24899,7 @@ SE_SM_METAMORPHOSE_SMOKE</sounds>
 	<object id="TicoReading">
 		<name>Luma (Reading)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="210" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files>/ObjectData/Tico.arc</files>
@@ -25053,21 +25146,24 @@ SE_SM_METAMORPHOSE_SMOKE</sounds>
 
 	<object id="Torpedo">
 		<name>Torpedo Ted</name>
-		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="3" known="1" complete="1" paths="0" switches="1" fieldReqs="43520"/>
 		<category id="7" />
 		<preferredfile name="Obj" />
-		<notes>A gray torpedo-like enemy (named &quot;Ted&quot;) that follows Mario/Luigi.</notes>
+		<notes>A gray torpedo-like enemy (named &quot;Ted&quot;) that follows the player. Requires SW_APPEAR to function properly</notes>
 		<files>/ObjectData/Torpedo.arc
 /ObjectData/TorpedoLight.arc
 /ObjectData/TorpedoPropeller.arc</files>
-		<sounds></sounds>
-		<field id="0" type="int" name="Delay (Normal)" values="" notes="" />
-		<field id="1" type="int" name="Unknown 1" values="" notes="" />
-		<field id="2" type="int" name="Homing?" values="-1 = Yes, 0 = No" notes="" />
-		<field id="3" type="int" name="Homing?" values="-1 = Yes, 0 = No" notes="" />
-		<field id="4" type="int" name="Unknown 4" values="" notes="" />
-		<field id="5" type="int" name="Delay (Homing)" values="" notes="" />
-		<field id="7" type="int" name="Unknown 7" values="" notes="" />
+		<sounds>SE_EM_LV_TORPEDO_MOVE
+SE_EM_LV_TORPEDO_ALARM
+SE_EM_TORPEDO_EXPLOSION</sounds>
+		<field id="0" type="float" name="Homing Activation Range" values="2000" notes="The range around the player that will cause this Torpedo Ted to start homing in on the player" />
+		<field id="1" type="int" name="Turn Speed Multiplier" values="1" notes="Changes the turning speed that Torpedo Teds use" />
+		<field id="2" type="bool" name="Disable Homing" values="0" notes="If enabled, Torpedo Teds will not home in on the player" />
+		<field id="3" type="bool" name="Ignore Gravity" values="0" notes="Makes the Torpedo Ted ignore gravity" />
+		<field id="4" type="int" name="Torpedo Count" values="1" notes="Allows this launcher to shoot more than 1 Torpedo Ted. Minimum 1 Torpedo Ted is forced by the game." />
+		<field id="5" type="int" name="Torpedo Launch Delay" values="180" notes="The time between each Torpedo Ted. 60 = 1 second. 180 is the minimum value." />
+		<field id="6" type="int" name="Torpedo Lifetime" values="600" notes="The time that the Torpedo Ted is alive for. Explodes when the timer runs out. 60 = 1 second" />
+		<field id="7" type="int" name="Binder Activation Delay" values="35" notes="Delays the Torpedo Ted's binder activation. 60 = 1 second. If the binder is disabled, collisions with stage geometry is disabled." />
 	</object>
 
 	<object id="TowerModeCylinder">
@@ -25507,9 +25603,9 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="Tripod2Boss">
 		<name>Megaleg 2</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="14" />
 		<preferredfile name="Obj" />
-		<notes></notes>
+		<notes>Crashes the game.</notes>
 		<files></files>
 		<sounds></sounds>
 	</object>
@@ -25527,7 +25623,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossBaseJointPosition">
 		<name>Megaleg Base Joint Position</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25538,7 +25634,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossBodyA">
 		<name>Megaleg Body</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25551,7 +25647,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossBodyABloom">
 		<name>Megaleg Body Bloom</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="4" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25562,7 +25658,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossBottomKillerCannon">
 		<name>Megaleg Bottom Bullet Bill Cannon</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25584,7 +25680,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossCore">
 		<name>Megaleg Core</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25595,7 +25691,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossEyeLight">
 		<name>Megaleg Eye Light</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25606,7 +25702,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossEyeLightBloom">
 		<name>Megaleg Eye Light Bloom</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="4" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25617,7 +25713,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossFoot">
 		<name>Megaleg Foot</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25630,7 +25726,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossFootBloom">
 		<name>Megaleg Foot Bloom</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="4" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25641,7 +25737,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearA">
 		<name>Megaleg Gear (A)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25654,7 +25750,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearB">
 		<name>Megaleg Gear (B)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25667,7 +25763,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearBody">
 		<name>Megaleg Body Gear</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25680,7 +25776,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearC">
 		<name>Megaleg Gear (C)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25693,7 +25789,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearSmallA">
 		<name>Megaleg Small Gear (A)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25706,7 +25802,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearSmallB">
 		<name>Megaleg Small Gear (B)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25719,7 +25815,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossGearSmallC">
 		<name>Megaleg Small Gear (C)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25732,7 +25828,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossGuardWall">
 		<name>Megaleg Guard Wall</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25743,7 +25839,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossKillerGenerater">
 		<name>Megaleg Bullet Bill Generator</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25755,7 +25851,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossKinokoOneUp">
 		<name>Megaleg 1-Up Mushroom</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="9" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25766,7 +25862,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg1A">
 		<name>Megaleg Leg (1A)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25779,7 +25875,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg1B">
 		<name>Megaleg Leg (1B)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25792,7 +25888,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg1C">
 		<name>Megaleg Leg (1C)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25805,7 +25901,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg2A">
 		<name>Megaleg Leg (2A)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25818,7 +25914,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg2ABloom">
 		<name>Megaleg Leg Bloom (2A)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="4" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25831,7 +25927,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg3A">
 		<name>Megaleg Leg (3A)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25844,7 +25940,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg3B">
 		<name>Megaleg Leg (3B)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25857,7 +25953,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLeg3C">
 		<name>Megaleg Leg (3C)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25870,7 +25966,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TriPodBossLegBottom">
 		<name>Megaleg Leg Bottom</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -25881,7 +25977,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossShell">
 		<name>Megaleg Shell</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25892,7 +25988,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossStepPoint">
 		<name>Megaleg Stepping Point</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25917,7 +26013,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossUnderKillerCannon">
 		<name>Megaleg Underside Bullet Bill Cannon</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -25929,7 +26025,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="TripodBossUpperKillerCannon">
 		<name>Megaleg Upper Bullet Bill Cannon</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="8" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -26298,38 +26394,40 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	</object>
 
 	<object id="UFOBattleStageC">
-		<name>UFOBattleStageC</name>
+		<name>UFO (Square Slot)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes>Uses path_args 0, 1, 2 and point_arg0</notes>
-		<files></files>
+		<notes>A metal saucer with a square space on one side.
+
+Uses path_args 0, 1, 2 and point_arg0</notes>
+		<files>/ObjectData/UFOBattleStageC.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="UFOBattleStageD">
-		<name>UFOBattleStageD</name>
+		<name>UFO (Large)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
-		<files></files>
+		<notes>A larger version of the UFO objects.</notes>
+		<files>/ObjectData/UFOBattleStageD.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="UFOBattleStageE">
-		<name>UFOBattleStageE</name>
+		<name>UFO (Large 2)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="2" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
-		<files></files>
+		<files>/ObjectData/UFOBattleStageE.arc</files>
 		<sounds></sounds>
 	</object>
 
 	<object id="UFOBlueStarCupsule">
 		<name>Pull Star UFO Platform</name>
-		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
 		<category id="2" />
 		<preferredfile name="Obj" />
 		<notes>A UFO platform with a usable pull star caged inside it.</notes>
@@ -26393,9 +26491,9 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="UFONormalB">
 		<name>UFO (Dreadnought)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="2" />
 		<preferredfile name="MapParts" />
-		<notes></notes>
+		<notes>Oval-shaped.</notes>
 		<files></files>
 		<sounds></sounds>
 	</object>
@@ -26403,7 +26501,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="UFONormalD">
 		<name>UFO (Type D)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="2" />
 		<preferredfile name="MapParts" />
 		<notes></notes>
 		<files></files>
@@ -26503,7 +26601,7 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 	<object id="UFOStrongA">
 		<name>UFO (Battlerock)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="2" />
 		<preferredfile name="MapParts" />
 		<notes>Uses path_args 0, 1, 2 and point_args 0, 1, 5</notes>
 		<files></files>
@@ -26600,10 +26698,31 @@ Uses path_arg1 and point_args 0 and 1. (Requires paths?)</notes>
 		<sounds></sounds>
 	</object>
 
+	<object id="UnizoLauncher">
+		<name>Urchin Generator</name>
+		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="7" />
+		<preferredfile name="Obj" />
+		<notes>A generator that spawns Urchins.</notes>
+		<files></files>
+		<sounds></sounds>
+	</object>
+
+	<object id="UnizoShoal">
+		<name>Sea Urchin (Shoal)</name>
+		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<category id="7" />
+		<preferredfile name="Obj" />
+		<notes>A purple Urchin with spikes on its body. It doesn't create any water splash particles when it moves.</notes>
+		<files>/ObjectData/UnizoShoal.arc
+/ObjectData/UnizoShoalBreak.arc</files>
+		<sounds></sounds>
+	</object>
+
 	<object id="ValveSwitch">
 		<name>Valve Switch</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="13" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -27116,6 +27235,16 @@ Note: This object ignores the AreaShapeNo setting.</notes>
 		<field id="7" type="int" name="Unknown 7" values="" notes="Only used on the Observatory." />
 	</object>
 
+	<object id="WatchTowerRotateStep">
+		<name>Giant Wood Windmill</name>
+		<flags games="1" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<category id="2" />
+		<preferredfile name="Obj" />
+		<notes>Has 4 platforms. Seen on Honeyhive Galaxy.</notes>
+		<files></files>
+		<sounds></sounds>
+	</object>
+
 	<object id="WaterAcrossSpherePlanet">
 		<name>Fluffy Bluff: Pond Planet</name>
 		<flags games="2" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
@@ -27468,12 +27597,13 @@ Note: This object ignores the AreaShapeNo setting.</notes>
 	<object id="WaterRoad">
 		<name>Sea Slide Water Stream</name>
 		<flags games="1" known="1" complete="0" paths="1" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="254" />
 		<preferredfile name="Obj" />
 		<notes>Used in Sea Slide Galaxy. Uses paths.</notes>
 		<files></files>
 		<sounds></sounds>
 		<field id="0" type="int" name="Unknown 0" values="" notes="" />
+		<field id="1" type="int" name="Unknown 1" values="" notes="" />
 	</object>
 
 	<object id="WaterRoadCavePlanet">
@@ -27568,7 +27698,7 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 	<object id="WhirlPool">
 		<name>Whirlpool (Broken)</name>
 		<flags games="1" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="255" />
+		<category id="14" />
 		<preferredfile name="Obj" />
 		<notes></notes>
 		<files></files>
@@ -28394,7 +28524,6 @@ See: https://tcrf.net/Super_Mario_Galaxy/Unused_Models#Placeholder_Planets</note
 		<sounds></sounds>
 	</object>
 
-    <!-- Minor edits to existing -->
 	<object id="PowerStar">
 		<name>Power Star</name>
 		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
@@ -28525,7 +28654,7 @@ By Someone</notes>
         <notes>Activates the event that is attached to its SW_DEAD setting when it receives the specified
 sensor message. If that occurs, the actor will be "killed", causing it to be inactive.
 
-Note that obj_arg0 is a list of SMG2's messages, or actions.
+Note that obj_arg0 is a list of SMG2's messages, also known as actions.
 Not all are documented, so try some values out!
 Provided in the template is all of SMG1's action message list, though just SMG1's actions.
 Things like Yoshi actions are not documented yet.
@@ -28549,9 +28678,8 @@ If the requirements are no longer met, the respective event is deactivated.
 
 Activates SW_A when the check is successful.
 
-If you are using this for a power star, using the "PowerStarSpawner", it's recommended you use "PowerStarAppearPoint" objects frequently.
-
 Note that this object is a little complicated and will need some getting used to.
+
 By Aurum and Evanbowl.</notes>
         <files>NA</files>
         <sounds></sounds>
@@ -28620,21 +28748,6 @@ By Evanbowl.</notes>
 		<field id="1" type="bool" name="Switch Type" values="" notes="-1 = Activate, 0 = Deactivate" />
 	</object>
 
-    <object id="UnizoLauncher">
-		<name>Urchin Spawner</name>
-		<flags games="3" known="0" complete="0" paths="0" switches="0" fieldReqs="0"/>
-		<category id="15" />
-		<preferredfile name="Obj" />
-		<notes>A spawner for Urchins as seen in Freezeflame Galaxy.
-
-By Aurum.</notes>
-		<files></files>
-		<sounds></sounds>
-		<field id="0" type="int" name="Urchin Type" values="" notes=" 0 = Sea Urchin, 1 = Land Urchin, 2 = Shoal Urchin, Value is clamped between 0 and 2 inclusive" />
-		<field id="1" type="int" name="Number of Urchins" values="" notes="Default is 4, value is clamped between 1 and 8" />
-		<field id="2" type="int" name="Spawn Delay" values="" notes="" />
-	</object>
-
 	<object id="ShellfishBlueChip">
 		<name>Sea Clam (Pull Star Chip)</name>
 		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
@@ -28684,12 +28797,36 @@ By Aurum.</notes>
 	</object>
 
 	<object id="SuperSpinDriverGreen">
-		<name>Launch Star</name>
+		<name>Green Launch Star</name>
 		<flags games="3" known="1" complete="0" paths="1" switches="13" fieldReqs="0"/>
 		<category id="15" />
 		<preferredfile name="Obj" />
 		<notes>A large green star that launches the player from one planet to another.</notes>
-		<files>/ObjectData/SuperSpinDriverGreen.arc</files>
+		<files>/ObjectData/SuperSpinDriver.arc</files>
+		<sounds></sounds>
+		<field id="0" type="int" name="Flight Time" values="" notes="How long Mario is flying until he's landing. In frames (60 = 1 second)" />
+		<field id="1" type="int" name="Shadow Drop Distance" values="" notes="The distance to drop the shadow. In centimeters" />
+		<field id="2" type="bool" name="Don't Grab Mario" values="0" notes="If set to true, the Launch Star won't grab Mario when he is nearby" />
+		<field id="3" type="int" name="Camera Amount" values="" notes="Amount of cameras this Launch Star has inside the .bcam" />
+		<field id="4" type="bool" name="No Appear Jingle" values="1" notes="If set to true, the usual Launch Star appearance jingle will not play" />
+		<field id="5" type="int" name="Landing Rotation" values="" notes="Rotation the player lands at" />
+		<field id="6" type="bool" name="Unknown 6" values="1" notes="Only used in Beach Bowl (SMG1)" />
+		<field id="7" type="int" name="SpinDriverPathDrawRange" values="" notes="Used by a call to registerStorageSpinDriverPathDrawRange" />
+	</object>
+
+	<object id="SuperSpinDriverRed">
+		<name>Red Launch Star</name>
+		<flags games="2" known="1" complete="0" paths="1" switches="13" fieldReqs="0"/>
+		<category id="15" />
+		<preferredfile name="Obj" />
+		<notes>A large red star that launches the player from one planet to another.
+
+This uses the red texture found in SMG1's SuperSpinDriverEmpty model.
+
+Currently has a blue path but that should be fixed soon!
+
+By Evanbowl.</notes>
+		<files>/ObjectData/SuperSpinDriver.arc</files>
 		<sounds></sounds>
 		<field id="0" type="int" name="Flight Time" values="" notes="How long Mario is flying until he's landing. In frames (60 = 1 second)" />
 		<field id="1" type="int" name="Shadow Drop Distance" values="" notes="The distance to drop the shadow. In centimeters" />
@@ -28733,7 +28870,7 @@ By Aurum.</notes>
 	</object>
 
 <object id="SuperSpinDriverEmpty">
-		<name>Transparent Launch Star (Legacy SMG2PT)</name>
+		<name>Transparent Launch Star</name>
 		<flags games="2" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="15" />
 		<preferredfile name="Obj" />
@@ -28832,7 +28969,7 @@ By Aurum.</notes>
 
 	<object id="HitWallTimerSwitch">
 		<name>Wall Timer Switch</name>
-		<flags games="2" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
+		<flags games="3" known="1" complete="0" paths="0" switches="4" fieldReqs="0"/>
 		<category id="15" />
 		<preferredfile name="Obj" />
 		<notes>A switch to be placed on a wall. It can be activated using any of the player’s attacks. The event attached to SW_A will 
@@ -28897,7 +29034,7 @@ By Aurum.</notes>
 
 	<object id="CocoSambo">
 		<name>Pokey</name>
-		<flags games="2" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
 		<category id="15" />
 		<preferredfile name="Obj" />
 		<notes>A cactus enemy that can be found in Good Egg Galaxy and Dusty Dunes Galaxy.
@@ -28914,7 +29051,7 @@ By Aurum.</notes>
 
 	<object id="FirePressureRadiate">
 		<name>Flame Shooter</name>
-		<flags games="2" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
+		<flags games="3" known="1" complete="0" paths="0" switches="0" fieldReqs="0"/>
 		<category id="15" />
 		<preferredfile name="Obj" />
 		<notes>A red nozzle that shoots flames.
@@ -28947,15 +29084,15 @@ is where the WarpArea manages galaxy warping. Here are descriptions of each colu
 
 StageName: This is the destination galaxy name.
 ScenarioNo: This is the destination scenario number.
-[EF95C7BB] FadeInType: This determines which fade-in should be used when the galaxy fades in. Here's a list.
+[C4CA9C41] WipeType: This determines which fade-in should be used when the galaxy fades in. Here's a list.
 -1 and 0: Circle, 1: Fade, 2: White Fade, 3: Mario.
-[EF958B4E] FadeInTime: The time in frames for the fade-in to be fully opened. Default is 45.
+[C4CA5FD4] WipeTime: The time in frames for the fade-in to be fully opened. Default is 45.
 [043838B2] Index: Use a number that isn't used yet, and apply that same number to the Obj_arg5 of the desired WarpArea.
 
 Made by Evanbowl with help from AwesomeTMC and Zyphro.
 
 Bugs:
-BCSV ScenarioNo doesn't work with green star scenarios.
+BCSV ScenarioNo doesn't work with green star scenarios (game crashes).
 The World Map shows up for some reason after getting any star in a galaxy.
 </notes>
         <files>NA</files>
@@ -28970,7 +29107,7 @@ The World Map shows up for some reason after getting any star in a galaxy.
 	<object id="Banekiti">
 		<name>Lil' Springy</name>
 		<flags games="3" known="1" complete="1" paths="0" switches="0" fieldReqs="0"/>
-		<category id="7" />
+		<category id="15" />
 		<preferredfile name="MapParts" />
 		<notes>A brown ellipse with two black eyes and four springs on its sides. Bounces off the player.
 By Aurum.</notes>
