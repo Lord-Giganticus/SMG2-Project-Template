@@ -146,7 +146,7 @@ jobs:
           cd ../
           7z a "${{ github.workspace }}/Debug_SMG2PT.zip" *.* -r
           cd ${{ github.workspace }}
-          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" ParticleData SystemData ObjectData objectdb.xml smg2proj.xml
+          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" ParticleData SystemData ObjectData AudioRes objectdb.xml smg2proj.xml
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
