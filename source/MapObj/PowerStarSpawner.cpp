@@ -28,7 +28,6 @@ PowerStarSpawner::PowerStarSpawner(const char* pName) : LiveActor(pName) {
     mUseSuccessSE = -1;
     mUseDisplayModel = -1;
     GroupID = -1;
-	upVec = (TVec3f(0.0f, 1.0f, 0.0f));
     YOffset = 300.0f;
 }
 
@@ -63,6 +62,7 @@ void PowerStarSpawner::init(JMapInfoIter const& rIter) {
     //Joins the group array to the star. This allows the PowerStarSpawner to behave like a PowerStarAppearPoint.
 
     if (mUseDisplayModel >= 0)
+    upVec = (TVec3f(0.0f, 1.0f, 0.0f)),
     PowerStarSpawner::createDisplayStar();
 }
 
@@ -122,8 +122,7 @@ void PowerStarSpawner::movement() {
 
     if (mUseDisplayModel == 0)
     upVec.set<f32>(-mGravity),
-    DisplayStar->mRotation.set(upVec);
-
+    DisplayStar->mRotation.set(upVec),
     DisplayStar->mTranslation.set(mTranslation);
 
 	if (MR::isOnSwitchA(this)) {
