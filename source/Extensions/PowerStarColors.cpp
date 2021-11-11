@@ -43,13 +43,6 @@ namespace SPack {
 			
 		return 0;
 	}
-
-	void* loadPTPictureFont() {
-	Syati::loadArchive("/SystemData/PTPictureFont.arc");
-	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
-	}
-	
-	kmCall(0x804B8048, loadPTPictureFont);
 	
 	/*
 	* This function returns the color ID for the specified scenario in the current stage.
@@ -115,19 +108,30 @@ namespace SPack {
 	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
     */
 
-	wchar_t * getStarIcon(s32 startype) {
+	void loadPTPictureFont() {
+	Syati::loadArchive("/SystemData/PTPictureFont.arc");
+	Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
+	}
+
+
+	wchar_t* getStarIcon() {
 		wchar_t *unk;
 		const char *pStage;
 		s32 scenarioId;
 		s32 icon;
+		s32 type;
+
+        asm("mr %0, r4" : "=r" (type)); //This gets r4 which is the code of the icon the game normally adds. This gets used to determine what should be a normal, hidden, or comet.
 
 		asm("mr %0, r27" : "=r" (pStage));
 		asm("mr %0, r30" : "=r" (unk));
 		asm("mr %0, r31" : "=r" (scenarioId));
 
+        OSReport("%d\n", type);
+
      	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
 
-        if (startype == 0) {
+        if (type == 0x37) {
 		// Normal Star icons
 		switch (getStarColor) {
 			case 0:
@@ -148,7 +152,7 @@ namespace SPack {
 		    }
 		}
 
-        else if (startype == 1) {
+        else if (type == 0x65) {
 		//Comet Star icons
             switch (getStarColor) {
 			case 0:
@@ -169,7 +173,7 @@ namespace SPack {
 		    }
 		}
 
-        else if (startype == 2) {
+        else if (type == 0x71) {
 		//Uncollected Hidden Star icons
 		switch (getStarColor) {
 			case 0:
@@ -192,21 +196,14 @@ namespace SPack {
 
         return MR::addPictureFontCode(unk, icon);
 	}
+
 	
-    wchar_t* starIcon() {
-    return getStarIcon(0);
-	}
+	#ifdef USA //Limit these to USA only because PAL (and possibly even other regions) is what we call special.
+	kmCall(0x804B8048, loadPTPictureFont);
 
-    wchar_t* cometStarIcon() {
-    return getStarIcon(1);
-	}
-
-    wchar_t* hiddenStarIcon() {
-    return getStarIcon(2);
-	}
-
-    kmCall(0x80041E30, starIcon); //Normal Star icons
-    kmCall(0x80041F0C, cometStarIcon); //Comet Star icons
-    kmCall(0x80041F94, hiddenStarIcon); //Hidden Star icons
-    kmCall(0x80041F48, starIcon); //Collected Hidden Star icons
+    kmCall(0x80041E30, getStarIcon); //Normal Star icons
+    kmCall(0x80041F0C, getStarIcon); //Comet Star icons
+    kmCall(0x80041F94, getStarIcon); //Hidden Star icons
+    kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
+	#endif
 }
