@@ -23,9 +23,8 @@ namespace SPack {
 
 	const char *typestr = 0;
 
-    void* SEDTarc = Syati::loadArchive("/SystemData/StageEventDataTable.arc");
-    void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "StageEventDataTable.bcsv");
-	void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/StageEventDataTable.arc", "WarpAreaStageTable.bcsv");
+    void* SEDTarc = Syati::loadArchive("/SystemData/PTSystemData.arc");
+    void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
 
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
@@ -39,7 +38,6 @@ namespace SPack {
 		for (s32 i = 0; i < numEntries; i++) {
 			const char *exceptStage = 0;
 			s32 exceptScenario = 0;
-
 			MR::getCsvDataStr(&exceptStage, exceptTable, "StageName", i);
 			if (!exceptStage)
 				continue;
@@ -94,93 +92,4 @@ namespace SPack {
 	kmBranch(0x80056D70, isPurpleCoinCaretaker);
 
     kmBranch(0x80056BE0, isStoryBook);
-
-    //WarpAreaStageTable Parser
-	bool warpareaused = 0;
-	const char *destStage = 0;
-	s32 destScenario = 0;
-	s32 CSVFadeInType = 0;
-	s32 FadeInType = 0;
-	s32 CSVFadeInTime = 0;
-	s32 FadeInTime = 45;
-	s32 bcsvIndex = 0;
-
-	void WarpAreaParser(s32 selectedindex) {
-		JMapInfo* StageTable = new JMapInfo();
-		StageTable->attach(WASTbcsv);
-		s32 numEntries = MR::getCsvDataElementNum(StageTable);
-
-		for (s32 i = 0; i < numEntries; i++) {
-
-			MR::getCsvDataStr(&destStage, StageTable, "StageName", i);
-			MR::getCsvDataS32(&destScenario, StageTable, "ScenarioNo", i);
-			MR::getCsvDataS32(&CSVFadeInType, StageTable, "WipeType", i);
-			MR::getCsvDataS32(&CSVFadeInTime, StageTable, "WipeTime", i);
-            MR::getCsvDataS32(&bcsvIndex, StageTable, "Index", i);
-
-        if (selectedindex == bcsvIndex) {
-		    if (destScenario < 1 || destScenario > 8)
-            OSReport("(WarpAreaStageTable) %d is not a valid scenario number. Skipping.\n", destScenario);
-
-            FadeInType = CSVFadeInType; //Separate variables are used to prevent the needed values from being overwritten by the next row in the BCSV.
-			FadeInTime = CSVFadeInTime; //Weird solution, but it works.
-
-            MR::goToGalaxy(destStage);
-            MR::goToGalaxyNoSelection(destStage, destScenario, -1, 0);
-
-		    OSReport("(WarpAreaStageTable) Going to %s %d, BCSV Index: %d\n", destStage, destScenario, bcsvIndex);
-			OSReport("Fade Type: %d, Fade Time: %d\n", FadeInType, FadeInTime);
-		    warpareaused = true;
-		    
-		   }
-		}
-	}
-
-	void selectWipeClose(s32 type, s32 fadeTime) // mode 0 = Close, mode 1 = Open
-	{
-    if (type == -1)
-	type = 0;
-    if (fadeTime == -1)
-	fadeTime = 45;
-	    if (type == 0)
-	    MR::closeSystemWipeCircle(fadeTime);
-	    else if (type == 1)
-	    MR::closeSystemWipeFade(fadeTime);
-	    else if (type == 2)
-	    MR::closeSystemWipeWhiteFade(fadeTime);
-	    else if (type == 3)
-	    MR::closeSystemWipeCircleWithCaptureScreen(fadeTime);
-	    else if (type == 4)
-	    MR::closeSystemWipeFadeWithCaptureScreen(fadeTime);
-	    else if (type == 5)
-	    MR::closeSystemWipeMario(fadeTime);
-	}
-
-	void selectWipeOpen(s32 type, s32 fadeTime) // mode 0 = Close, mode 1 = Open
-	{
-	if (type == -1)
-	type = 0;
-    if (fadeTime == -1)
-	fadeTime = 45;
-	    if (type == 0)
-	    MR::openSystemWipeCircle(fadeTime);
-	    else if (type == 1)
-	    MR::openSystemWipeFade(fadeTime);
-	    else if (type == 2)
-	    MR::openSystemWipeWhiteFade(fadeTime);
-	    else if (type == 3)
-	    MR::openSystemWipeMario(fadeTime);
-	}
-
-	void useWarpAreaFadeIn() {
-        if (warpareaused == true) {
-		OSReport("Fade Type: %d Fade Time: %d\n", FadeInType, FadeInTime);
-		selectWipeOpen(FadeInType, FadeInTime);
-		warpareaused = false;
-		}
-        else
-        MR::openSystemWipeWhiteFade(90);
-	}
-
-kmCall(0x804B44D0, useWarpAreaFadeIn);
 }
