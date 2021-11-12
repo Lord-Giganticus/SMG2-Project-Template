@@ -1,5 +1,5 @@
 #include "spack/AreaObj/WarpArea.h"
-#include "spack/Extensions/StageEventDataTable.h"
+#include "spack/Extensions/WarpAreaParser.h"
 #include "Util.h"
 /*
 * Created by Evanbowl with help from Aurum, AwesomeTMC, and Zyphro.
@@ -31,6 +31,10 @@ mElapsed++;
 }
 
     if (mElapsed == 10) { //Phase 1: Start a circle wipe and lock player control.
+//char **ptr;
+//asm("lwz %0, -0x657C (r13)" : "=r" (ptr));
+//ptr[0x30 / sizeof (char *)][0x24] = 1;
+    MR::startToCaptureScreen("SystemWipe");
     SPack::selectWipeClose(mObjArg1, mObjArg2);
     MR::offPlayerControl();
     
@@ -46,7 +50,7 @@ MR::setPlayerStateWait();
 if (mObjArg0 >= 0) {
 
 char WarpAreaDestPos[0x60];
-snprintf(WarpAreaDestPos, 0x60, "WarpAreaPos%03d", mObjArg0);
+snprintf(WarpAreaDestPos, 0x10, "WarpAreaPos%03d", mObjArg0);
 
 MR::setPlayerPosAndWait(WarpAreaDestPos);
 OSReport("(WarpArea) Warping player to WarpArea position %03d\n", mObjArg0);
@@ -55,8 +59,9 @@ OSReport("(WarpArea) WarpArea position %03d doesn't exist!\n", mObjArg0);
 else
 OSReport("(WarpArea) Warp successful!\n");
 }
-else
+else {
 SPack::WarpAreaParser(mObjArg5);
+}
 }
 
 if (mElapsed == mObjArg2 + 90) { //Phase 3: Open the circle wipe, restore player control, and reset both "mElapsed" and "hasEnteredArea" vars.
