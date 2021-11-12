@@ -3,6 +3,8 @@ You can find here the source code for all custom coded objects and changes featu
 You can find more information and videos on [my website](https://aurumsmods.com/#project-template).
 
 This repository has beta features of the SMG2PT that are not fully finished.
+If you are not willing to work with unfinished/broken features, please use the main PT repository.
+
 To build, use [Lord_Giganticus's](https://github.com/Lord-Giganticus/Syati) Syati fork.
 
 There are also pre-compiled builds of this repo.
