@@ -113,22 +113,14 @@ namespace SPack {
 	Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
 	}
 
-
-	wchar_t* getStarIcon() {
-		wchar_t *unk;
+	wchar_t* getStarIcon(wchar_t* unk, s32 type) {
 		const char *pStage;
 		s32 scenarioId;
 		s32 icon;
-		s32 type;
-
-        asm("mr %0, r4" : "=r" (type)); //This gets r4 which is the code of the icon the game normally adds. This gets used to determine what should be a normal, hidden, or comet.
 
 		asm("mr %0, r27" : "=r" (pStage));
-		asm("mr %0, r30" : "=r" (unk));
 		asm("mr %0, r31" : "=r" (scenarioId));
-
-        OSReport("%d\n", type);
-
+		
      	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
 
         if (type == 0x37) {
@@ -196,7 +188,6 @@ namespace SPack {
 
         return MR::addPictureFontCode(unk, icon);
 	}
-
 	
 	#ifdef USA //Limit these to USA only because PAL (and possibly even other regions) is what we call special.
 	kmCall(0x804B8048, loadPTPictureFont);
