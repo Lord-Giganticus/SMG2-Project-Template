@@ -1,7 +1,7 @@
 #include "spack/Extensions/PowerStarColors.h"
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
-#include "spack/Util/LoadResource.h"
+#include "spack/Util/archive.h"
 #include "Util.h"
 
 /*
@@ -108,9 +108,9 @@ namespace SPack {
 	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
     */
 
-	void loadPTPictureFont() {
+   	void* loadPTPictureFont() {
 	Syati::loadArchive("/SystemData/PTPictureFont.arc");
-	Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
+	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
 	}
 
 	wchar_t* getStarIcon(wchar_t* unk, s32 type) {
@@ -189,12 +189,12 @@ namespace SPack {
         return MR::addPictureFontCode(unk, icon);
 	}
 	
-	#ifdef USA //Limit these to USA only because PAL (and possibly even other regions) is what we call special.
-	kmCall(0x804B8048, loadPTPictureFont);
 
-    kmCall(0x80041E30, getStarIcon); //Normal Star icons
+
+//Limit these to USA only because PAL (and possibly even other regions) is what we call special
+	kmCall(0x804B8048, loadPTPictureFont); //Code for this is in /include/spack/LoadFile.h.
+    kmCall(0x80041E30, getStarIcon); //Normal Star icons.
     kmCall(0x80041F0C, getStarIcon); //Comet Star icons
     kmCall(0x80041F94, getStarIcon); //Hidden Star icons
     kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
-	#endif
 }
