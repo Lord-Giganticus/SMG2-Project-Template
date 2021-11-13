@@ -189,11 +189,8 @@ namespace SPack {
         return MR::addPictureFontCode(unk, icon);
 	}
 	
-
-
-//Limit these to USA only because PAL (and possibly even other regions) is what we call special
-	kmCall(0x804B8048, loadPTPictureFont); //Code for this is in /include/spack/LoadFile.h.
-    kmCall(0x80041E30, getStarIcon); //Normal Star icons.
+    kmCall(0x804B8048, loadPTPictureFont);
+    kmCall(0x80041E30, getStarIcon); //Normal Star icons
     kmCall(0x80041F0C, getStarIcon); //Comet Star icons
     kmCall(0x80041F94, getStarIcon); //Hidden Star icons
     kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
