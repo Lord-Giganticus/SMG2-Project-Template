@@ -1,6 +1,7 @@
 #include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
 #include "spack/Util/archive.h"
+
 /*
 * Authors: Evanbowl
 * 
@@ -10,23 +11,16 @@
 *
 * These functions un-hardcode certain options a stage can have. Those being:
 * Chimp, Glider, Disable Pause, Play Star Chance, and Purple Coin Gearmo.
-* 
-*
-* WarpAreaStageTable:
-*
-* This function is a list of stages that the WarpArea can take the player to.
-*
 */
 
 namespace SPack {
 
 	const char *typestr = 0;
 
+	void* SEDTarc = Syati::loadArchive("/SystemData/PTSystemData.arc");
+    void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
-
-	    void* SEDTarc = Syati::loadArchive("/SystemData/PTSystemData.arc");
-        void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
 
 		JMapInfo* exceptTable = new JMapInfo();
 		exceptTable->attach(SEDTbcsv);

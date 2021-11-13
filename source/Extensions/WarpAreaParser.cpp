@@ -35,8 +35,6 @@ namespace SPack {
 
 	void WarpAreaParser(s32 selectedindex) {
 
-		void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "WarpAreaStageTable.bcsv");
-
 		JMapInfo* StageTable = new JMapInfo();
 		StageTable->attach(WASTbcsv);
 		s32 entries = MR::getCsvDataElementNum(StageTable);
