@@ -1,7 +1,7 @@
 #include "spack/Extensions/WarpAreaParser.h"
 #include "Util.h"
-#include "spack/Util/LoadResource.h"
 #include "Util/StageUtil.h"
+#include "spack/Util/archive.h"
 /*
 * Authors: Evanbowl
 * 
@@ -33,9 +33,10 @@ namespace SPack {
 	s32 FadeInTime = 45;
 	s32 bcsvIndex = 0;
 
-	
-
 	void WarpAreaParser(s32 selectedindex) {
+
+		void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "WarpAreaStageTable.bcsv");
+
 		JMapInfo* StageTable = new JMapInfo();
 		StageTable->attach(WASTbcsv);
 		s32 entries = MR::getCsvDataElementNum(StageTable);

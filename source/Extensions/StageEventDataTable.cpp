@@ -1,7 +1,6 @@
 #include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
-#include "spack/Util/LoadResource.h"
-#include "Util/StageUtil.h"
+#include "spack/Util/archive.h"
 /*
 * Authors: Evanbowl
 * 
@@ -23,11 +22,12 @@ namespace SPack {
 
 	const char *typestr = 0;
 
-    void* SEDTarc = Syati::loadArchive("/SystemData/PTSystemData.arc");
-    void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
-
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
+
+	    void* SEDTarc = Syati::loadArchive("/SystemData/PTSystemData.arc");
+        void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
+
 		JMapInfo* exceptTable = new JMapInfo();
 		exceptTable->attach(SEDTbcsv);
 		s32 numEntries = MR::getCsvDataElementNum(exceptTable);
