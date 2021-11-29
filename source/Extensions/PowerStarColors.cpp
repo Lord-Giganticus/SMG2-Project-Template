@@ -1,7 +1,6 @@
 #include "spack/Extensions/PowerStarColors.h"
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
-#include "spack/Util/archive.h"
 #include "Util.h"
 
 /*
@@ -103,14 +102,13 @@ namespace SPack {
     /*
 	* Power Star Font Icons
     *
-	* On the World Map, Star List, and Pause Menu, icons of a Power Star type and color are displayed.
-	* These icons are normally inside the PictureFont.brfnt inside Font.arc found in all language files.
+	* On the World Map, Star inside the PictureFont.brfnt inside Font.arc found in all language files.
 	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
     */
 
-   	void* loadPTPictureFont() {
-	Syati::loadArchive("/SystemData/PTPictureFont.arc");
-	return Syati::loadResourceFromArchive("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
+    void loadPTPictureFont() {
+	JKRArchive* Fontarc = MR::mountArchive("/SystemData/PTPictureFont.arc", MR::getStationedHeapGDDR3(), 0);
+    Fontarc->getResource("PTPictureFont.brfnt");
 	}
 
 	wchar_t* getStarIcon(wchar_t* unk, s32 type) {
@@ -194,4 +192,5 @@ namespace SPack {
     kmCall(0x80041F0C, getStarIcon); //Comet Star icons
     kmCall(0x80041F94, getStarIcon); //Hidden Star icons
     kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
+
 }

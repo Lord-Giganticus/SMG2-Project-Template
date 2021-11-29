@@ -1,6 +1,5 @@
 #include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
-#include "spack/Util/archive.h"
 
 /*
 * Authors: Evanbowl
@@ -16,9 +15,9 @@
 namespace SPack {
 
 	const char *typestr = 0;
+	JKRArchive* SEDTarc = MR::mountArchive("/SystemData/StageEventDataTable.arc", MR::getStationedHeapGDDR3(), 0);
+    void* SEDTbcsv = SEDTarc->getResource("StageEventDataTable.bcsv");
 
-	void* SEDTarc = Syati::loadArchive("/SystemData/PTSystemData.arc");
-    void* SEDTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
 
@@ -50,7 +49,7 @@ namespace SPack {
 	}
 
 	bool isChimp() {
-		return SPack::StageEventDataTable("Chimp"); //Makes the set galaxy a Chimp stage. If you apply this to a non-chimp star, the high scores will not work. This should be fixed soon.
+		return SPack::StageEventDataTable("Chimp"); //Makes the set galaxy a Chimp stage. If you apply this to a non-chimp star, the high scores will not work.
 	}
 
 	bool isPauseDisabled() {
@@ -74,7 +73,7 @@ namespace SPack {
         return false;
     return SPack::StageEventDataTable("StoryBook"); //Makes the set galaxy a Story Book stage, adding a story book border and preventing return to the Starship.
 	}
-
+	
     kmBranch(0x800568F0, isChimp);
 	
 	kmBranch(0x80056B40, isPauseDisabled);

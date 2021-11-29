@@ -1,7 +1,6 @@
 #include "spack/Extensions/WarpAreaParser.h"
 #include "Util.h"
 #include "Util/StageUtil.h"
-#include "spack/Util/archive.h"
 /*
 * Authors: Evanbowl
 * 
@@ -21,17 +20,18 @@
 
 namespace SPack {
 
-	void* WASTbcsv = Syati::loadResourceFromArchive("/SystemData/PTSystemData.arc", "WarpAreaStageTable.bcsv");
-
 	bool warpareaused = 0;
 	const char *destStage = 0;
 	s32 destScenario = 0;
-	s32 destGreenStarScenario;
+	s32 destGreenStarScenario = -1;
 	s32 CSVFadeInType = 0;
 	s32 FadeInType = 0;
 	s32 CSVFadeInTime = 0;
 	s32 FadeInTime = 45;
 	s32 bcsvIndex = 0;
+
+	JKRArchive* WASTarc = MR::mountArchive("/SystemData/WarpAreaStageTable.arc", MR::getStationedHeapGDDR3(), 0);
+	void* WASTbcsv = WASTarc->getResource("WarpAreaStageTable.bcsv");
 
 	void WarpAreaParser(s32 selectedindex) {
 
@@ -52,15 +52,17 @@ namespace SPack {
 		    if (destScenario < 1 || destScenario > 8)
             OSReport("(WarpAreaParser) %d is not a valid scenario number. Skipping.\n", destScenario);
 
-			if (destGreenStarScenario < 0 || destGreenStarScenario > 4)
-            OSReport("(WarpAreaParser) %d is not a valid green star scenario number. Skipping.\n", destScenario);
-
+			if (destGreenStarScenario != -1 || destGreenStarScenario > 3 || destGreenStarScenario == 0)
+            OSReport("(WarpAreaParser) %d is not a valid green star scenario number. Skipping.\n", destGreenStarScenario);
+			
             FadeInType = CSVFadeInType; //Separate variables are used to prevent the needed values from being overwritten by the next row in the BCSV.
 			FadeInTime = CSVFadeInTime; //Awful and janky, but it works.
-            if (destGreenStarScenario)
-			destGreenStarScenario + 3;
 
 			OSReport("(WarpAreaParser) Going to %s %d, Green Star %d, Wipe Type: %d, Wipe Time: %d, BCSV Index: %d\n", destStage, destScenario, destGreenStarScenario, FadeInType, FadeInTime, bcsvIndex);
+
+            if (destGreenStarScenario > 0)
+			destGreenStarScenario += 3;
+
             MR::goToGalaxy(destStage);
             MR::goToGalaxyNoSelection(destStage, destScenario, destGreenStarScenario, 0);
 		    warpareaused = true;
@@ -112,4 +114,5 @@ namespace SPack {
 	}
 
 kmCall(0x804B44D0, useWarpAreaFadeIn);
+
 }
