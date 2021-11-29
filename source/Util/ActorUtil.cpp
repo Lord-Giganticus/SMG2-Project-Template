@@ -4,6 +4,8 @@
 #include "Util/LiveActorUtil.h"
 #include "Util/MtxUtil.h"
 #include "Util.h"
+#include "Player/MarioAccess.h"
+#include "Player/MarioActor.h"
 
 /*
 * Authors: Aurum
@@ -69,5 +71,28 @@ namespace SPack {
                 }
            }
         }
+	}
+
+	void lockObjectToPlayer(LiveActor* pActor, f32 offset) {
+    MR::setPosition(pActor, *MR::getPlayerPos()); //Teleports the PowerStarSpawner to Mario
+
+    MarioActor* playeractor = MarioAccess::getPlayerActor();
+    TVec3f gravityvec = *playeractor->MarioActor::getGravityVec();
+    JMAVECScaleAdd((Vec*)&gravityvec, (Vec*)&pActor->mTranslation, (Vec*)&pActor->mTranslation, offset*-1);
+    }
+
+    //Loads an arc and a selected file into memory.
+	void* loadArcAndFile(const char* pArc, const char* pFile) {
+	JKRArchive* arc = MR::mountArchive(pArc, MR::getStationedHeapGDDR3(), 0);
+	void* file = arc->getResource(pFile);
+
+	if (arc && file) {
+	    OSReport("Archive %s and file %s both exist!\n", pArc, pFile);
+	    return file;
+	}
+	else {
+	    OSReport("%s %s isn't exist!\n", pArc, pFile);
+        return 0;
+	    }
 	}
 }

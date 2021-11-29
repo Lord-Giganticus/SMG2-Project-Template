@@ -1,5 +1,6 @@
 #include "spack/Extensions/StageEventDataTable.h"
 #include "Util.h"
+#include "spack/Util/ActorUtil.h"
 
 /*
 * Authors: Evanbowl
@@ -15,8 +16,8 @@
 namespace SPack {
 
 	const char *typestr = 0;
-	JKRArchive* SEDTarc = MR::mountArchive("/SystemData/StageEventDataTable.arc", MR::getStationedHeapGDDR3(), 0);
-    void* SEDTbcsv = SEDTarc->getResource("StageEventDataTable.bcsv");
+
+	void* SEDTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
 
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {

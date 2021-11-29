@@ -1,6 +1,7 @@
 #include "spack/Extensions/WarpAreaParser.h"
 #include "Util.h"
 #include "Util/StageUtil.h"
+#include "spack/Util/ActorUtil.h"
 /*
 * Authors: Evanbowl
 * 
@@ -30,9 +31,8 @@ namespace SPack {
 	s32 FadeInTime = 45;
 	s32 bcsvIndex = 0;
 
-	JKRArchive* WASTarc = MR::mountArchive("/SystemData/WarpAreaStageTable.arc", MR::getStationedHeapGDDR3(), 0);
-	void* WASTbcsv = WASTarc->getResource("WarpAreaStageTable.bcsv");
-
+	void* WASTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "WarpAreaStageTable.bcsv");
+	
 	void WarpAreaParser(s32 selectedindex) {
 
 		JMapInfo* StageTable = new JMapInfo();

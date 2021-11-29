@@ -2,6 +2,7 @@
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
 #include "Util.h"
+#include "spack/Util/ActorUtil.h"
 
 /*
 * Authors: Aurum, Galaxy Master, and Evanbowl
@@ -107,8 +108,7 @@ namespace SPack {
     */
 
     void loadPTPictureFont() {
-	JKRArchive* Fontarc = MR::mountArchive("/SystemData/PTPictureFont.arc", MR::getStationedHeapGDDR3(), 0);
-    Fontarc->getResource("PTPictureFont.brfnt");
+	loadArcAndFile("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
 	}
 
 	wchar_t* getStarIcon(wchar_t* unk, s32 type) {
