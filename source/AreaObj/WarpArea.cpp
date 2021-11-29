@@ -2,12 +2,9 @@
 #include "spack/Extensions/WarpAreaParser.h"
 #include "Util.h"
 /*
-* Created by Evanbowl with help from Aurum, AwesomeTMC, and Zyphro.
+* Created by Evanbowl with help from Aurum, AwesomeTMC, Galaxy Master, and Zyphro.
 * 
 * An area that takes Mario to a specified General Position with the name "WarpAreaDestPos".
-*
-* Code is NOT final. This will be cleaned up soon!
-*
 */
 
 s32 mode;
@@ -31,10 +28,6 @@ mElapsed++;
 }
 
     if (mElapsed == 10) { //Phase 1: Start a circle wipe and lock player control.
-//char **ptr;
-//asm("lwz %0, -0x657C (r13)" : "=r" (ptr));
-//ptr[0x30 / sizeof (char *)][0x24] = 1;
-    MR::startToCaptureScreen("SystemWipe");
     SPack::selectWipeClose(mObjArg1, mObjArg2);
     MR::offPlayerControl();
     
