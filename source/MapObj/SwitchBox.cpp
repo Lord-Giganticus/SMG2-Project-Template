@@ -21,9 +21,9 @@ SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {
 
 void SwitchBox::init(const JMapInfoIter& rIter) {
     MR::processInitFunction(this, rIter, false);
-    initHitSensor(1); //Initializes the HitSensor. The sensor data is found in SwitchBox.arc's ActorInfo.
+    initHitSensor(1); //Initializes the HitSensor.
 
-    MR::addHitSensorMapObj(this, "SwitchBox", 1, 50.0f, TVec3f(0.0f, 150.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "SwitchBox", 1, 75.0f, TVec3f(0.0f, 150.0f, 0.0f));
     HitSensor * SwitchBox = LiveActor::getSensor("SwitchBox");
 
     MR::getJMapInfoArg0NoInit(rIter, &mTimer); //Gets Obj_arg0
