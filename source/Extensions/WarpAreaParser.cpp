@@ -31,7 +31,7 @@ namespace SPack {
 	s32 FadeInTime = 45;
 	s32 bcsvIndex = 0;
 
-	void* WASTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "WarpAreaStageTable.bcsv");
+	void* WASTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "/System/WarpAreaStageTable.bcsv");
 	
 	void WarpAreaParser(s32 selectedindex) {
 

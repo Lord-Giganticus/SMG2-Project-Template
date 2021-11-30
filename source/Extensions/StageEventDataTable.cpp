@@ -17,7 +17,7 @@ namespace SPack {
 
 	const char *typestr = 0;
 
-	void* SEDTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "StageEventDataTable.bcsv");
+	void* SEDTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "/System/StageEventDataTable.bcsv");
 
     //StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {

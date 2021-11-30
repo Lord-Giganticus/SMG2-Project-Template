@@ -108,7 +108,7 @@ namespace SPack {
     */
 
     void loadPTPictureFont() {
-	loadArcAndFile("/SystemData/PTPictureFont.arc", "PTPictureFont.brfnt");
+	loadArcAndFile("/SystemData/PTSystemData.arc", "/Font/PTPictureFont.brfnt");
 	}
 
 	wchar_t* getStarIcon(wchar_t* unk, s32 type) {
