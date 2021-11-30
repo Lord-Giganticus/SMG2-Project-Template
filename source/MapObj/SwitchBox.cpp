@@ -13,6 +13,7 @@
  And so, this is a rewrite of SMG1's SwitchBox added into 2 with even more options.
 */
 
+// git test
 SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {
     mTimer = 0;
     mUseRespawn = false;
