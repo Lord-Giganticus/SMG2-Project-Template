@@ -18,7 +18,7 @@ Both of them need to go in the SystemData directory in your game data. The game 
 Current Beta features:<br />
 - StageEventDataTable<br />
 - Updated PowerStarColors<br />
-- Old Red Launch Star (though the path color is blue<br />
+- Old Red Launch Star (though the path color is blue)<br />
 - WarpArea and WarpAreaStageTable<br />
 
 - SwitchBox <br />
