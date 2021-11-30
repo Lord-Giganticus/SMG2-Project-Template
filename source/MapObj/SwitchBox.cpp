@@ -32,7 +32,6 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
     MR::validateCollisionParts(this); //Validates collision
 
     initNerve(&NrvSwitchBox::NrvWait::sInstance, 0); //Sets nerve state to Wait
-//sus
     makeActorAppeared(); //Makes the object appear
 }
 
