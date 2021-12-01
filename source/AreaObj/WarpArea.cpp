@@ -1,5 +1,5 @@
 #include "spack/AreaObj/WarpArea.h"
-#include "spack/Extensions/WarpAreaParser.h"
+#include "spack/Extensions/WarpAreaStageTable.h"
 #include "Util.h"
 /*
 * Created by Evanbowl with help from Aurum, AwesomeTMC, Galaxy Master, and Zyphro.
@@ -53,7 +53,7 @@ else
 OSReport("(WarpArea) Warp successful!\n");
 }
 else {
-SPack::WarpAreaParser(mObjArg5);
+SPack::WarpAreaStageTable(mObjArg5);
 }
 }
 

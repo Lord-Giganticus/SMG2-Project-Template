@@ -91,7 +91,7 @@ namespace SPack {
 	    return file;
 	}
 	else {
-		OSReport("%s %s isn't exist!", pArc, pFile);
+		OSReport("%s %s isn't exist!\n", pArc, pFile);
         return 0;
 	    }
 	}
