@@ -1,4 +1,4 @@
-#include "spack/Extensions/WarpAreaParser.h"
+#include "spack/Extensions/WarpAreaStageTable.h"
 #include "Util.h"
 #include "Util/StageUtil.h"
 #include "spack/Util/ActorUtil.h"
@@ -33,32 +33,31 @@ namespace SPack {
 
 	void* WASTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "/System/WarpAreaStageTable.bcsv");
 	
-	void WarpAreaParser(s32 selectedindex) {
+	void WarpAreaStageTable(s32 selectedindex) {
 
 		JMapInfo* StageTable = new JMapInfo();
 		StageTable->attach(WASTbcsv);
-		s32 entries = MR::getCsvDataElementNum(StageTable);
 
-		for (s32 i = 0; i < entries; i++) {
+		for (s32 i = 0; i < MR::getCsvDataElementNum(StageTable); i++) {
 
 			MR::getCsvDataStr(&destStage, StageTable, "StageName", i);
 			MR::getCsvDataS32(&destScenario, StageTable, "ScenarioNo", i);
 			MR::getCsvDataS32(&destGreenStarScenario, StageTable, "GreenStarScenarioNo", i);
 			MR::getCsvDataS32(&CSVFadeInType, StageTable, "WipeType", i);
 			MR::getCsvDataS32(&CSVFadeInTime, StageTable, "WipeTime", i);
-            MR::getCsvDataS32(&bcsvIndex, StageTable, "Index", i);
+			MR::getCsvDataS32(&bcsvIndex, StageTable, "Index", i);
 
         if (selectedindex == bcsvIndex) {
 		    if (destScenario < 1 || destScenario > 8)
-            OSReport("(WarpAreaParser) %d is not a valid scenario number. Skipping.\n", destScenario);
+            OSReport("(WarpAreaStageTable) %d is not a valid scenario number. Skipping.\n", destScenario);
 
-			if (destGreenStarScenario != -1 || destGreenStarScenario > 3 || destGreenStarScenario == 0)
-            OSReport("(WarpAreaParser) %d is not a valid green star scenario number. Skipping.\n", destGreenStarScenario);
+			if (destGreenStarScenario < -1 || destGreenStarScenario > 3 || destGreenStarScenario == 0)
+            OSReport("(WarpAreaStageTable) %d is not a valid green star scenario number. Skipping.\n", destGreenStarScenario);
 			
             FadeInType = CSVFadeInType; //Separate variables are used to prevent the needed values from being overwritten by the next row in the BCSV.
 			FadeInTime = CSVFadeInTime; //Awful and janky, but it works.
 
-			OSReport("(WarpAreaParser) Going to %s %d, Green Star %d, Wipe Type: %d, Wipe Time: %d, BCSV Index: %d\n", destStage, destScenario, destGreenStarScenario, FadeInType, FadeInTime, bcsvIndex);
+			OSReport("(WarpAreaStageTable) Going to %s %d, Green Star %d, Wipe Type: %d, Wipe Time: %d, BCSV Index: %d %d\n", destStage, destScenario, destGreenStarScenario, FadeInType, FadeInTime, bcsvIndex, i);
 
             if (destGreenStarScenario > 0)
 			destGreenStarScenario += 3;

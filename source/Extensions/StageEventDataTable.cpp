@@ -24,12 +24,11 @@ namespace SPack {
 
 		JMapInfo* exceptTable = new JMapInfo();
 		exceptTable->attach(SEDTbcsv);
-		s32 numEntries = MR::getCsvDataElementNum(exceptTable);
 
 		const char *currentStage = MR::getCurrentStageName();
 		s32 currentScenario = MR::getCurrentScenarioNo();
 
-		for (s32 i = 0; i < numEntries; i++) {
+		for (s32 i = 0; i < MR::getCsvDataElementNum(exceptTable); i++) {
 			const char *exceptStage = 0;
 			s32 exceptScenario = 0;
 			MR::getCsvDataStr(&exceptStage, exceptTable, "StageName", i);

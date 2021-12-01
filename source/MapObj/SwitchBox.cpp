@@ -36,7 +36,7 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
 }
 
 void SwitchBox::exeOn() {
-    if (MR::isStep(this, 3) && MR::isValidSwitchDead(this)) { //Waits for 3 frames after activation and checks if the SW_DEAD was set correctly.
+    if (MR::isValidSwitchDead(this)) { //Waits for 3 frames after activation and checks if the SW_DEAD was set correctly.
         MR::onSwitchDead(this); //Activates SW_DEAD.
         MR::hideModel(this); //Makes the SwitchBox invisible.
         MR::invalidateCollisionParts(this); //Makes the SwitchBox intangible.
