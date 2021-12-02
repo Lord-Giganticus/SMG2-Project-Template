@@ -48,6 +48,7 @@ namespace SPack {
 			MR::getCsvDataS32(&bcsvIndex, StageTable, "Index", i);
 
         if (selectedindex == bcsvIndex) {
+
 		    if (destScenario < 1 || destScenario > 8)
             OSReport("(WarpAreaStageTable) %d is not a valid scenario number. Skipping.\n", destScenario);
 
@@ -57,13 +58,12 @@ namespace SPack {
             FadeInType = CSVFadeInType; //Separate variables are used to prevent the needed values from being overwritten by the next row in the BCSV.
 			FadeInTime = CSVFadeInTime; //Awful and janky, but it works.
 
-			OSReport("(WarpAreaStageTable) Going to %s %d, Green Star %d, Wipe Type: %d, Wipe Time: %d, BCSV Index: %d %d\n", destStage, destScenario, destGreenStarScenario, FadeInType, FadeInTime, bcsvIndex, i);
-
             if (destGreenStarScenario > 0)
 			destGreenStarScenario += 3;
 
             MR::goToGalaxy(destStage);
             MR::goToGalaxyNoSelection(destStage, destScenario, destGreenStarScenario, 0);
+			OSReport("(WarpAreaStageTable) Going to %s %d, Green Star %d, Wipe Type: %d, Wipe Time: %d, BCSV Index: %d\n", destStage, destScenario, destGreenStarScenario, FadeInType, FadeInTime, bcsvIndex);
 		    warpareaused = true;
 		   }
 		}

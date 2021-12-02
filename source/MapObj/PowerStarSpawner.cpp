@@ -85,7 +85,7 @@ void PowerStarSpawner::createDisplayStar() {
 }
 
 void PowerStarSpawner::setupColorDisplayStar(LiveActor* actor, s32 scenario) {
-    MR::startBva(DisplayStar, "PowerStarColor");
+    MR::startBva(actor, "PowerStarColor");
 
     if (!MR::hasPowerStarInCurrentStage(scenario)) { //Checks if you have the specified star.
     s32 frame = SPack::getPowerStarColor(MR::getCurrentStageName(), scenario);
@@ -105,25 +105,24 @@ void PowerStarSpawner::spawnAtMario(f32 offset) {
     MR::setPosition(this, *MR::getPlayerPos()); //Teleports the PowerStarSpawner to Mario
 
     MarioActor* playeractor = MarioAccess::getPlayerActor();
-    TVec3f gravityvec = *playeractor->MarioActor::getGravityVec();
-    JMAVECScaleAdd((Vec*)&gravityvec, (Vec*)&mTranslation, (Vec*)&mTranslation, offset*-1);
+    JMAVECScaleAdd((Vec*)playeractor->MarioActor::getGravityVec(), (Vec*)&mTranslation, (Vec*)&mTranslation, offset*-1);
     }
 
 void PowerStarSpawner::movement() {
-    if (mFromMario == 1 && GroupID < 0)
-    PowerStarSpawner::spawnAtMario(250); //This is used to bypass an issue where if a star starts it's spawn path at the player, it de-rails the player off of launch star rails.
-
-    if (GroupID >= 0)
-    PowerStarSpawner::spawnAtMario(YOffset); //This function moves the Power Star Spawner to Mario and also puts it above him relative to the current gravity, only if a Group ID is set.
-
-    if (mUseDisplayModel == 1)
-    MR::rotateMtxLocalYDegree((MtxPtr)&DisplayStarMtx, 3),
-    MR::setMtxTrans((MtxPtr)&DisplayStarMtx, mTranslation);
-
-    if (mUseDisplayModel == 0)
-    upVec.set<f32>(-mGravity),
-    DisplayStar->mRotation.set(upVec),
-    DisplayStar->mTranslation.set(mTranslation);
+	if (mFromMario == 1 && GroupID < 0)
+	PowerStarSpawner::spawnAtMario(250); //This is used to bypass an issue where if a star starts it's spawn path at the player, it de-rails the player off of launch star rails.
+	
+	if (GroupID >= 0)
+	PowerStarSpawner::spawnAtMario(YOffset); //This function moves the Power Star Spawner to Mario and also puts it above him relative to the current gravity, only if a Group ID is set.
+	
+	if (mUseDisplayModel == 1)
+	MR::rotateMtxLocalYDegree((MtxPtr)&DisplayStarMtx, 3),
+	MR::setMtxTrans((MtxPtr)&DisplayStarMtx, mTranslation);
+	
+	if (mUseDisplayModel == 0)
+	upVec.set<f32>(-mGravity),
+	DisplayStar->mRotation.set(upVec),
+	DisplayStar->mTranslation.set(mTranslation);
 
 	if (MR::isOnSwitchA(this)) {
 		mElapsed++;
@@ -132,29 +131,28 @@ void PowerStarSpawner::movement() {
         MR::startLevelSound(this, "OjPowerStarSpawnerSpawn", -1, -1, -1); //Plays sound.
 
 		if (mElapsed >= mDelay) {
+				switch (mSpawnMode) {
+				case 0: //time continues during demo
+				arg1 = 1;
+				break;
+				case 1: //star appears instantly
+				arg2 = 1;
+				break;
+				case 2: //squizzard spawn
+				arg3 = 1;
+				break;
+				case 3: //time continues during squizzard spawn demo
+				arg1 = 1;
+				arg3 = 1;
+				break;
+				}
+				
+				MR::appearEventPowerStar("PowerStarSpawner", mScenario, &mTranslation, arg1, arg2, arg3);
 
-                switch (mSpawnMode) {
-                case 0: //time continues during demo
-                arg1 = 1;
-                break;
-                case 1: //star appears instantly
-                arg2 = 1;
-                break;
-                case 2: //squizzard spawn
-                arg3 = 1;
-                break;
-                case 3: //time continues during demo
-                arg1 = 1;
-                arg3 = 1;
-                break;
-                }
+				if (mUseDisplayModel >= 0)
+				DisplayStar->kill();
 
-                MR::appearEventPowerStar("PowerStarSpawner", mScenario, &mTranslation, arg1, arg2, arg3);
-
-                if (mUseDisplayModel >= 0)
-                DisplayStar->kill();
-
-                makeActorDead();
+				makeActorDead();
             }
        }
 }

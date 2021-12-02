@@ -12,6 +12,8 @@ s32 mode;
 WarpArea::WarpArea(const char* pName) : AreaObj(pName) {
 hasEnteredArea = 0; 
 mElapsed = 0;
+
+pos = (TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 void WarpArea::init(const JMapInfoIter& rIter) {
@@ -42,15 +44,17 @@ MR::setPlayerStateWait();
 
 if (mObjArg0 >= 0) {
 
-char WarpAreaDestPos[0x60];
-snprintf(WarpAreaDestPos, 0x10, "WarpAreaPos%03d", mObjArg0);
+char WarpAreaDestPos[0xF];
 
+sprintf(WarpAreaDestPos, "WarpAreaPos%03d", mObjArg0);
 MR::setPlayerPosAndWait(WarpAreaDestPos);
-OSReport("(WarpArea) Warping player to WarpArea position %03d\n", mObjArg0);
-if (*MR::getPlayerPos() == TVec3f(0.0f, 0.0f, 0.0f))
-OSReport("(WarpArea) WarpArea position %03d doesn't exist!\n", mObjArg0);
+OSReport("(WarpArea) Warping player to WarpArea %s\n", WarpAreaDestPos);
+
+if (MR::findNamePos(WarpAreaDestPos, &pos, &pos))
+OSReport("(WarpArea) WarpArea position %s does exist!\n", WarpAreaDestPos);
 else
-OSReport("(WarpArea) Warp successful!\n");
+OSReport("(WarpArea) WarpArea position %03d doesn't exist!\n", mObjArg0);
+
 }
 else {
 SPack::WarpAreaStageTable(mObjArg5);

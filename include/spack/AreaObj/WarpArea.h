@@ -14,4 +14,5 @@ public:
     s32 mElapsed;
     s32 WarpID;
     s32 mode;
+    TVec3f pos;
 };

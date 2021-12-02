@@ -57,9 +57,7 @@ void SwitchBox::exeOn() {
 }
 
 void SwitchBox::exeReturn() { //This function creates a timer sound if Obj_arg 1 and Obj_arg2 are set.
-
     SPack::useTimerSE(this, mTimer);
-    
     if (MR::isStep(this, mTimer)) { //Checks if the set time has run out.
         MR::offSwitchDead(this); //Deactivates SW_DEAD.
 
