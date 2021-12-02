@@ -51,9 +51,9 @@ MR::setPlayerPosAndWait(WarpAreaDestPos);
 OSReport("(WarpArea) Warping player to WarpArea %s\n", WarpAreaDestPos);
 
 if (MR::findNamePos(WarpAreaDestPos, &pos, &pos))
-OSReport("(WarpArea) WarpArea position %s does exist!\n", WarpAreaDestPos);
+OSReport("(WarpArea) WarpArea position %s does exist! Warping...\n", WarpAreaDestPos);
 else
-OSReport("(WarpArea) WarpArea position %03d doesn't exist!\n", mObjArg0);
+OSReport("(WarpArea) WarpArea position %s does not exist! Skipping.\n", WarpAreaDestPos);
 
 }
 else {
