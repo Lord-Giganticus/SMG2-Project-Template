@@ -11,7 +11,7 @@ public:
     virtual const char* getManagerName() const;
 
     s32 hasEnteredArea;
-    s32 mElapsed;
+    s32 AlexSus;
     s32 WarpID;
     s32 mode;
     TVec3f pos;
