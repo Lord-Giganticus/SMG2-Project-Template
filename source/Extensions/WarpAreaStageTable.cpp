@@ -5,18 +5,12 @@
 /*
 * Authors: Evanbowl
 * 
-* StageEventDataTable:
-*
-* Code optimation help by Galaxy Master
-*
-* These functions un-hardcode certain options a stage can have. Those being:
-* Chimp, Glider, Disable Pause, Play Star Chance, and Purple Coin Gearmo.
-* 
-*
 * WarpAreaStageTable:
 *
-* This function is a list of stages that the WarpArea can take the player to.
+* The other half of WarpArea's functionality.
 *
+* Reads the BCSV at /SystemData/PTSystemData.arc/WarpAreaStageTable.bcsv to determine what galaxy it should take the player to.
+* A loading screen is planned but may take a while to get done.
 */
 
 namespace SPack {

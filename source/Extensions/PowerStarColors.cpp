@@ -100,14 +100,14 @@ namespace SPack {
 
 	kmWrite32(0x804CB8BC, 0x48169D65); //This uses strstr instead of MR::isEqualString in the isPowerStarTypeHidden__12ScenarioDataCFl function. Allows types like BlueHidden to work.
 
-    /*
+	/*
 	* Power Star Font Icons
-    *
+	*
 	* On the World Map, Star inside the PictureFont.brfnt inside Font.arc found in all language files.
 	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
-    */
+	*/
 
-    void loadPTPictureFont() {
+	void loadPTPictureFont() {
 	loadArcAndFile("/SystemData/PTSystemData.arc", "/Font/PTPictureFont.brfnt");
 	}
 
@@ -119,78 +119,80 @@ namespace SPack {
 		asm("mr %0, r27" : "=r" (pStage));
 		asm("mr %0, r31" : "=r" (scenarioId));
 		
-     	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
+	 	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
 
-        if (type == 0x37) {
+		OSReport("StageName: %s, Scenario ID: %d, Icon: %x, ALEX IS SUSSSSSS\n", pStage, scenarioId, type);
+
+		if (type == 0x37) {
 		// Normal Star icons
 		switch (getStarColor) {
 			case 0:
-			    icon = 0x37; //Normal
+				icon = 0x37; //Normal
 			break;
 			case 1:
-			    icon = 0x72; //Bronze
+				icon = 0x72; //Bronze
 			break;
 			case 2:
-			    icon = 0x80; //LegacyGreen
+				icon = 0x80; //LegacyGreen
 			break;
 			case 3:
-			    icon = 0x7E; //Red
+				icon = 0x7E; //Red
 			break;
 			case 5:
-			    icon = 0x7F; //Blue
+				icon = 0x7F; //Blue
 			break;
-		    }
+			}
 		}
 
-        else if (type == 0x65) {
+		else if (type == 0x65) {
 		//Comet Star icons
-            switch (getStarColor) {
+			switch (getStarColor) {
 			case 0:
-		    	icon = 0x65; //Normal
-		    break;
-		    case 1:
-			    icon = 0x7D; //Bronze
-		    break;
-		    case 2:
-			    icon = 0x4F; //LegacyGreen
-            break;
-		    case 3:
-		    	icon = 0x81; //Red
-            break;
-		    case 5:
-		    	icon = 0x82; //Blue
-		    break;
-		    }
+				icon = 0x65; //Normal
+			break;
+			case 1:
+				icon = 0x7D; //Bronze
+			break;
+			case 2:
+				icon = 0x4F; //LegacyGreen
+			break;
+			case 3:
+				icon = 0x81; //Red
+			break;
+			case 5:
+				icon = 0x82; //Blue
+			break;
+			}
 		}
 
-        else if (type == 0x71) {
+		else if (type == 0x71) {
 		//Uncollected Hidden Star icons
 		switch (getStarColor) {
 			case 0:
-		    	icon = 0x71; //Normal
-		    break;
-		    case 1:
-			    icon = 0x86; //Bronze
-		    break;
-		    case 2:
-			    icon = 0x85; //LegacyGreen
-            break;
-		    case 3:
-		    	icon = 0x83; //Red
-            break;
-		    case 5:
-		    	icon = 0x84; //Blue
-		    break;
-		    }
+				icon = 0x71; //Normal
+			break;
+			case 1:
+				icon = 0x86; //Bronze
+			break;
+			case 2:
+				icon = 0x85; //LegacyGreen
+			break;
+			case 3:
+				icon = 0x83; //Red
+			break;
+			case 5:
+				icon = 0x84; //Blue
+			break;
+			}
 		}
-
-        return MR::addPictureFontCode(unk, icon);
+		
+		return MR::addPictureFontCode(unk, icon);
 	}
 	
-    kmCall(0x804B8048, loadPTPictureFont);
-    kmCall(0x80041E30, getStarIcon); //Normal Star icons
-    kmCall(0x80041F0C, getStarIcon); //Comet Star icons
-    kmCall(0x80041F94, getStarIcon); //Hidden Star icons
-    kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
+	kmCall(0x804B8048, loadPTPictureFont);
+	kmCall(0x80041E30, getStarIcon); //Normal Star icons
+	kmCall(0x80041F0C, getStarIcon); //Comet Star icons
+	kmCall(0x80041F94, getStarIcon); //Hidden Star icons
+	kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
 
 }

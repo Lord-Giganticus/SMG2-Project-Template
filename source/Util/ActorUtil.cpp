@@ -59,27 +59,19 @@ namespace SPack {
 
 	s32 step = pActor->getNerveStep();
 
-    if (step <= pTime) {
-        if (!MR::isPlayerDead() && !MR::isPowerStarGetDemoActive()) {
-            if (pTime == step)
-                MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
-            else if ((step % 60) == 0) {
-                if (step >= (pTime - 120))
-                    MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
-                else
-                    MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
-                }
-           }
-        }
+	if (step <= pTime) {
+		if (!MR::isPlayerDead() && !MR::isPowerStarGetDemoActive()) {
+			if (pTime == step)
+				MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
+			else if ((step % 60) == 0) {
+				if (step >= (pTime - 120))
+					MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
+				else
+					MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
+				}
+			}
+		}
 	}
-
-	void lockObjectToPlayer(LiveActor* pActor, f32 offset) {
-    MR::setPosition(pActor, *MR::getPlayerPos()); //Teleports the PowerStarSpawner to Mario
-
-    MarioActor* playeractor = MarioAccess::getPlayerActor();
-    TVec3f gravityvec = *playeractor->MarioActor::getGravityVec();
-    JMAVECScaleAdd((Vec*)&gravityvec, (Vec*)&pActor->mTranslation, (Vec*)&pActor->mTranslation, offset*-1);
-    }
 
     //Loads an arc and a selected file into memory.
 	void* loadArcAndFile(const char* pArc, const char* pFile) {
@@ -87,12 +79,12 @@ namespace SPack {
 	void* file = arc->getResource(pFile);
 
 	if (arc && file) {
-	    OSReport("Archive %s and file %s both exist!\n", pArc, pFile);
-	    return file;
+		OSReport("Archive %s and file %s both exist!\n", pArc, pFile);
+		return file;
 	}
-	else {
+	else
 		OSReport("%s %s isn't exist!\n", pArc, pFile);
-        return 0;
-	    }
+
+	return 0;
 	}
 }

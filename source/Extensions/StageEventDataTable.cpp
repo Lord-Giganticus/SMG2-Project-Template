@@ -10,7 +10,7 @@
 * Code optimation help by Galaxy Master
 *
 * These functions un-hardcode certain options a stage can have. Those being:
-* Chimp, Glider, Disable Pause, Play Star Chance, and Purple Coin Gearmo.
+* Chimp, Glider, Disable Pause, Play Star Chance, Purple Coin Over 100, and Story Book.
 */
 
 namespace SPack {
