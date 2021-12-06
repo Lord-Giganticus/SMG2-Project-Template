@@ -19,7 +19,7 @@ namespace SPack {
 
 	void* SEDTbcsv = loadArcAndFile("/SystemData/PTSystemData.arc", "/System/StageEventDataTable.bcsv");
 
-    //StageEventDataTable Parser
+	//StageEventDataTable Parser
 	bool StageEventDataTable(const char* value) {
 
 		JMapInfo* exceptTable = new JMapInfo();
@@ -40,7 +40,7 @@ namespace SPack {
 			MR::getCsvDataS32(&exceptScenario, exceptTable, "ScenarioNo", i);
 
 			if ((exceptScenario == 0 || exceptScenario == currentScenario) &&
-			    MR::isEqualStringCase(currentStage, exceptStage) && strstr(typestr, value)) {
+				MR::isEqualStringCase(currentStage, exceptStage) && strstr(typestr, value)) {
 				//OSReport("(StageEventDataTable) Stage: %s, Scenario: %d, Flags: %s\n", exceptStage, currentScenario, typestr);
 				return true;
 				}
@@ -69,12 +69,12 @@ namespace SPack {
 	}
 	
 	bool isStoryBook() {
-    if (MR::isEqualStageName("FileSelect")) //FileSelect is "special", and will crash if it returns true on this stage.
-        return false;
-    return SPack::StageEventDataTable("StoryBook"); //Makes the set galaxy a Story Book stage, adding a story book border and preventing return to the Starship.
+	if (MR::isEqualStageName("FileSelect")) //FileSelect is "special", and will crash if it returns true on this stage.
+		return false;
+	return SPack::StageEventDataTable("StoryBook"); //Makes the set galaxy a Story Book stage, adding a story book border and preventing return to the Starship.
 	}
 	
-    kmBranch(0x800568F0, isChimp);
+	kmBranch(0x800568F0, isChimp);
 	
 	kmBranch(0x80056B40, isPauseDisabled);
 	
@@ -84,5 +84,5 @@ namespace SPack {
 	
 	kmBranch(0x80056D70, isPurpleCoinCaretaker);
 
-    kmBranch(0x80056BE0, isStoryBook);
+	kmBranch(0x80056BE0, isStoryBook);
 }
