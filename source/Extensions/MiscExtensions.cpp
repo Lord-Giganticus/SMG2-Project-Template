@@ -130,4 +130,11 @@ namespace SPack {
 	}
 
 	kmCall(0x8026360C, initQuakeEffectGeneratorSound); // redirection hook
+
+	void fileIsntExistExtensions(u32 unk1, u32 unk2, const char* sus) {
+		const char* fileNameString;
+		asm("mr %0, r26" : "=r" (fileNameString)); //gets the file name string from r26
+		OSPanic(unk1, unk2, "File %s isn't exist.", fileNameString);
+	}
+	kmCall(0x804B1FFC, fileIsntExistExtensions);
 }
