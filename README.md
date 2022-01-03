@@ -23,3 +23,5 @@ Current Beta features:<br />
 This repo also includes the Whitehole Object Database, that has all the new PT stuff inside it.
 
 It's optional, but recommended to enable the Dolphin Log when testing on Dolphin Emulator. Some of the new stuff prints to the log if things go wrong.
+
+This version of Project Template does NOT work with SuperHackio's GalaxyLevelEngine, but Project Template as of the August Update does work.
