@@ -28,6 +28,7 @@ Poihana::Poihana(const char *pName) : LiveActor(pName) {
 	mActiveRange = 3500.0f;
 	mBoundTimer = 0;
 	mRandDir = 0;
+	mColor = 0;
 	mBehavior = POIHANA_BEHAVIOR_NORMAL;
 	mCanDrown = false;
 	mIsActive = false;
@@ -82,6 +83,9 @@ void Poihana::init(const JMapInfoIter &rIter) {
 	}
 
 	mLaunchIntensity = -launchIntensity;
+
+	MR::getJMapInfoArg2NoInit(rIter, &mColor);
+	MR::startBtpAndSetFrameAndStop(this, "PoihanaColor", mColor);
 
 	// Setup behaviors
 	MR::getJMapInfoArg1NoInit(rIter, &mActiveRange);

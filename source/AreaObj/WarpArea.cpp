@@ -1,73 +1,81 @@
 #include "spack/AreaObj/WarpArea.h"
 #include "spack/Extensions/WarpAreaStageTable.h"
+#include "spack/LayoutActor/WarpAreaErrorLayout.h"
 #include "Util.h"
 /*
 * Created by Evanbowl with help from Aurum, AwesomeTMC, Galaxy Master, and Zyphro.
 * 
-* An area that takes Mario to a specified General Position with the name "WarpAreaDestPos".
+* An area that takes the player to a specified General Position with the name "WarpAreaDestPos".
+* Can also take the player to galaxies.
+*
 */
 
-s32 mode;
-
 WarpArea::WarpArea(const char* pName) : AreaObj(pName) {
-	hasEnteredArea = 0; 
-	AlexSus = 0; 
-    /*I was told to name this AlexSus so I did. It's real purpose is a counter to allow the WarpArea to properly time its actions.
-    (Closing wipes, warping the player at the right time, etc)
-    */
-	pos = (TVec3f(0.0f, 0.0f, 0.0f));
+	mElapsed = 0;
+	mCanWarp = false;
+	mPos.set(0.0f, 0.0f, 0.0f);
+	mStageTable = new WarpAreaStageTable(true); //BCSV table for going to galaxies.
+	mErrorLayout = new ErrorLayout(); //Error layout used for displaying messages on screen if a WarpArea function fails.
 }
 
 void WarpArea::init(const JMapInfoIter& rIter) {
 	AreaObj::init(rIter);
 	MR::connectToSceneAreaObj(this);
-	if (mObjArg2 < 0)
-	mObjArg2 = 45;
+	
+	if (mFadeCloseTime < 0)
+	mFadeCloseTime = 45;
+
+	mErrorLayout->initWithoutIter();
 }
 
 void WarpArea::movement() {
-	
-if (hasEnteredArea == 1 || isInVolume(* MR::getPlayerPos())) {
-	hasEnteredArea = 1;
-	AlexSus++;
-}
+	if (isInVolume(*MR::getPlayerPos())) 
+		mCanWarp = true;
 
-	if (AlexSus == 10) { //Phase 1: Start a circle wipe and lock player control.
-		SPack::selectWipeClose(mObjArg1, mObjArg2);
-		MR::offPlayerControl();
-	
-	if (mObjArg0 < 0) {
-		MR::stopSubBGM(45);
-		MR::stopStageBGM(45);
+		if (mCanWarp) {
+		mElapsed++;
+		
+		//Phase 1: Start a circle wipe and lock player control
+		if (mElapsed == 10) {
+			MR::offPlayerControl();
+			mStageTable->selectWipeClose(mFadeCloseType, mFadeCloseTime);
+		
+		if (mPosID < 0) { //If the player is warping to a galaxy, fade out all music.
+			MR::stopSubBGM(45);
+			MR::stopStageBGM(45);
+		}
 	}
-}
 
-if (AlexSus == mObjArg2 + 60) { //Phase 2: Set the player state to Wait to prevent animation issues and then warp Mario to the specified GeneralPos. Or, go to a galaxy.
-	MR::setPlayerStateWait();
+		//Phase 2: Set the player state to Wait to prevent animation issues and then warp Mario to the specified GeneralPos. Or, go to a galaxy.
+		if (mElapsed == mFadeCloseTime + 50) {
 
-	if (mObjArg0 >= 0) {
-
-		char WarpAreaDestPos[0xF];
+			if (mPosID >= 0) {
+				char WarpAreaDestPos[0xF];
+				sprintf(WarpAreaDestPos, "WarpAreaPos%03d", mPosID); //Combines WarpAreaDestPos + the value of mObjArg0.
+				MR::setPlayerPosAndWait(WarpAreaDestPos); //Teleports the player to WarpAreaDestPos[mObjArg0].
 	
-		sprintf(WarpAreaDestPos, "WarpAreaPos%03d", mObjArg0);
-		MR::setPlayerPosAndWait(WarpAreaDestPos);
-		OSReport("(WarpArea) Warping player to WarpArea %s\n", WarpAreaDestPos);
-	
-		if (MR::findNamePos(WarpAreaDestPos, &pos, &pos))
-		OSReport("(WarpArea) WarpArea position %s does exist! Warping...\n", WarpAreaDestPos);
-		else
-		OSReport("(WarpArea) WarpArea position %s does not exist! Skipping.\n", WarpAreaDestPos);
-	
-		}
-		else 
-			SPack::WarpAreaStageTable(mObjArg5);
+				if (!MR::findNamePos(WarpAreaDestPos, &mPos, &mPos)) //Check if the specified general position exists
+					mErrorLayout->printf(mPrintErrors, "WarpArea position %s isn't exist.", WarpAreaDestPos); //If not, then print a message on screen.
+			}
+			else
+				mStageTable->readTable(mIndex, mPrintErrors); //If no general position is specified, set up a galaxy transition by reading the BCSV.
 		}
 
-	if (AlexSus == mObjArg2 + 90) { //Phase 3: Open the circle wipe, restore player control, and reset both "AlexSus" and "hasEnteredArea" vars.
-		SPack::selectWipeOpen(mObjArg3, mObjArg4); //The "hasEnteredArea" var is used to prevent a softlock caused by leaving the WarpArea during the circle wipe closure.
-		MR::onPlayerControl(1);
-		AlexSus = 0;
-		hasEnteredArea = 0;
+		//Phase 3: Open the wipe and restore player control.
+		if (mElapsed == mFadeCloseTime + 90) {
+			if (mPosID >= 0) {
+				mStageTable->selectWipeOpen(mFadeOpenType, mFadeOpenTime);
+				MR::onPlayerControl(1);
+				mCanWarp = false;
+				mElapsed = 0;
+			}
+			else { //This will only appear if a galaxy transition fails, specifically if the specified index is not in the bcsv
+				MR::openSystemWipeCircle(45);
+				MR::onPlayerControl(1);
+				mErrorLayout->printf(mPrintErrors, "BCSV Index %d isn't exist.", mPosID);
+				mElapsed = 0;
+				}
+			}
 		}
 	}
 
