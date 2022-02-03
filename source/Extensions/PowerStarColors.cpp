@@ -3,6 +3,7 @@
 #include "System/ScenarioDataParser.h"
 #include "Util.h"
 #include "spack/Util/ActorUtil.h"
+#include "LiveActor/LiveActor.h"
 
 /*
 * Authors: Aurum, Galaxy Master, and Evanbowl
@@ -32,13 +33,13 @@ namespace SPack {
 		GalaxyStatusAccessor gsa(MR::makeGalaxyStatusAccessor(pStage));
 		gsa.mScenarioData->getScenarioString("PowerStarType", scenarioId, &type);
 
-		if (strstr(type, "Bronze"))
+		if (MR::isEqualSubString(type, "Bronze"))
 			return 1;
-		else if (strstr(type, "Green") || strstr(type, "LegacyGreen"))
+		else if (MR::isEqualSubString(type, "Green") || MR::isEqualSubString(type, "LegacyGreen"))
 			return 2;
-		else if (strstr(type, "Red"))
+		else if (MR::isEqualSubString(type, "Red"))
 			return 3;
-		else if (strstr(type, "Blue"))
+		else if (MR::isEqualSubString(type, "Blue"))
 			return 5;
 			
 		return 0;
@@ -51,7 +52,7 @@ namespace SPack {
 	s32 getPowerStarColorCurrentStage(s32 scenarioId) {
 		return getPowerStarColor(MR::getCurrentStageName(), scenarioId);
 	}
-	
+
 	/*
 	* At the given address in PowerStar::initMapToolInfo(const JMapInfoIter&), there is a
 	* check which always results true, allowing us to rewrite these instructions. Here, we
@@ -61,21 +62,21 @@ namespace SPack {
 	kmWrite32(0x802E01B8, 0x7C030378); // copy r0 (mPowerStarID / scenario) to r3
 	kmCall(0x802E01BC, getPowerStarColorCurrentStage); // retrieve color ID
 	kmWrite32(0x802E01C0, 0x907E0130); // store result (r3) in mColor
-	
+
 	/*
 	* initMapToolInfo still is not perfect meaning that there is still a thing to take
 	* proper care of. If not a Green Star, the color ID should not default to 0 (gold).
 	* Instead, we want our previously loaded color to be used. This replaces "li r3, 0".
 	*/
 	kmWrite32(0x802E01F0, 0x807E0130); // load mColor into r3
-	
+
 	/*
 	* This adjusts the Star Select scene to apply our new colors correctly. Basically,
 	* we replaced the check for Green Stars and extended it with our colors.
 	*/
 	kmCall(0x802DFC14, getPowerStarColorCurrentStage); // redirection hook
 	kmWrite32(0x802DFC20, 0x60000000); // NOP-out returning green all the time
-	
+
 	/*
 	* Lastly, we still have to patch the Star return cutscene to account for the newly
 	* added color. This one could possibly be improved in the future to reduce all the
@@ -85,7 +86,7 @@ namespace SPack {
 	kmWrite32(0x802DF100, 0x7C7C1B78); // copy result from r3 to r28
 	kmWrite32(0x802DF104, 0x2C1C0000); // compare r28 to 0
 	kmWrite32(0x802DF108, 0x41820008); // branch to apply gold or transparent
-	
+
 	/*
 	* Whenever a Power Star is created for a cutscene, a different set of functions is
 	* used to retrieve and apply the color. This is a simple fix, however. For this, the
@@ -103,28 +104,32 @@ namespace SPack {
 	/*
 	* Power Star Font Icons
 	*
-	* On the World Map, Star inside the PictureFont.brfnt inside Font.arc found in all language files.
-	* Here we load a custom BRFNT from SystemData so we do not have to edit the font in all languages.
+	* On the World Map and Star List, the game displays star icons based on the Power Star type and Comet.
+	* However, we've changed this so that new and custom star types can be displayed.
+	*
+	* Here we load a custom BRFNT from PTSystemData.arc so we do not have to edit the font in all languages.
+    *
+	* When the game selects which icon to display, it calls MR::addPictureFontCode and r4 is used to deter-
+	* mine which icon from the BRFNT should be used. Here we use that to check which icon type to use, then run a check for Power Star color. 
 	*/
 
 	void loadPTPictureFont() {
-	loadArcAndFile("/SystemData/PTSystemData.arc", "/Font/PTPictureFont.brfnt");
-	}
+		loadArcAndFile("/SystemData/PTSystemData.arc", "/Font/PTPictureFont.brfnt");
+}
+
+	kmCall(0x804B8048, loadPTPictureFont);
 
 	wchar_t* getStarIcon(wchar_t* unk, s32 type) {
-		const char *pStage;
+		const char *stage;
 		s32 scenarioId;
 		s32 icon;
 
-		asm("mr %0, r27" : "=r" (pStage));
+		asm("mr %0, r27" : "=r" (stage));
 		asm("mr %0, r31" : "=r" (scenarioId));
-		
-	 	s32 getStarColor = getPowerStarColor(pStage, scenarioId);
 
-		OSReport("StageName: %s, Scenario ID: %d, Icon: %x, ALEX IS SUSSSSSS\n", pStage, scenarioId, type);
+		s32 getStarColor = getPowerStarColor(stage, scenarioId);
 
-		if (type == 0x37) {
-		// Normal Star icons
+		if (type == 0x37) //Normal Star icons
 		switch (getStarColor) {
 			case 0:
 				icon = 0x37; //Normal
@@ -142,10 +147,8 @@ namespace SPack {
 				icon = 0x7F; //Blue
 			break;
 			}
-		}
 
-		else if (type == 0x65) {
-		//Comet Star icons
+		else if (type == 0x65) //Comet Star icons
 			switch (getStarColor) {
 			case 0:
 				icon = 0x65; //Normal
@@ -163,10 +166,8 @@ namespace SPack {
 				icon = 0x82; //Blue
 			break;
 			}
-		}
 
-		else if (type == 0x71) {
-		//Uncollected Hidden Star icons
+		else if (type == 0x71) //Uncollected Hidden Star icons
 		switch (getStarColor) {
 			case 0:
 				icon = 0x71; //Normal
@@ -184,15 +185,36 @@ namespace SPack {
 				icon = 0x84; //Blue
 			break;
 			}
-		}
-		
 		return MR::addPictureFontCode(unk, icon);
 	}
 	
-	kmCall(0x804B8048, loadPTPictureFont);
 	kmCall(0x80041E30, getStarIcon); //Normal Star icons
 	kmCall(0x80041F0C, getStarIcon); //Comet Star icons
 	kmCall(0x80041F94, getStarIcon); //Hidden Star icons
 	kmCall(0x80041F48, getStarIcon); //Collected Hidden Star icons
 
-}
+	/*
+	*	Star Ball: Custom Ball and Star Colors
+	*
+	*	The Power Star inside the Star Ball is not a display model.
+	*	Here we set the Star and Ball's color by checking the color
+	*	of the Scenario specified by obj_arg1.
+	*/
+
+	void TamakoroCustomPowerStarColors(LiveActor* actor, const JMapInfoIter& iter) {
+		s32 argScenario = -1;
+
+		MR::getJMapInfoArg1NoInit(iter, &argScenario);
+
+		s32 colorFrame = SPack::getPowerStarColorCurrentStage(argScenario);
+
+		MR::startBtpAndSetFrameAndStop(actor, "BallStarColor", colorFrame);
+		MR::startBrkAndSetFrameAndStop(actor, "BallColor", colorFrame);
+
+		if (MR::hasPowerStarInCurrentStage(argScenario))
+			MR::startBrkAndSetFrameAndStop(actor, "BallColor", 4);
+	}
+
+	kmWrite32(0x8044461C, 0x7F84E378);
+	kmCall(0x80444620, TamakoroCustomPowerStarColors);
+};

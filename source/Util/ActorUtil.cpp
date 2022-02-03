@@ -1,11 +1,7 @@
 #include "spack/Util/ActorUtil.h"
 #include "Enemy/StateController/AnimScaleController.h"
 #include "LiveActor/LiveActor.h"
-#include "Util/LiveActorUtil.h"
-#include "Util/MtxUtil.h"
 #include "Util.h"
-#include "Player/MarioAccess.h"
-#include "Player/MarioActor.h"
 
 /*
 * Authors: Aurum
@@ -55,36 +51,18 @@ namespace SPack {
 		return new AnimScaleController(pAnimScaleParam);
 	}
 
-	void useTimerSE(LiveActor* pActor, s32 pTime) {
-
-	s32 step = pActor->getNerveStep();
-
-	if (step <= pTime) {
-		if (!MR::isPlayerDead() && !MR::isPowerStarGetDemoActive()) {
-			if (pTime == step)
-				MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
-			else if ((step % 60) == 0) {
-				if (step >= (pTime - 120))
-					MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
-				else
-					MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
-				}
-			}
-		}
-	}
-
     //Loads an arc and a selected file into memory.
-	void* loadArcAndFile(const char* pArc, const char* pFile) {
-	JKRArchive* arc = MR::mountArchive(pArc, MR::getStationedHeapGDDR3(), 0);
-	void* file = arc->getResource(pFile);
-
-	if (arc && file) {
-		OSReport("Archive %s and file %s both exist!\n", pArc, pFile);
-		return file;
-	}
-	else
-		OSReport("%s %s isn't exist!\n", pArc, pFile);
-
-	return 0;
-	}
+	void* loadArcAndFile(const char *pArc, const char *pFile) {
+		JKRArchive* arc = MR::mountArchive(pArc, MR::getStationedHeapGDDR3(), 0);
+		void* file = arc->getResource(pFile);
+	
+		if (arc && file) {
+			OSReport("Archive %s and file %s both exist!\n", pArc, pFile);
+			return file;
+		}
+		else
+			OSReport("%s %s isn't exist!\n", pArc, pFile);
+	
+		return 0;
+		}
 }

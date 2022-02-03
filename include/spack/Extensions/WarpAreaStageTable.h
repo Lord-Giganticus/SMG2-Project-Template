@@ -1,11 +1,23 @@
 #pragma once
 
 #include "syati.h"
+#include "spack/LayoutActor/WarpAreaErrorLayout.h"
 
-namespace SPack {
-	void WarpAreaStageTable(s32 selectedindex);
+class WarpAreaStageTable {
+public:
+
+	WarpAreaStageTable(bool init);
+	void readTable(s32 selectedindex, bool useErrors);
 
 	void selectWipeClose(s32 type, s32 fadeTime);
 	void selectWipeOpen(s32 type, s32 fadeTime);
-    void useWarpAreaFadeIn();
+
+	const char* mDestStageName;
+	s32 mDestScenarioNo;
+	s32 mDestGreenScenarioNo;
+	s32 mBCSVWipeType;
+	s32 mBCSVWipeTime;
+	s32 mIndex;
+	bool mCanWarp;
+	ErrorLayout* mErrorLayout;
 };

@@ -10,6 +10,7 @@
 #include "Ride/SwingRope.h"
 #include "Scene/SceneObjHolder.h"
 #include "spack/AreaObj/JumpSwitchArea.h"
+#include "spack/AreaObj/WarpArea.h"
 #include "spack/Enemy/Anagon.h"
 #include "spack/Enemy/BallBeamer.h"
 #include "spack/Enemy/Banekiti.h"
@@ -31,6 +32,7 @@
 #include "spack/MapObj/PomponPlant.h"
 #include "spack/MapObj/PowerStarSpawner.h"
 #include "spack/MapObj/ScrewSwitchBase.h"
+#include "spack/MapObj/SwitchBox.h"
 #include "spack/MapObj/WatchTowerRotateStep.h"
 #include "spack/MapObj/WaterLeakPipe.h"
 
@@ -89,6 +91,7 @@ namespace SPack {
     /* 1 - Extended NameObjFactory entries                                                       */
     /*********************************************************************************************/
     CREATE_EXT_ACTOR(JumpSwitchArea, pName);
+    CREATE_EXT_ACTOR(WarpArea, pName);
     CREATE_EXT_ACTOR(Anagon, pName);
     CREATE_EXT_ACTOR(BallBeamer, pName);
     CREATE_EXT_ACTOR(Banekiti, pName);
@@ -105,6 +108,7 @@ namespace SPack {
     CREATE_EXT_ACTOR(MorphItemNeoFoo, "飛行オブジェ");
     CREATE_EXT_ACTOR(MorphItemNeoIce, "アイスオブジェ");
     CREATE_EXT_ACTOR(PowerStarSpawner, "PowerStarSpawner");
+    CREATE_EXT_ACTOR(SwitchBox, pName);
     CREATE_EXT_ACTOR(SwitchDice, pName);
     CREATE_EXT_ACTOR(FirePressureRadiate, pName);
     CREATE_EXT_ACTOR(Jiraira, pName);
@@ -141,7 +145,7 @@ namespace SPack {
     * Number of total new actor entries. This value has to adjusted everytime a creation function
     * is added or removed!
     */
-    #define NUM_ACTORS 45
+    #define NUM_ACTORS 44
 
     const CreateActorEntry cNewCreateNameObjTable[NUM_ACTORS] = {
         // AreaObj
@@ -152,6 +156,7 @@ namespace SPack {
         { "PipeModeArea", NameObjFactory::createNameObj<AreaObj> },
         { "PlaneCircularModeArea", NameObjFactory::createNameObj<AreaObj> },
         { "QuakeEffectArea", createQuakeEffectArea },
+        { "WarpArea", createExtActor<WarpArea> },
         // Enemy
         { "Anagon", createExtActor<Anagon> },
         { "BallBeamer", createExtActor<BallBeamer> },
@@ -185,6 +190,7 @@ namespace SPack {
         { "Pompon2Plant", createExtActor<PomponPlant> },
         { "ScrewSwitch", createExtActor<ScrewSwitch> },
         { "ScrewSwitchReverse", createExtActor<ScrewSwitchReverse> },
+        { "SwitchBox", createExtActor<SwitchBox> },
         { "ValveSwitch", createExtActor<ValveSwitch> },
         { "UFOBlueStarCupsule", NameObjFactory::createNameObj<BlueStarCupsulePlanet> },
         { "WatchTowerRotateStep", createExtActor<WatchTowerRotateStep>},

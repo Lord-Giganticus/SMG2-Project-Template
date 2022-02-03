@@ -3,6 +3,9 @@
 #include "MapObj/Shellfish.h"
 #include "MapObj/SuperSpinDriver.h"
 #include "Util.h"
+#include "System/GalaxyStatusAccessor.h"
+#include "System/ScenarioDataParser.h"
+#include "System/GameSequenceFunction.h"
 
 /*
 * Authors: Aurum
@@ -131,10 +134,21 @@ namespace SPack {
 
 	kmCall(0x8026360C, initQuakeEffectGeneratorSound); // redirection hook
 
-	void fileIsntExistExtensions(u32 unk1, u32 unk2, const char* sus) {
-		const char* fileNameString;
-		asm("mr %0, r26" : "=r" (fileNameString)); //gets the file name string from r26
-		OSPanic(unk1, unk2, "File %s isn't exist.", fileNameString);
+	/*
+	* Debugging feature: displaying the file name on the "File isn't exist" error.
+	*
+	* When the game checks if a file exists, it runs MR::isFileExist, and if the file it's checking for doesn't exist, it calls OSFatal, 
+	* crashing the game. It also prints "File isn't exist" to the log.
+	*
+	* Here, the MR::isFileExist call is replaced with a call to this new function, that prints the file name with the error, if the checked file is missing.
+	*
+	* This is useful for debugging certain things!
+	*/
+
+	void printFileNameIfMissing(const char* fileName) {
+		if (!MR::isFileExist(fileName, 0))
+			OSPanic("FileRipper.cpp", 118, "File \"%s\" isn't exist.", fileName);
 	}
-	kmCall(0x804B1FFC, fileIsntExistExtensions);
+
+	kmCall(0x804B1FE0, printFileNameIfMissing);
 }

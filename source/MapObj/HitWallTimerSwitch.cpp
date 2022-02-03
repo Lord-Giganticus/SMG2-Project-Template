@@ -134,8 +134,8 @@ void HitWallTimerSwitch::exeOn() {
 			MR::onSwitchingScreenEffect();
 		else if (mScreenEffectType == 2)
 			MR::onTimeStopScreenEffect();
-	}
 
+	}
 	s32 step = getNerveStep();
 
 	if (step <= mTimer) {
