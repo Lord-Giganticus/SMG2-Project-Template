@@ -6,6 +6,7 @@
 #include "System/GalaxyStatusAccessor.h"
 #include "System/ScenarioDataParser.h"
 #include "System/GameSequenceFunction.h"
+#include "revolution/os.h"
 
 /*
 * Authors: Aurum
