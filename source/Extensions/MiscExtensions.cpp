@@ -1,4 +1,4 @@
-﻿#include "spack/MapObj/BlueChip.h"
+#include "spack/MapObj/BlueChip.h"
 #include "MapObj/Coin.h"
 #include "MapObj/Shellfish.h"
 #include "MapObj/SuperSpinDriver.h"
@@ -36,12 +36,6 @@ namespace SPack {
 			MR::startBrk(pActor, "Green");
 
 			pActor->mSpinDriverPathDrawer->mColor = 0;
-		}
-		else if (pActor->mColor == SUPER_SPIN_DRIVER_RED) {
-			MR::startBtpAndSetFrameAndStop(pActor, "SuperSpinDriver", 3.0f);
-			MR::startBrk(pActor, "Red");
-
-			pActor->mSpinDriverPathDrawer->mColor = -1; //Adding a new path still needs figuring out...
 		}
 		else
 			pActor->initColor();
