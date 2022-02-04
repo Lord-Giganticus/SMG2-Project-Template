@@ -1,0 +1,100 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  Bins:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2.2.2
+    - shell: cmd
+      run: |
+        pushd ${{ github.workspace }}
+        cd ../
+        git clone https://github.com/Lord-Giganticus/Syati.git
+        popd
+    - name: Setup files
+      shell: cmd
+      run: |
+        pushd ${{ github.workspace }}
+        mkdir output
+        cp -R source/. ../Syati/source
+        cp -R include/. ../Syati/include
+        cd ../Syati
+        mkdir output
+        popd
+    - shell: pwsh
+      run: |
+        cd ${{ github.workspace }}/../Syati
+        Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar" -OutFile Kamek.rar
+        ${{ secrets.CODEWARRIOR_CMD }}
+    - shell: cmd
+      run: |
+        cd ${{ github.workspace }}/../Syati
+        7z x *.rar
+        rm -f *.rar
+        cd source
+        rm -f ExtendedActorFactory.cpp
+    - name: Build Syati
+      shell: cmd
+      run: |
+         pushd ${{ github.workspace }}
+         cd ../Syati
+         python -m build USA
+         rm -f *.d
+         python -m build PAL
+         rm -f *.d
+         python -m build JAP
+         rm -f *.d
+         python -m build KOR
+         rm -f *.d
+         python -m build TWN
+         rm -f *.d
+         mv *.bin output
+         cp -R output/*.bin ../SMG2-Project-Template/output
+         popd
+         rm -r ../Syati
+    - name: Upload bin files
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: Bins
+        path: ${{ github.workspace }}/output
+        
+  Publish:
+    if: github.ref == 'refs/heads/master'
+    needs: Bins
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - run: |
+          mkdir Release
+          cd Release
+          mkdir CustomCode
+      - uses: actions/download-artifact@v2.0.10
+        with: 
+          name: Bins
+          path: ${{ github.workspace }}/Release/CustomCode
+      - shell: cmd
+        run: |
+          cd ${{ github.workspace }}
+          cp *.bin Release\CustomCode
+          cd Release
+          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" *.* -r
+          cd ${{ github.workspace }}
+          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" ParticleData SystemData ObjectData AudioRes LayoutData objectdb.xml smg2proj.xml
+          7z a "${{ github.workspace }}/Debug_SMG2PT.zip" *.ini -r
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "Auto"
+          prerelease: true
+          title: "SMG2PT Beta"
+          files: |
+            *.zip

@@ -1,0 +1,36 @@
+﻿<wiidisc version="1">
+	<id game="SB4">
+		<region type="E"/>
+		<region type="J"/>
+		<region type="P"/>
+		<region type="W"/>
+		<region type="K"/>
+	</id>
+	<options>
+		<section name="SMG2 Project Template">
+			<option name="Core">
+				<choice name="Enabled">
+					<patch id="smg2modcore"/>
+				</choice>
+			</option>
+		</section>
+	</options>
+	<patch id="smg2modcore" root="/smg2proj">
+		<savegame external="SaveGame/{$__gameid}{$__region}{$__maker}" clone="true"/>
+		<folder external="AudioRes" disc="/AudioRes" create="true"/>
+		<folder external="CustomCode" disc="/CustomCode" create="true"/>
+		<folder external="LayoutData" disc="/LayoutData" create="true"/>
+		<folder external="LocalizeData" disc="/LocalizeData" create="true"/>
+		<folder external="LocalizeData/EuEnglish" disc="/LocalizeData/EuDutch" create="true"/>
+		<folder external="ObjectData" disc="/ObjectData" create="true"/>
+		<folder external="ParticleData" disc="/ParticleData" create="true"/>
+		<folder external="StageData" disc="/StageData" create="true"/>
+		<folder external="SystemData" disc="/SystemData" create="true"/>
+		<memory offset="0x804B7D38" value="4BB4A240" original="4E800020" target="E"/>
+		<memory offset="0x804B7D38" value="4BB4A240" original="4E800020" target="J"/>
+		<memory offset="0x804B7D38" value="4BB4A240" original="4E800020" target="P"/>
+		<memory offset="0x804B7DA8" value="4BB4A1D0" original="4E800020" target="K"/>
+		<memory offset="0x804B7DA8" value="4BB4A1D0" original="4E800020" target="W"/>
+		<memory offset="0x80001800" valuefile="CustomCode/Loader{$__region}.bin"/>
+	</patch>
+</wiidisc>
