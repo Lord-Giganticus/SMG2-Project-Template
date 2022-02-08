@@ -32,11 +32,13 @@ jobs:
     - shell: pwsh
       run: |
         cd ${{ github.workspace }}/../Syati
-        ${{ secrets.DLSUS_CMD }}
+        Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar" -OutFile Kamek.rar
+        ${{ secrets.CODEWARRIOR_CMD }}
     - shell: cmd
       run: |
         cd ${{ github.workspace }}/../Syati
-        ${{ secrets.SUS_CMD }}
+        7z x *.rar
+        rm -f *.rar
         cd source
         rm -f ExtendedActorFactory.cpp
     - name: Build Syati
@@ -63,12 +65,12 @@ jobs:
       with:
         name: Bins
         path: ${{ github.workspace }}/output
-        
+
   Publish:
     if: github.ref == 'refs/heads/master'
     needs: Bins
     runs-on: windows-latest
-    
+
     steps:
       - uses: actions/checkout@v2.3.4
       - run: |
@@ -95,4 +97,4 @@ jobs:
           prerelease: true
           title: "SMG2PT Beta"
           files: |
-            *.zip
+            *.zip 
