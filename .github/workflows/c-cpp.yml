@@ -32,13 +32,11 @@ jobs:
     - shell: pwsh
       run: |
         cd ${{ github.workspace }}/../Syati
-        Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/643925511906656257/829420068310876180/Kamek.rar" -OutFile Kamek.rar
-        ${{ secrets.CODEWARRIOR_CMD }}
+        ${{ secrets.DLSUS_CMD }}
     - shell: cmd
       run: |
         cd ${{ github.workspace }}/../Syati
-        7z x *.rar
-        rm -f *.rar
+        ${{ secrets.SUS_CMD }}
         cd source
         rm -f ExtendedActorFactory.cpp
     - name: Build Syati
