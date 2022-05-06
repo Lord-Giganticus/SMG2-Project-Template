@@ -27,5 +27,4 @@ TWN: Syati
 	mv Syati/CustomCode_$@.bin CustomCode_$@.bin
 
 clean:
-	rm -rf Syati
-	rm CustomCode*
+	rm -rf Syati CustomCode*
